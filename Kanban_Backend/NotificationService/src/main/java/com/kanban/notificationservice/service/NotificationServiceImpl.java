@@ -10,7 +10,13 @@ package com.kanban.notificationservice.service;
 import com.kanban.notificationservice.domain.Notification;
 import com.kanban.notificationservice.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Optional;
 
@@ -38,4 +44,7 @@ public class NotificationServiceImpl implements NotificationService {
         Notification optUser = notificationRepository.findByEmail(notification.getEmail());
         return notificationRepository.save(notification);
     }
+
+
+
 }

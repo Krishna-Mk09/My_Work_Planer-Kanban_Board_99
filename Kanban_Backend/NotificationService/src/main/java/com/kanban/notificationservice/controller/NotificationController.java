@@ -8,10 +8,12 @@
 
 package com.kanban.notificationservice.controller;
 
+import com.kanban.notificationservice.domain.Notification;
 import com.kanban.notificationservice.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("notification")
@@ -21,5 +23,20 @@ public class NotificationController {
     @Autowired
     public NotificationController(NotificationService notificationService) {
         this.notificationService = notificationService;
+    }
+
+    @PostMapping("saveNotification")
+    public ResponseEntity<?> saveNotification(@RequestBody Notification notification) {
+        return new ResponseEntity<>(notificationService.saveNotification(notification), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/getByEmail/{email}")
+    public ResponseEntity<?> getByEmailId(@PathVariable String email) {
+        return new ResponseEntity<>(notificationService.getByEmail(email), HttpStatus.OK);
+    }
+
+    @PutMapping("/updateNotification/")
+    public ResponseEntity<?> updateNotification(@RequestBody Notification notification, @PathVariable String email) {
+        return new ResponseEntity<>(notificationService.updateNotification(notification), HttpStatus.ACCEPTED);
     }
 }
