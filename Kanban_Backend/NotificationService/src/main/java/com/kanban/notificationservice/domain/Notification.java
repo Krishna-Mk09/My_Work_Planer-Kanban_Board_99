@@ -8,5 +8,10 @@
 
 package com.kanban.notificationservice.domain;
 
+import java.util.List;
+
 public class Notification {
+    private String email;
+    private List<String> message;
+
 }
