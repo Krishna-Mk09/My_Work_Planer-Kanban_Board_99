@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User updateUser(User user) {
-		return null;
+		return this.userRepository.save(user);
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public void deleteUser(String email) {
-
+		this.userRepository.deleteById(email);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User loginUser(String email, String password) {
-		return null;
+		return this.userRepository.findUserByEmailAndPassword(email, password);
 	}
 }
 
