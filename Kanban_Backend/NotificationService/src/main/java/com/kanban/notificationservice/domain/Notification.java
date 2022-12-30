@@ -8,9 +8,13 @@
 
 package com.kanban.notificationservice.domain;
 
-import java.util.List;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+@Document
 public class Notification {
+    @Id
     private String email;
     private List<String> message;
 
@@ -40,9 +44,6 @@ public class Notification {
 
     @Override
     public String toString() {
-        return "Notification{" +
-                "email='" + email + '\'' +
-                ", message=" + message +
-                '}';
+        return "Notification{" + "email='" + email + '\'' + ", message=" + message + '}';
     }
 }
