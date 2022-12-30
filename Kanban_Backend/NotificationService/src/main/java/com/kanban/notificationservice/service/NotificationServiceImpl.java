@@ -42,9 +42,11 @@ public class NotificationServiceImpl implements NotificationService {
     @Override
     public Notification updateNotification(Notification notification) {
         Notification optUser = notificationRepository.findByEmail(notification.getEmail());
-        return notificationRepository.save(notification);
+        if (optUser == null) {
+            return null;
+        } else {
+            return notificationRepository.save(notification);
+        }
     }
-
-
 
 }

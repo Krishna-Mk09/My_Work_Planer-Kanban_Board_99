@@ -7,6 +7,6 @@ public interface NotificationService {
 
     Notification getByEmail(String email);
 
-    Notification updateNotification(Notification notification);
+    Notification updateNotification(Notification notification );
 
 }
