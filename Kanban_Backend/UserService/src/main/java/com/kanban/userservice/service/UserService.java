@@ -10,7 +10,7 @@ public interface UserService {
 	 * @param user This is the user object which is to be saved in the database.
 	 * @return User
 	 */
-	User registorUser(User user);
+	User registerUser(User user);
 
 	/**
 	 * This method is used to update the user in the database and return the updated user.
