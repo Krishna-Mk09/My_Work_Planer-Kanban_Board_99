@@ -2,10 +2,14 @@ package com.kanban.kanbanservice.service;
 
 import com.kanban.kanbanservice.domain.Kanban;
 import com.kanban.kanbanservice.repository.KanbanRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class KanbanServiceImpl implements KanbanService {
     private final KanbanRepository kanbanRepository;
 
+    @Autowired
     public KanbanServiceImpl(KanbanRepository kanbanRepository) {
         this.kanbanRepository = kanbanRepository;
     }
