@@ -1,6 +1,9 @@
 package com.kanban.userservice.service;
 
 import com.kanban.userservice.domain.User;
+import com.kanban.userservice.exception.UserNotFoundException;
+
+import java.util.List;
 
 public interface UserService {
 
@@ -33,5 +36,7 @@ public interface UserService {
 	 * @param email and password This is the email and password of the user which is to be logged in.
 	 * @return User
 	 */
-	User loginUser(String email, String password);
+	User loginUser(String email, String password) throws UserNotFoundException;
+
+//	List<String> getAllEmails();
 }

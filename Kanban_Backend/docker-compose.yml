@@ -1,0 +1,79 @@
+version: '3.9'
+services:
+  mysqlService:
+    image: mysql:latest
+    container_name: mysql
+    networks:
+      - kanban-network
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+
+  user-service:
+    image: userimage
+    container_name: usercontainer
+    build: UserService/
+    restart: always
+    networks:
+      - kanban-network
+    ports:
+      - 8081:8081
+    depends_on:
+      - mysqlService
+#      - apigateway
+
+
+#  product-service:
+#    image: sarthakproduct
+#    container_name: product1_container
+#    build: product/
+#    restart: always
+#    networks:
+#      - mynetwork6
+#    ports:
+#      - 8086:8086
+#    depends_on:
+#      - mongoService
+#      - apigateway
+
+
+#  mongoService:
+#    image: mongo
+#    container_name: mongocontainerforproduct1
+#    ports:
+#      - 27017:27017
+#    networks:
+#      - mynetwork6
+
+
+
+
+
+
+
+#  apigateway:
+#    container_name: spring-cloud-api-gateway
+#    build: API_Gateway/
+#    restart: always
+#    networks:
+#      - mynetwork6
+#    ports:
+#      - 9000:9000
+#
+#  eurekaservice:
+#    container_name: spring-cloud-eureka
+#    build: EurekaServer/
+#    restart: always
+#    networks:
+#      - mynetwork6
+#    ports:
+#      - 8761:8761
+
+
+networks:
+  kanban-network:
+    driver: bridge

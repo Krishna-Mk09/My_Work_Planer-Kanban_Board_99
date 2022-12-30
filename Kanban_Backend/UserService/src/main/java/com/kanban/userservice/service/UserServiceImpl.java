@@ -8,9 +8,12 @@
 package com.kanban.userservice.service;
 
 import com.kanban.userservice.domain.User;
+import com.kanban.userservice.exception.UserNotFoundException;
 import com.kanban.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -62,8 +65,16 @@ public class UserServiceImpl implements UserService {
 	 * @return User
 	 */
 	@Override
-	public User loginUser(String email, String password) {
+	public User loginUser(String email, String password) throws UserNotFoundException {
 		return this.userRepository.findUserByEmailAndPassword(email, password);
 	}
+
+	/**
+	 * @return
+	 */
+//	@Override
+//	public List<String> getAllEmails() {
+//		return this.userRepository.findAllEmails();
+//	}
 }
 
