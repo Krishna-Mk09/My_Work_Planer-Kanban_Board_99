@@ -37,4 +37,12 @@ public class Notification {
     public void setMessage(List<String> message) {
         this.message = message;
     }
+
+    @Override
+    public String toString() {
+        return "Notification{" +
+                "email='" + email + '\'' +
+                ", message=" + message +
+                '}';
+    }
 }
