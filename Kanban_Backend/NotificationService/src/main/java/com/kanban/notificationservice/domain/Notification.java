@@ -46,4 +46,6 @@ public class Notification {
     public String toString() {
         return "Notification{" + "email='" + email + '\'' + ", message=" + message + '}';
     }
+
+
 }
