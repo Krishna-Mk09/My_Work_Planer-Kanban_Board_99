@@ -14,4 +14,6 @@ public class Notification {
     private String email;
     private List<String> message;
 
+    public Notification() {
+    }
 }
