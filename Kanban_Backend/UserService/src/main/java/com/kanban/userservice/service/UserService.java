@@ -7,5 +7,7 @@ public interface UserService {
 
 	User updateUser(User user);
 
+	User deleteUser(String email);
+
 //	User loginUser(String email, String password);
 }
