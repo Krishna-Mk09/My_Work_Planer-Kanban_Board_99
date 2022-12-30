@@ -22,8 +22,8 @@ public class KanbanController {
         return new ResponseEntity<>(this.kanbanService.saveKanban(kanban), HttpStatus.CREATED);
     }
 
-    @GetMapping("/get-kanban")
-    public ResponseEntity<?> getKanban(@RequestBody String email) {
+    @GetMapping("/get-kanban/{email}")
+    public ResponseEntity<?> getKanban(@PathVariable String email) {
         return new ResponseEntity<>(this.kanbanService.getKanbanByEmail(email), HttpStatus.OK);
     }
 
@@ -32,8 +32,8 @@ public class KanbanController {
         return new ResponseEntity<>(this.kanbanService.updateKanbanBoard(kanban), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete-kanban")
-    public ResponseEntity<?> deleteKanban(@RequestBody String email) {
+    @DeleteMapping("/delete-kanban/{email}")
+    public ResponseEntity<?> deleteKanban(@PathVariable String email) {
         this.kanbanService.deleteKanbanBoardByEmail(email);
         return new ResponseEntity<>(HttpStatus.OK);
     }
