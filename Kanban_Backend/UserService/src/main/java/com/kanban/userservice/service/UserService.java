@@ -39,4 +39,5 @@ public interface UserService {
 	User loginUser(String email, String password) throws UserNotFoundException;
 
 //	List<String> getAllEmails();
+	User findUserByEmail(String email);
 }
