@@ -8,10 +8,19 @@
 package com.kanban.userservice.service;
 
 import com.kanban.userservice.domain.User;
+import com.kanban.userservice.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+	private final UserRepository userRepository;
+
+	@Autowired
+	public UserServiceImpl(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
 	/**
 	 * This method is used to save the user in the database and return the saved user.
