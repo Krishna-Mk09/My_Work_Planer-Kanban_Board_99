@@ -1,44 +1,45 @@
 package com.kanban.kanbanservice.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Board {
-    private List<Task> toDo;
-    private List<Task> inProgress;
-    private List<Task> completed;
+    private String boardName;
+    private List<Column> columns;
+    private List<String> members;
 
     public Board() {
     }
 
-    public Board(List<Task> toDo, List<Task> inProgress, List<Task> completed) {
-        this.toDo = toDo;
-        this.inProgress = inProgress;
-        this.completed = completed;
+    public Board(String boardName, List<Column> columns, List<String> members) {
+        this.boardName = boardName;
+        this.columns = columns;
+        this.members = members;
     }
 
-    public List<Task> getToDo() {
-        return toDo;
+    public String getBoardName() {
+        return boardName;
     }
 
-    public void setToDo(List<Task> toDo) {
-        this.toDo = toDo;
+    public void setBoardName(String boardName) {
+        this.boardName = boardName;
     }
 
-    public List<Task> getInProgress() {
-        return inProgress;
+    public List<Column> getColumns() {
+        return columns;
     }
 
-    public void setInProgress(List<Task> inProgress) {
-        this.inProgress = inProgress;
+    public void setColumns(List<Column> columns) {
+        this.columns = columns;
     }
 
-    public List<Task> getCompleted() {
-        return completed;
+    public List<String> getMembers() {
+        return members;
     }
 
-    public void setCompleted(List<Task> completed) {
-        this.completed = completed;
+    public void setMembers(List<String> members) {
+        this.members = members;
     }
 
     @Override
@@ -46,20 +47,20 @@ public class Board {
         if (this == o) return true;
         if (!(o instanceof Board)) return false;
         Board board = (Board) o;
-        return Objects.equals(getToDo(), board.getToDo()) && Objects.equals(getInProgress(), board.getInProgress()) && Objects.equals(getCompleted(), board.getCompleted());
+        return Objects.equals(getBoardName(), board.getBoardName()) && Objects.equals(getColumns(), board.getColumns()) && Objects.equals(getMembers(), board.getMembers());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getToDo(), getInProgress(), getCompleted());
+        return Objects.hash(getBoardName(), getColumns(), getMembers());
     }
 
     @Override
     public String toString() {
         return "Board{" +
-                "toDo=" + toDo +
-                ", inProgress=" + inProgress +
-                ", completed=" + completed +
+                "boardName='" + boardName + '\'' +
+                ", columns=" + columns +
+                ", members=" + members +
                 '}';
     }
 }
