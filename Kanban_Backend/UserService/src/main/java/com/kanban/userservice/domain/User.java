@@ -20,4 +20,7 @@ public class User {
 	String email;
 	String password;
 	long mobileNumber;
+
+	public User() {
+	}
 }
