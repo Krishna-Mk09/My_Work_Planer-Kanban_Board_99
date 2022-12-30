@@ -9,5 +9,5 @@ public interface UserService {
 
 	User deleteUser(String email);
 
-//	User loginUser(String email, String password);
+	User loginUser(String email, String password);
 }
