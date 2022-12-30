@@ -6,15 +6,30 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="NotificationService" />
+        <module name="ApiGatewayService" />
+        <module name="UserService" />
+        <module name="KanbanService" />
+        <module name="EurekaService" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ApiGatewayService" target="11" />
+      <module name="EurekaService" target="11" />
       <module name="Kanban_Backend" target="11" />
+      <module name="KanbanService" target="11" />
+      <module name="NotificationService" target="11" />
+      <module name="UserService" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ApiGatewayService" options="-parameters" />
+      <module name="EurekaService" options="-parameters" />
+      <module name="KanbanService" options="-parameters" />
       <module name="Kanban_Backend" options="" />
+      <module name="NotificationService" options="-parameters" />
+      <module name="UserService" options="-parameters" />
     </option>
   </component>
 </project>
