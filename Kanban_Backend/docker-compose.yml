@@ -24,7 +24,7 @@ services:
       - "8081:8081"
     depends_on:
       - mysqlService
-#      - apigateway
+  #      - apigateway
 
   kanban-service:
     image: kanbanimage
@@ -41,11 +41,26 @@ services:
 
   mongoService:
     image: mongo
-    container_name: mongo
+    container_name: mongo1
     ports:
       - "27017:27017"
     networks:
       - kanban-network
+
+  notification-service:
+    image: notificationimage
+    container_name: notification-container
+    build: NotificationService/
+    restart: always
+    networks:
+      - kanban-network
+    ports:
+      - "8083:8083"
+    depends_on:
+      - mongoService
+
+
+
 
 
 

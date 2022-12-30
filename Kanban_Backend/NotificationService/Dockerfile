@@ -1,4 +1,4 @@
-server.port=8080
-spring.data.mongodb.database=notification_db
-spring.data.mongodb.uri=mongodb://localhost:27017/
-server.error.include-message=always;
+FROM openjdk
+WORKDIR usr/lib
+ADD ./target/NotificationService-0.0.1-SNAPSHOT.jar /usr/lib/NotificationService-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","NotificationService-0.0.1-SNAPSHOT.jar"]

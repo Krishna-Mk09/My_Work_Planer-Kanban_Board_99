@@ -29,12 +29,14 @@ public class NotificationController {
     public ResponseEntity<?> saveNotification(@RequestBody Notification notification) {
         return new ResponseEntity<>(notificationService.saveNotification(notification), HttpStatus.CREATED);
     }
+
     @GetMapping("/getByEmail/{email}")
     public ResponseEntity<?> getByEmailId(@PathVariable String email) {
         return new ResponseEntity<>(notificationService.getByEmail(email), HttpStatus.OK);
     }
+
     @PutMapping("/updateNotification/")
-    public ResponseEntity<?> updateNotification(@RequestBody Notification notification)  {
+    public ResponseEntity<?> updateNotification(@RequestBody Notification notification) {
         return new ResponseEntity<>(notificationService.updateNotification(notification), HttpStatus.ACCEPTED);
     }
 }
