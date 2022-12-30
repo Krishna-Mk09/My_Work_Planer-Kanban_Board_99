@@ -16,4 +16,9 @@ public class Notification {
 
     public Notification() {
     }
+
+    public Notification(String email, List<String> message) {
+        this.email = email;
+        this.message = message;
+    }
 }
