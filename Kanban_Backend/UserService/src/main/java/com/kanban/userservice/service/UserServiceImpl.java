@@ -9,6 +9,7 @@ package com.kanban.userservice.service;
 
 import com.kanban.userservice.domain.User;
 import com.kanban.userservice.exception.UserNotFoundException;
+import com.kanban.userservice.proxy.UserProxy;
 import com.kanban.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,12 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
+	private UserProxy userProxy;
+
 	private final UserRepository userRepository;
 
-	@Autowired
-	public UserServiceImpl(UserRepository userRepository) {
+	public UserServiceImpl(UserProxy userProxy, UserRepository userRepository) {
+		this.userProxy = userProxy;
 		this.userRepository = userRepository;
 	}
 
@@ -33,6 +36,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User registerUser(User user) {
+		userProxy.saveKanban(user);
 		return userRepository.save(user);
 	}
 
