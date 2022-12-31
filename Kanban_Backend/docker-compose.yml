@@ -68,23 +68,23 @@ services:
 
 
 
-#  apigateway:
-#    container_name: spring-cloud-api-gateway
-#    build: API_Gateway/
-#    restart: always
-#    networks:
-#      - mynetwork6
-#    ports:
-#      - 9000:9000
-#
-#  eurekaservice:
-#    container_name: spring-cloud-eureka
-#    build: EurekaServer/
-#    restart: always
-#    networks:
-#      - mynetwork6
-#    ports:
-#      - 8761:8761
+  #  apigateway:
+  #    container_name: spring-cloud-api-gateway
+  #    build: API_Gateway/
+  #    restart: always
+  #    networks:
+  #      - mynetwork6
+  #    ports:
+  #      - 9000:9000
+  #
+  eurekaservice:
+    container_name: spring-cloud-eureka
+    build: EurekaService/
+    restart: always
+    networks:
+      - kanban-network
+    ports:
+      - 8761:8761
 
 
 networks:
