@@ -1,5 +1,6 @@
 package com.kanban.kanbanservice.domain;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 
@@ -22,6 +23,14 @@ public class Task {
         this.status = status;
         this.startDate = startDate;
         this.dueDate = dueDate;
+        this.members = members;
+    }
+
+    public String[] getMembers() {
+        return members;
+    }
+
+    public void setMembers(String[] members) {
         this.members = members;
     }
 
@@ -78,23 +87,26 @@ public class Task {
         if (this == o) return true;
         if (!(o instanceof Task)) return false;
         Task task = (Task) o;
-        return Objects.equals(getName(), task.getName()) && Objects.equals(getDescription(), task.getDescription()) && Objects.equals(getPriority(), task.getPriority()) && Objects.equals(getStatus(), task.getStatus()) && Objects.equals(getStartDate(), task.getStartDate()) && Objects.equals(getDueDate(), task.getDueDate());
+        return Objects.equals(getName(), task.getName()) && Objects.equals(getDescription(), task.getDescription()) && Objects.equals(getPriority(), task.getPriority()) && Objects.equals(getStatus(), task.getStatus()) && Objects.equals(getStartDate(), task.getStartDate()) && Objects.equals(getDueDate(), task.getDueDate()) && Arrays.equals(getMembers(), task.getMembers());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getDescription(), getPriority(), getStatus(), getStartDate(), getDueDate());
+        int result = Objects.hash(getName(), getDescription(), getPriority(), getStatus(), getStartDate(), getDueDate());
+        result = 31 * result + Arrays.hashCode(getMembers());
+        return result;
     }
 
     @Override
     public String toString() {
         return "Task{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", priority='" + priority + '\'' +
-                ", status='" + status + '\'' +
-                ", startDate=" + startDate +
-                ", dueDate=" + dueDate +
-                '}';
+            "name='" + name + '\'' +
+            ", description='" + description + '\'' +
+            ", priority='" + priority + '\'' +
+            ", status='" + status + '\'' +
+            ", startDate=" + startDate +
+            ", dueDate=" + dueDate +
+            ", members=" + Arrays.toString(members) +
+            '}';
     }
 }

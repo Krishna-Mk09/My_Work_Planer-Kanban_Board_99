@@ -9,22 +9,22 @@ package com.kanban.userservice.service;
 
 import com.kanban.userservice.domain.User;
 import com.kanban.userservice.exception.UserNotFoundException;
-import com.kanban.userservice.proxy.UserProxy;
+import com.kanban.userservice.proxy.KanbanProxy;
+import com.kanban.userservice.proxy.NotificationProxy;
 import com.kanban.userservice.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-	private UserProxy userProxy;
+	private final KanbanProxy kanbanProxy;
+	private final NotificationProxy notificationProxy;
 
 	private final UserRepository userRepository;
 
-	public UserServiceImpl(UserProxy userProxy, UserRepository userRepository) {
-		this.userProxy = userProxy;
+	public UserServiceImpl(KanbanProxy kanbanProxy, NotificationProxy notificationProxy, UserRepository userRepository) {
+		this.kanbanProxy = kanbanProxy;
+		this.notificationProxy = notificationProxy;
 		this.userRepository = userRepository;
 	}
 
@@ -36,7 +36,8 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User registerUser(User user) {
-		userProxy.saveKanban(user);
+		kanbanProxy.saveKanban(user);
+		notificationProxy.saveNotification(user);
 		return userRepository.save(user);
 	}
 
