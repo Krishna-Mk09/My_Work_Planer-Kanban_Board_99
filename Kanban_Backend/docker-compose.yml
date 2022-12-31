@@ -77,14 +77,14 @@ services:
   #    ports:
   #      - 9000:9000
   #
-#  eurekaservice:
-#    container_name: spring-cloud-eureka
-#    build: EurekaService/
-#    restart: always
-#    networks:
-#      - kanban-network
-#    ports:
-#      - 8761:8761
+  eurekaservice:
+    container_name: spring-cloud-eureka
+    build: EurekaService/
+    restart: always
+    networks:
+      - kanban-network
+    ports:
+      - 8761:8761
 
 
 networks:
