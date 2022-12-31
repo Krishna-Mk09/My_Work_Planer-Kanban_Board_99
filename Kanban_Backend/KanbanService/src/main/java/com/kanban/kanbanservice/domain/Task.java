@@ -10,17 +10,19 @@ public class Task {
     private String status;
     private Date startDate;
     private Date dueDate;
+    private String[] members;
 
     public Task() {
     }
 
-    public Task(String name, String description, String priority, String status, Date startDate, Date dueDate) {
+    public Task(String name, String description, String priority, String status, Date startDate, Date dueDate, String[] members) {
         this.name = name;
         this.description = description;
         this.priority = priority;
         this.status = status;
         this.startDate = startDate;
         this.dueDate = dueDate;
+        this.members = members;
     }
 
     public String getName() {
