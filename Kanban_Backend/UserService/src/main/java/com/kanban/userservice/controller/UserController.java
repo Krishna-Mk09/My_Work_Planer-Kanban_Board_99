@@ -60,10 +60,18 @@ public class UserController {
 		return new ResponseEntity<>("User Deleted Successfully", HttpStatus.OK);
 	}
 
-//	@GetMapping("/emails")
-//	public ResponseEntity<?> getByEmail() {
-//		return new ResponseEntity<>(this.userService.getAllEmails(), HttpStatus.OK);
-//	}
+	@GetMapping("/email/{email}")
+	public ResponseEntity<?> getByEmail(@PathVariable String email) throws UserNotFoundException {
+		try {
+			return new ResponseEntity<>(this.userService.findUserByEmail(email), HttpStatus.OK);
+		} catch (UserNotFoundException exception) {
+			throw new UserNotFoundException();
+		} catch (Exception exception) {
+			return new ResponseEntity<>("Network Error", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+
 
 
 }

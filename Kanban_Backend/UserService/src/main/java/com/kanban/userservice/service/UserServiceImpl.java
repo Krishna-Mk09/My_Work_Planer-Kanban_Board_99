@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
 	 * This method is used to log in the user and return the user.
 	 *
 	 * @param email    and password This is the email and password of the user which is to be logged in.
-	 * @param password
+	 * @param password This is the password of the user which is to be logged in.
 	 * @return User
 	 */
 	@Override
@@ -75,10 +75,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	/**
-	 * @return
+	 * This method is used to find the user by email and return the user.
+	 * @param email This is the email of the user which is to be found.
+	 * @return User
 	 */
 	@Override
-	public User findUserByEmail(String email) {
+	public User findUserByEmail(String email) throws UserNotFoundException  {
 		return this.userRepository.findUserByEmail(email);
 	}
 }
