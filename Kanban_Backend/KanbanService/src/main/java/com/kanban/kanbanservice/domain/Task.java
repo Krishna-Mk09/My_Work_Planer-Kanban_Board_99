@@ -2,6 +2,7 @@ package com.kanban.kanbanservice.domain;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Task {
@@ -11,12 +12,12 @@ public class Task {
     private String status;
     private Date startDate;
     private Date dueDate;
-    private String[] members;
+    private List<String> members;
 
     public Task() {
     }
 
-    public Task(String name, String description, String priority, String status, Date startDate, Date dueDate, String[] members) {
+    public Task(String name, String description, String priority, String status, Date startDate, Date dueDate, List<String> members) {
         this.name = name;
         this.description = description;
         this.priority = priority;
@@ -26,11 +27,11 @@ public class Task {
         this.members = members;
     }
 
-    public String[] getMembers() {
+    public List<String> getMembers() {
         return members;
     }
 
-    public void setMembers(String[] members) {
+    public void setMembers(List<String> members) {
         this.members = members;
     }
 
@@ -87,26 +88,24 @@ public class Task {
         if (this == o) return true;
         if (!(o instanceof Task)) return false;
         Task task = (Task) o;
-        return Objects.equals(getName(), task.getName()) && Objects.equals(getDescription(), task.getDescription()) && Objects.equals(getPriority(), task.getPriority()) && Objects.equals(getStatus(), task.getStatus()) && Objects.equals(getStartDate(), task.getStartDate()) && Objects.equals(getDueDate(), task.getDueDate()) && Arrays.equals(getMembers(), task.getMembers());
+        return Objects.equals(getName(), task.getName()) && Objects.equals(getDescription(), task.getDescription()) && Objects.equals(getPriority(), task.getPriority()) && Objects.equals(getStatus(), task.getStatus()) && Objects.equals(getStartDate(), task.getStartDate()) && Objects.equals(getDueDate(), task.getDueDate()) && Objects.equals(getMembers(), task.getMembers());
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(getName(), getDescription(), getPriority(), getStatus(), getStartDate(), getDueDate());
-        result = 31 * result + Arrays.hashCode(getMembers());
-        return result;
+        return Objects.hash(getName(), getDescription(), getPriority(), getStatus(), getStartDate(), getDueDate(), getMembers());
     }
 
     @Override
     public String toString() {
         return "Task{" +
-            "name='" + name + '\'' +
-            ", description='" + description + '\'' +
-            ", priority='" + priority + '\'' +
-            ", status='" + status + '\'' +
-            ", startDate=" + startDate +
-            ", dueDate=" + dueDate +
-            ", members=" + Arrays.toString(members) +
-            '}';
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", priority='" + priority + '\'' +
+                ", status='" + status + '\'' +
+                ", startDate=" + startDate +
+                ", dueDate=" + dueDate +
+                ", members=" + members +
+                '}';
     }
 }
