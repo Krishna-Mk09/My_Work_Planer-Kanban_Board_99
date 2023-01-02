@@ -21,9 +21,10 @@ public class SecurityTokenGeneratorImpl implements SecurityTokenGenerator {
 	@Override
 	public Map<String, String> generateToken(User user) {
 		String jwtToken;
-		jwtToken = Jwts.builder().setSubject(user.getEmail()) // Header
+		jwtToken = Jwts.builder()
+			.setSubject(user.getEmail()) // Header
 			.setIssuedAt(new Date()) // Payload
-			.signWith(SignatureAlgorithm.HS256, "secretKey.") // Verify Signature
+			.signWith(SignatureAlgorithm.HS256, "secretKey") // Verify Signature
 			.compact();
 
 		Map<String, String> map = new HashMap<>();

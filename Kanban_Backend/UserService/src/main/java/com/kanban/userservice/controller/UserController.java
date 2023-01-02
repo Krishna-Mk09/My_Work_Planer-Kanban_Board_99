@@ -12,6 +12,7 @@ import com.kanban.userservice.exception.UserAlreadyExistsException;
 import com.kanban.userservice.exception.UserNotFoundException;
 import com.kanban.userservice.service.SecurityTokenGeneratorImpl;
 import com.kanban.userservice.service.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ public class UserController {
 	private final UserServiceImpl userService;
 	private final SecurityTokenGeneratorImpl securityTokenGenerator;
 
+	@Autowired
 	public UserController(UserServiceImpl userService, SecurityTokenGeneratorImpl securityTokenGenerator) {
 		this.userService = userService;
 		this.securityTokenGenerator = securityTokenGenerator;

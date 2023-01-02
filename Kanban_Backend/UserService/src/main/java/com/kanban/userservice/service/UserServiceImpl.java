@@ -13,6 +13,7 @@ import com.kanban.userservice.exception.UserNotFoundException;
 import com.kanban.userservice.proxy.KanbanProxy;
 import com.kanban.userservice.proxy.NotificationProxy;
 import com.kanban.userservice.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,9 +21,9 @@ public class UserServiceImpl implements UserService {
 
 	private final KanbanProxy kanbanProxy;
 	private final NotificationProxy notificationProxy;
-
 	private final UserRepository userRepository;
 
+	@Autowired
 	public UserServiceImpl(KanbanProxy kanbanProxy, NotificationProxy notificationProxy, UserRepository userRepository) {
 		this.kanbanProxy = kanbanProxy;
 		this.notificationProxy = notificationProxy;
