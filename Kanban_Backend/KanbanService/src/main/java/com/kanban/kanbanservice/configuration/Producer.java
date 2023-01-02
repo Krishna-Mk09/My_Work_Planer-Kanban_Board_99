@@ -14,8 +14,9 @@ public class Producer {
 		this.directExchange = directExchange;
 	}
 
+
 	public void sendMessage(MessageDTO messageDTO) {
-		rabbitTemplate.convertAndSend(directExchange.getName(), "messageKey", messageDTO);
+		rabbitTemplate.convertAndSend(directExchange.getName(), MessageConfig.MESSAGE_KEY, messageDTO);
 	}
 
 }

@@ -12,17 +12,18 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MessageConfig {
-	private static final String exchangeName = "messageExchange";
-	private static final String registerQueue = "messageQueue";
+	private static final String MESSAGE_EXCHANGE = "messageExchange";
+	private static final String MESSAGE_QUEUE = "messageQueue";
+	protected static final String MESSAGE_KEY = "messageKey";
 
 	@Bean
 	public DirectExchange directExchange() {
-		return new DirectExchange(exchangeName);
+		return new DirectExchange(MESSAGE_EXCHANGE);
 	}
 
 	@Bean
 	public Queue registerQueue() {
-		return new Queue(registerQueue, true);
+		return new Queue(MESSAGE_QUEUE, true);
 	}
 
 	@Bean
@@ -39,7 +40,6 @@ public class MessageConfig {
 
 	@Bean
 	Binding bindingUser(DirectExchange exchange, Queue registerQueue) {
-		Queue queue = new Queue(MessageConfig.registerQueue, true);
-		return BindingBuilder.bind(queue).to(exchange).with("messageKey");
+		return BindingBuilder.bind(registerQueue).to(exchange).with(MESSAGE_KEY);
 	}
 }
