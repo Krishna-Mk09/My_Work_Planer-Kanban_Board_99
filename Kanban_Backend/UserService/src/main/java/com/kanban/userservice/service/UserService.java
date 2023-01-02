@@ -1,9 +1,8 @@
 package com.kanban.userservice.service;
 
 import com.kanban.userservice.domain.User;
+import com.kanban.userservice.exception.UserAlreadyExistsException;
 import com.kanban.userservice.exception.UserNotFoundException;
-
-import java.util.List;
 
 public interface UserService {
 
@@ -13,7 +12,7 @@ public interface UserService {
 	 * @param user This is the user object which is to be saved in the database.
 	 * @return User
 	 */
-	User registerUser(User user);
+	User registerUser(User user) throws UserAlreadyExistsException;
 
 	/**
 	 * This method is used to update the user in the database and return the updated user.
@@ -38,5 +37,5 @@ public interface UserService {
 	 */
 	User loginUser(String email, String password) throws UserNotFoundException;
 
-	User findUserByEmail(String email) throws UserNotFoundException ;
+	User findUserByEmail(String email) throws UserNotFoundException;
 }

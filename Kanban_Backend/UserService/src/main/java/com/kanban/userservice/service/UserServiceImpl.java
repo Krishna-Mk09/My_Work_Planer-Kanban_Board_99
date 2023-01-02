@@ -8,6 +8,7 @@
 package com.kanban.userservice.service;
 
 import com.kanban.userservice.domain.User;
+import com.kanban.userservice.exception.UserAlreadyExistsException;
 import com.kanban.userservice.exception.UserNotFoundException;
 import com.kanban.userservice.proxy.KanbanProxy;
 import com.kanban.userservice.proxy.NotificationProxy;
@@ -35,7 +36,10 @@ public class UserServiceImpl implements UserService {
 	 * @return User
 	 */
 	@Override
-	public User registerUser(User user) {
+	public User registerUser(User user) throws UserAlreadyExistsException {
+		if (this.userRepository.existsById(user.getEmail())) {
+			throw new UserAlreadyExistsException();
+		}
 		kanbanProxy.saveKanban(user);
 		notificationProxy.saveNotification(user);
 		return userRepository.save(user);
@@ -71,28 +75,26 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User loginUser(String email, String password) throws UserNotFoundException {
-		return this.userRepository.findUserByEmailAndPassword(email, password);
+		User userByEmailAndPassword = userRepository.findUserByEmailAndPassword(email, password);
+		if (userByEmailAndPassword == null) {
+			throw new UserNotFoundException();
+		}
+		return userByEmailAndPassword;
 	}
 
 	/**
 	 * This method is used to find the user by email and return the user.
+	 *
 	 * @param email This is the email of the user which is to be found.
 	 * @return User
 	 */
 	@Override
-	public User findUserByEmail(String email) throws UserNotFoundException  {
-//		User optuser = this.userRepository.findUserByEmail(email);
-		return this.userRepository.findUserByEmail(email);
+	public User findUserByEmail(String email) throws UserNotFoundException {
+		User userByEmail = userRepository.findUserByEmail(email);
+		if (userByEmail == null) {
+			throw new UserNotFoundException();
+		}
+		return userByEmail;
 	}
-
-//	@Override
-//	public Notification updateNotification(Notification notification) {
-//		Notification optUser = notificationRepository.findByEmail(notification.getEmail());
-//		if (optUser == null) {
-//			return null;
-//		} else {
-//			return notificationRepository.save(notification);
-//		}
-//	}
 }
 
