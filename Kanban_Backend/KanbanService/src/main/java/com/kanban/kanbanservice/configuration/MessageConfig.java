@@ -39,6 +39,7 @@ public class MessageConfig {
 
 	@Bean
 	Binding bindingUser(DirectExchange exchange, Queue registerQueue) {
-		return BindingBuilder.bind(registerQueue()).to(exchange).with("messageKey");
+		Queue queue = new Queue(MessageConfig.registerQueue, true);
+		return BindingBuilder.bind(queue).to(exchange).with("messageKey");
 	}
 }
