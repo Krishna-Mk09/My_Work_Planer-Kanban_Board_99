@@ -81,7 +81,18 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User findUserByEmail(String email) throws UserNotFoundException  {
+//		User optuser = this.userRepository.findUserByEmail(email);
 		return this.userRepository.findUserByEmail(email);
 	}
+
+//	@Override
+//	public Notification updateNotification(Notification notification) {
+//		Notification optUser = notificationRepository.findByEmail(notification.getEmail());
+//		if (optUser == null) {
+//			return null;
+//		} else {
+//			return notificationRepository.save(notification);
+//		}
+//	}
 }
 
