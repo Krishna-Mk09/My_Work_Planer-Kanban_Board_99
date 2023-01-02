@@ -1,8 +1,10 @@
 package com.kanban.kanbanservice.service;
 
+import com.kanban.kanbanservice.configuration.MessageDTO;
 import com.kanban.kanbanservice.domain.Kanban;
 
-public interface KanbanService {
+public interface
+KanbanService {
     /**
      * Get the Kanban Board by email id
      * @param email The email if for the user
@@ -29,6 +31,8 @@ public interface KanbanService {
      * @param email The email id for the user
      */
     void deleteKanbanBoardByEmail(String email);
+
+    MessageDTO sendMessage(MessageDTO messageDTO);
 
 
 }

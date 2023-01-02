@@ -1,5 +1,6 @@
 package com.kanban.kanbanservice.controller;
 
+import com.kanban.kanbanservice.configuration.MessageDTO;
 import com.kanban.kanbanservice.domain.Kanban;
 import com.kanban.kanbanservice.service.KanbanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,10 @@ public class KanbanController {
     public ResponseEntity<?> deleteKanban(@PathVariable String email) {
         this.kanbanService.deleteKanbanBoardByEmail(email);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/send-message")
+    public ResponseEntity<?> sendMessage(@RequestBody MessageDTO messageDTO) {
+        return new ResponseEntity<>(this.kanbanService.sendMessage(messageDTO),HttpStatus.OK);
     }
 }
