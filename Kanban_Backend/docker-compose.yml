@@ -103,4 +103,5 @@ services:
 
 networks:
   kanban-network:
+    name: kanban-network
     driver: bridge
