@@ -8,11 +8,10 @@
 package com.kanban.userservice.controller;
 
 import com.kanban.userservice.domain.User;
+import com.kanban.userservice.exception.UserAlreadyExistsException;
 import com.kanban.userservice.exception.UserNotFoundException;
 import com.kanban.userservice.service.SecurityTokenGeneratorImpl;
-import com.kanban.userservice.service.UserService;
 import com.kanban.userservice.service.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +31,14 @@ public class UserController {
 	}
 
 	@PostMapping("/add")
-	public ResponseEntity<?> addUser(@RequestBody User user) {
-		return new ResponseEntity<>(this.userService.registerUser(user), HttpStatus.CREATED);
+	public ResponseEntity<?> addUser(@RequestBody User user) throws UserAlreadyExistsException {
+		try {
+			return new ResponseEntity<>(this.userService.registerUser(user), HttpStatus.CREATED);
+		} catch (UserAlreadyExistsException e) {
+			throw new UserAlreadyExistsException();
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@GetMapping("/login")
@@ -70,8 +75,5 @@ public class UserController {
 			return new ResponseEntity<>("Network Error", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
-
-
 
 }
