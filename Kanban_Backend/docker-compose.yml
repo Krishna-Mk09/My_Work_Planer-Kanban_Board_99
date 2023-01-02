@@ -37,6 +37,7 @@ services:
       - "8082:8082"
     depends_on:
       - mongoService
+      - rabbitmqService
 
 
   mongoService:
@@ -58,7 +59,20 @@ services:
       - "8083:8083"
     depends_on:
       - mongoService
+      - rabbitmqService
 
+  rabbitmqService:
+    image: rabbitmq:management
+    container_name: rabbitmq-container
+    ports:
+      - "5672:15672"
+      - "15672:15672"
+    networks:
+      - kanban-network
+    restart: always
+#    volumes:
+#      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+#      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
 
 
 
