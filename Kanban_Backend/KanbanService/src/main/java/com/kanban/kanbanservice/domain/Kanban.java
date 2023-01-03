@@ -3,6 +3,7 @@ package com.kanban.kanbanservice.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,6 +14,7 @@ public class Kanban {
     private List<Board> boards;
 
     public Kanban() {
+        this.boards = new ArrayList<>();
     }
 
     public Kanban(String email, List<Board> boards) {

@@ -10,6 +10,8 @@ public class Board {
     private List<String> members;
 
     public Board() {
+        this.columns = new ArrayList<>();
+        this.members = new ArrayList<>();
     }
 
     public Board(String boardName, List<Column> columns, List<String> members) {

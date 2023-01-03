@@ -1,5 +1,6 @@
 package com.kanban.kanbanservice.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,6 +9,7 @@ public class Column {
     private List<Task> tasks;
 
     public Column() {
+        this.tasks = new ArrayList<>();
     }
 
     public Column(String columnName, List<Task> tasks) {

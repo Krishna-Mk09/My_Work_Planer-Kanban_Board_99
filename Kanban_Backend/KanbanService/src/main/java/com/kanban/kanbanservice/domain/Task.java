@@ -1,9 +1,6 @@
 package com.kanban.kanbanservice.domain;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Task {
     private String name;
@@ -15,6 +12,7 @@ public class Task {
     private List<String> members;
 
     public Task() {
+        this.members = new ArrayList<>();
     }
 
     public Task(String name, String description, String priority, String status, Date startDate, Date dueDate, List<String> members) {
