@@ -2,6 +2,7 @@ package com.kanban.notificationservice.configuration;
 
 import com.kanban.notificationservice.domain.Notification;
 import com.kanban.notificationservice.service.NotificationService;
+import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ public class Consumer {
 		this.notificationService = notificationService;
 	}
 
-	@RabbitListener(queues = "messageQueue")
+	@RabbitListener(queuesToDeclare = @Queue("messageQueue"))
 	public void getData(MessageDTO messageDTO) {
 		Notification notificationByEmail = this.notificationService.getByEmail(messageDTO.getEmail());
 		List<String> message = notificationByEmail.getMessage();
