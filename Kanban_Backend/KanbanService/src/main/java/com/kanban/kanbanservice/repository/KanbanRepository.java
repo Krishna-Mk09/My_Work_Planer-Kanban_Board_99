@@ -1,6 +1,5 @@
 package com.kanban.kanbanservice.repository;
 
-import com.kanban.kanbanservice.domain.Board;
 import com.kanban.kanbanservice.domain.Kanban;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
