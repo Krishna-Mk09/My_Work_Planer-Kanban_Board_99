@@ -24,7 +24,7 @@ services:
       - "8081:8081"
     depends_on:
       - mysqlService
-      - apigateway
+  #      - apigateway
 
   kanban-service:
     image: kanbanimage
@@ -70,27 +70,21 @@ services:
     networks:
       - kanban-network
     restart: always
-#    volumes:
-#      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-#      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    #    volumes:
+    #      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+    #      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+
+  apigateway:
+    container_name: spring-cloud-api-gateway
+    build: ApiGatewayService/
+    restart: always
+    networks:
+      - mynetwork
+    ports:
+      - 9000:9000
 
 
 
-
-
-
-
-
-
-  #  apigateway:
-  #    container_name: spring-cloud-api-gateway
-  #    build: API_Gateway/
-  #    restart: always
-  #    networks:
-  #      - mynetwork6
-  #    ports:
-  #      - 9000:9000
-  #
   eurekaservice:
     container_name: spring-cloud-eureka
     build: EurekaService/
