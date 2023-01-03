@@ -2,12 +2,16 @@ package com.kanban.kanbanservice.service;
 
 import com.kanban.kanbanservice.configuration.MessageDTO;
 import com.kanban.kanbanservice.configuration.Producer;
+import com.kanban.kanbanservice.domain.Board;
 import com.kanban.kanbanservice.domain.Kanban;
 import com.kanban.kanbanservice.repository.KanbanRepository;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class KanbanServiceImpl implements KanbanService {
@@ -83,7 +87,21 @@ public class KanbanServiceImpl implements KanbanService {
 	}
 
 	@Override
-	public Kanban addMemberToBoardByEmail(Kanban kanban, String email) {
-		return null;
+	public String addMemberToBoardByEmail(Kanban kanban, String email) {
+		Kanban kanbanByEmail = this.kanbanRepository.findKanbanByEmail(email);
+		if (kanbanByEmail != null) {
+			List<Board> boards = kanban.getBoards();
+			for (Board board : boards) {
+				if (board.getMembers().contains(email)) {
+					if (kanbanByEmail.getBoards().contains(board)) {
+						continue;
+					}
+					kanbanByEmail.getBoards().add(board);
+					this.kanbanRepository.save(kanban);
+					this.kanbanRepository.save(kanbanByEmail);
+				}
+			}
+		}
+		return "Member added to board";
 	}
 }

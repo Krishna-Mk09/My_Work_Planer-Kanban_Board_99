@@ -34,5 +34,5 @@ KanbanService {
 
     MessageDTO sendMessage(MessageDTO messageDTO);
 
-    Kanban addMemberToBoardByEmail(Kanban kanban, String email);
+    String addMemberToBoardByEmail(Kanban kanban, String email);
 }
