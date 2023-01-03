@@ -8,9 +8,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface KanbanRepository extends MongoRepository<Kanban, String> {
     Kanban findKanbanByEmail(String email);
-
-    Kanban findByBoardsAndAndEmail();
-
-
-
 }
