@@ -20,16 +20,12 @@ public class ApiGatewayServiceApplication {
     @Bean
     public RouteLocator myRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
-
 				.route(p -> p.path("/kanban/**")
-						.uri("http://kanban-service:8082/")) // use the name of the application in the uri
-
+						.uri("http://kanban-service:8082/"))
                 .route(p -> p.path("/user/**")
 						.uri("http://user-service:8081/"))
-
 				.route(p -> p.path("/notification/**")
 						.uri("http://notification-service:8083/"))
-
 				.build();
     }
 
