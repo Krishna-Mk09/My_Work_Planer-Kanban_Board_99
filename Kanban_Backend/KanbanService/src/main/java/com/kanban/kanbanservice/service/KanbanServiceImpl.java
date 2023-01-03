@@ -10,7 +10,6 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -78,11 +77,11 @@ public class KanbanServiceImpl implements KanbanService {
 		this.kanbanRepository.deleteById(email);
 	}
 
-    @Override
-    public MessageDTO sendMessage(MessageDTO messageDTO) {
-        if (this.kanbanRepository.existsById(messageDTO.getEmail())) {
-            producer.sendMessage(messageDTO);
-        }
+	@Override
+	public MessageDTO sendMessage(MessageDTO messageDTO) {
+		if (this.kanbanRepository.existsById(messageDTO.getEmail())) {
+			producer.sendMessage(messageDTO);
+		}
 		return messageDTO;
 	}
 
@@ -96,6 +95,7 @@ public class KanbanServiceImpl implements KanbanService {
 					if (kanbanByEmail.getBoards().contains(board)) {
 						continue;
 					}
+					board.getMembers().add(kanban.getEmail());
 					kanbanByEmail.getBoards().add(board);
 					this.kanbanRepository.save(kanban);
 					this.kanbanRepository.save(kanbanByEmail);
