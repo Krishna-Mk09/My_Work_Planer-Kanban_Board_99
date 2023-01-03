@@ -76,9 +76,14 @@ public class KanbanServiceImpl implements KanbanService {
 
     @Override
     public MessageDTO sendMessage(MessageDTO messageDTO) {
-//        if (this.kanbanRepository.existsById(messageDTO.getEmail())) {
+        if (this.kanbanRepository.existsById(messageDTO.getEmail())) {
             producer.sendMessage(messageDTO);
-//        }
+        }
 		return messageDTO;
+	}
+
+	@Override
+	public Kanban addMemberToBoardByEmail(Kanban kanban, String email) {
+		return null;
 	}
 }
