@@ -96,7 +96,10 @@ public class KanbanServiceImpl implements KanbanService {
 					if (kanbanByEmail.getBoards().contains(board)) {
 						continue;
 					}
+					board.getMembers().add(kanban.getEmail());
 					kanbanByEmail.getBoards().add(board);
+					int index = kanban.getBoards().indexOf(board);
+					kanban.getBoards().get(index).getMembers().add(kanbanByEmail.getEmail());
 					this.kanbanRepository.save(kanban);
 					this.kanbanRepository.save(kanbanByEmail);
 				}
