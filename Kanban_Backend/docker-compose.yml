@@ -24,7 +24,7 @@ services:
       - "8081:8081"
     depends_on:
       - mysqlService
-  #      - apigateway
+      - api-gateway
 
   kanban-service:
     image: kanbanimage
@@ -38,6 +38,7 @@ services:
     depends_on:
       - mongoService
       - rabbitmqService
+      - api-gateway
 
 
   mongoService:
@@ -60,6 +61,7 @@ services:
     depends_on:
       - mongoService
       - rabbitmqService
+      - api-gateway
 
   rabbitmqService:
     image: rabbitmq:management
@@ -74,14 +76,14 @@ services:
     #      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
     #      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
 
-  apigateway:
-    container_name: spring-cloud-api-gateway
+  api-gateway:
+    container_name: api-gateway
     build: ApiGatewayService/
     restart: always
     networks:
-      - mynetwork
+      - kanban-network
     ports:
-      - 9000:9000
+      - 9005:9005
 
 
 
