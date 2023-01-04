@@ -8,10 +8,16 @@
 
 package com.kanban.notificationservice.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
+
+@Data
+@AllArgsConstructor
 @Document
 public class Notification {
     @Id
@@ -19,33 +25,6 @@ public class Notification {
     private List<String> message;
 
     public Notification() {
+        this.message = new ArrayList<>();
     }
-
-    public Notification(String email, List<String> message) {
-        this.email = email;
-        this.message = message;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public List<String> getMessage() {
-        return message;
-    }
-
-    public void setMessage(List<String> message) {
-        this.message = message;
-    }
-
-    @Override
-    public String toString() {
-        return "Notification{" + "email='" + email + '\'' + ", message=" + message + '}';
-    }
-
-
 }
