@@ -6,17 +6,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Producer {
-	private final RabbitTemplate rabbitTemplate;
-	private final DirectExchange directExchange;
+	private final RabbitTemplate RABBIT_TEMPLATE;
+	private final DirectExchange DIRECT_EXCHANGE;
 
-	public Producer(RabbitTemplate rabbitTemplate, DirectExchange directExchange) {
-		this.rabbitTemplate = rabbitTemplate;
-		this.directExchange = directExchange;
+	public Producer(RabbitTemplate RABBIT_TEMPLATE, DirectExchange DIRECT_EXCHANGE) {
+		this.RABBIT_TEMPLATE = RABBIT_TEMPLATE;
+		this.DIRECT_EXCHANGE = DIRECT_EXCHANGE;
 	}
 
 
 	public void sendMessage(MessageDTO messageDTO) {
-		rabbitTemplate.convertAndSend(directExchange.getName(), MessageConfig.MESSAGE_KEY, messageDTO);
+		RABBIT_TEMPLATE.convertAndSend(DIRECT_EXCHANGE.getName(), MessageConfig.MESSAGE_KEY, messageDTO);
 	}
 
 }

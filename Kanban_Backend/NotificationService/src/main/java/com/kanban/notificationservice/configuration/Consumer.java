@@ -13,22 +13,22 @@ import java.util.List;
 @Component
 public class Consumer {
 
-	private final NotificationService notificationService;
+	private final NotificationService NOTIFICATION_SERVICE;
 
 	@Autowired
-	public Consumer(NotificationService notificationService) {
-		this.notificationService = notificationService;
+	public Consumer(NotificationService NOTIFICATION_SERVICE) {
+		this.NOTIFICATION_SERVICE = NOTIFICATION_SERVICE;
 	}
 
 	@RabbitListener(queuesToDeclare = @Queue("messageQueue"))
 	public void getData(MessageDTO messageDTO) {
-		Notification notificationByEmail = this.notificationService.getByEmail(messageDTO.getEmail());
+		Notification notificationByEmail = this.NOTIFICATION_SERVICE.getByEmail(messageDTO.getEmail());
 		List<String> message = notificationByEmail.getMessage();
 		if (message == null) {
 			message = new ArrayList<>();
 		}
 		message.add(messageDTO.getMessage());
 		notificationByEmail.setMessage(message);
-		this.notificationService.saveNotification(notificationByEmail);
+		this.NOTIFICATION_SERVICE.saveNotification(notificationByEmail);
 	}
 }

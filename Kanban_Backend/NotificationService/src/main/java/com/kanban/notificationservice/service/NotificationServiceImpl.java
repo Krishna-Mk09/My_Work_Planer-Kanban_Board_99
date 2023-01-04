@@ -10,43 +10,35 @@ package com.kanban.notificationservice.service;
 import com.kanban.notificationservice.domain.Notification;
 import com.kanban.notificationservice.repository.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import java.util.Optional;
 
 @Service
 public class NotificationServiceImpl implements NotificationService {
-    NotificationRepository notificationRepository;
+	private final NotificationRepository NOTIFICATION_REPOSITORY;
 
-    @Autowired
-    public NotificationServiceImpl(NotificationRepository notificationRepository) {
-        this.notificationRepository = notificationRepository;
-    }
+	@Autowired
+	public NotificationServiceImpl(NotificationRepository NOTIFICATION_REPOSITORY) {
+		this.NOTIFICATION_REPOSITORY = NOTIFICATION_REPOSITORY;
+	}
 
-    @Override
-    public Notification saveNotification(Notification notification) {
-        return notificationRepository.save(notification);
-    }
+	@Override
+	public Notification saveNotification(Notification notification) {
+		return NOTIFICATION_REPOSITORY.save(notification);
+	}
 
-    @Override
-    public Notification getByEmail(String email) {
-        return notificationRepository.findByEmail(email);
-    }
+	@Override
+	public Notification getByEmail(String email) {
+		return NOTIFICATION_REPOSITORY.findByEmail(email);
+	}
 
-    @Override
-    public Notification updateNotification(Notification notification) {
-        Notification optUser = notificationRepository.findByEmail(notification.getEmail());
-        if (optUser == null) {
-            return null;
-        } else {
-            return notificationRepository.save(notification);
-        }
-    }
+	@Override
+	public Notification updateNotification(Notification notification) {
+		Notification optUser = NOTIFICATION_REPOSITORY.findByEmail(notification.getEmail());
+		if (optUser == null) {
+			return null;
+		} else {
+			return NOTIFICATION_REPOSITORY.save(notification);
+		}
+	}
 
 }

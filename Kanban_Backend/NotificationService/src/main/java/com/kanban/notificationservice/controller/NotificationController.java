@@ -18,25 +18,25 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("notification")
 public class NotificationController {
-    NotificationService notificationService;
+	private final NotificationService NOTIFICATION_SERVICE;
 
-    @Autowired
-    public NotificationController(NotificationService notificationService) {
-        this.notificationService = notificationService;
-    }
+	@Autowired
+	public NotificationController(NotificationService NOTIFICATION_SERVICE) {
+		this.NOTIFICATION_SERVICE = NOTIFICATION_SERVICE;
+	}
 
-    @PostMapping("saveNotification")
-    public ResponseEntity<?> saveNotification(@RequestBody Notification notification) {
-        return new ResponseEntity<>(notificationService.saveNotification(notification), HttpStatus.CREATED);
-    }
+	@PostMapping("saveNotification")
+	public ResponseEntity<?> saveNotification(@RequestBody Notification notification) {
+		return new ResponseEntity<>(NOTIFICATION_SERVICE.saveNotification(notification), HttpStatus.CREATED);
+	}
 
-    @GetMapping("/getByEmail/{email}")
-    public ResponseEntity<?> getByEmailId(@PathVariable String email) {
-        return new ResponseEntity<>(notificationService.getByEmail(email), HttpStatus.OK);
-    }
+	@GetMapping("/getByEmail/{email}")
+	public ResponseEntity<?> getByEmailId(@PathVariable String email) {
+		return new ResponseEntity<>(NOTIFICATION_SERVICE.getByEmail(email), HttpStatus.OK);
+	}
 
-    @PutMapping("/updateNotification/")
-    public ResponseEntity<?> updateNotification(@RequestBody Notification notification) {
-        return new ResponseEntity<>(notificationService.updateNotification(notification), HttpStatus.ACCEPTED);
-    }
+	@PutMapping("/updateNotification/")
+	public ResponseEntity<?> updateNotification(@RequestBody Notification notification) {
+		return new ResponseEntity<>(NOTIFICATION_SERVICE.updateNotification(notification), HttpStatus.ACCEPTED);
+	}
 }

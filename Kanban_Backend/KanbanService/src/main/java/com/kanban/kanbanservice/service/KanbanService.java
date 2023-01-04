@@ -24,15 +24,13 @@ KanbanService {
      * @param kanban The Kanban Board to update
      * @return The updated Kanban Board
      */
-    Kanban updateKanbanBoard(Kanban kanban);
+    Kanban updateKanban(Kanban kanban);
 
     /**
      * Delete the Kanban Board by email id
      * @param email The email id for the user
      */
-    void deleteKanbanBoardByEmail(String email);
-
-    MessageDTO sendMessage(MessageDTO messageDTO);
+    void deleteKanbanByEmail(String email);
 
     String addMemberToBoardByEmail(Kanban kanban, String email);
 }

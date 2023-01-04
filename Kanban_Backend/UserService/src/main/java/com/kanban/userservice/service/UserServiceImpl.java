@@ -19,15 +19,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-	private final KanbanProxy kanbanProxy;
-	private final NotificationProxy notificationProxy;
-	private final UserRepository userRepository;
+	private final KanbanProxy KANBAN_PROXY;
+	private final NotificationProxy NOTIFICATION_PROXY;
+	private final UserRepository USER_REPOSITORY;
 
 	@Autowired
-	public UserServiceImpl(KanbanProxy kanbanProxy, NotificationProxy notificationProxy, UserRepository userRepository) {
-		this.kanbanProxy = kanbanProxy;
-		this.notificationProxy = notificationProxy;
-		this.userRepository = userRepository;
+	public UserServiceImpl(KanbanProxy KANBAN_PROXY, NotificationProxy NOTIFICATION_PROXY, UserRepository USER_REPOSITORY) {
+		this.KANBAN_PROXY = KANBAN_PROXY;
+		this.NOTIFICATION_PROXY = NOTIFICATION_PROXY;
+		this.USER_REPOSITORY = USER_REPOSITORY;
 	}
 
 	/**
@@ -38,12 +38,12 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User registerUser(User user) throws UserAlreadyExistsException {
-		if (this.userRepository.existsById(user.getEmail())) {
+		if (this.USER_REPOSITORY.existsById(user.getEmail())) {
 			throw new UserAlreadyExistsException();
 		}
-		kanbanProxy.saveKanban(user);
-		notificationProxy.saveNotification(user);
-		return userRepository.save(user);
+		KANBAN_PROXY.saveKanban(user);
+		NOTIFICATION_PROXY.saveNotification(user);
+		return USER_REPOSITORY.save(user);
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User updateUser(User user) {
-		return this.userRepository.save(user);
+		return this.USER_REPOSITORY.save(user);
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public void deleteUser(String email) {
-		this.userRepository.deleteById(email);
+		this.USER_REPOSITORY.deleteById(email);
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User loginUser(String email, String password) throws UserNotFoundException {
-		User userByEmailAndPassword = userRepository.findUserByEmailAndPassword(email, password);
+		User userByEmailAndPassword = USER_REPOSITORY.findUserByEmailAndPassword(email, password);
 		if (userByEmailAndPassword == null) {
 			throw new UserNotFoundException();
 		}
@@ -91,7 +91,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public User findUserByEmail(String email) throws UserNotFoundException {
-		User userByEmail = userRepository.findUserByEmail(email);
+		User userByEmail = USER_REPOSITORY.findUserByEmail(email);
 		if (userByEmail == null) {
 			throw new UserNotFoundException();
 		}
