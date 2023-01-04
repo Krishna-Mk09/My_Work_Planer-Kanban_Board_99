@@ -59,11 +59,26 @@ public class KanbanServiceImpl implements KanbanService {
 	 */
 	@Override
 	public Kanban updateKanbanBoard(Kanban kanban) {
-//        Kanban kanbanByEmail = this.getKanbanByEmail(kanban.getEmail());
-//        if (kanbanByEmail != null) {
-//            kanbanByEmail.setBoards(kanban.getBoards());
-//            return this.kanbanRepository.save(kanbanByEmail);
-//        }
+		List<Board> kanbanBoards = kanban.getBoards();
+		for (Board board: kanbanBoards) {
+			if (!board.getMembers().isEmpty()) {
+				List<String> boardMembers = board.getMembers();
+				for (String members: boardMembers) {
+					Kanban kanbanByEmail = this.kanbanRepository.findKanbanByEmail(members);
+					if (kanbanByEmail != null) {
+						List<Board> kanbanByEmailBoards = kanbanByEmail.getBoards();
+						for (Board kanbanByEmailBoard: kanbanByEmailBoards) {
+							if (kanbanByEmailBoard.getBoardName().equals(board.getBoardName())) {
+								kanbanByEmailBoard.setBoardName(board.getBoardName());
+								kanbanByEmailBoard.setColumns(board.getColumns());
+								kanbanByEmailBoard.setMembers(board.getMembers());
+								this.kanbanRepository.save(kanbanByEmail);
+							}
+						}
+					}
+				}
+			}
+		}
 		return this.kanbanRepository.save(kanban);
 	}
 
@@ -99,6 +114,7 @@ public class KanbanServiceImpl implements KanbanService {
 					kanbanByEmail.getBoards().add(board);
 					this.kanbanRepository.save(kanban);
 					this.kanbanRepository.save(kanbanByEmail);
+					this.updateKanbanBoard(kanban);
 				}
 			}
 		}
