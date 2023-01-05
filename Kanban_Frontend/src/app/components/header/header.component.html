@@ -1,10 +1,12 @@
-<mat-toolbar color="primary" >
+<mat-toolbar color="primary">
   Kanban Board
 
   <a mat-button routerLink=""> Home</a>
   &nbsp;
   <a mat-button routerLink="register">Register</a>
   &nbsp;
-  <a mat-raised-button color="accent" routerLink="login"> Login</a>
+  <a color="accent" mat-raised-button routerLink="login">Login</a>
+
+  <a (click)="logout()" color="accent" mat-button>Logout</a>
 
 </mat-toolbar>
