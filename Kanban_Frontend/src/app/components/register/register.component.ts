@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import {User} from "../../model/user/User";
 
 @Component({
   selector: 'app-register',
