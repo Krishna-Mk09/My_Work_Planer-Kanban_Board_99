@@ -25,13 +25,7 @@ export class AuthenticationService {
         this.isLoggedIn = true;
         localStorage.setItem('token', response.token);
         localStorage.setItem('user_email', user.email!);
-        this.getUserProfile().subscribe({
-          next: (response) => {
-            this.currentUser = response;
-            // TODO: Update this URL
-            this.router.navigateByUrl("");
-          }
-        })
+        this.getUserProfile();
       }
     });
   }
@@ -46,8 +40,16 @@ export class AuthenticationService {
 
   getUserProfile() {
     return this.httpClient.get<User>(
-      `${this.endPointURL}/email/${localStorage.getItem('user_email')}`,
+      `${this.endPointURL}/guard/email/${localStorage.getItem('user_email')}`,
       {headers: new HttpHeaders({Authorization: `Bearer ${localStorage.getItem('token')}`})}
-    );
+    ).subscribe({
+      next: (response) => {
+        this.currentUser = response;
+        this.isLoggedIn = true;
+        // TODO: Update this URL
+        this.router.navigateByUrl("");
+        console.log(this.currentUser)
+      }
+    });
   }
 }
