@@ -21,7 +21,7 @@ public class UserServiceApplication {
 	public FilterRegistrationBean<JwtFilter> jwtFilter() {
 		FilterRegistrationBean<JwtFilter> filterRegistrationBean = new FilterRegistrationBean<>();
 		filterRegistrationBean.setFilter(new JwtFilter());
-		filterRegistrationBean.addUrlPatterns("/gaurd/*");
+		filterRegistrationBean.addUrlPatterns("/guard/*");
 		return filterRegistrationBean;
 	}
 }

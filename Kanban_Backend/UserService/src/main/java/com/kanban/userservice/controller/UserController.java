@@ -43,7 +43,7 @@ public class UserController {
 		}
 	}
 
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public ResponseEntity<?> getByLogin(@RequestBody User user) throws UserNotFoundException {
 		try {
 			this.USER_SERVICE.loginUser(user.getEmail(), user.getPassword());
@@ -56,18 +56,18 @@ public class UserController {
 		}
 	}
 
-	@PutMapping("/update")
+	@PutMapping("/guard/update")
 	public ResponseEntity<?> updateUser(@RequestBody User user) {
 		return new ResponseEntity<>(this.USER_SERVICE.updateUser(user), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/delete/{email}")
+	@DeleteMapping("/guard/delete/{email}")
 	public ResponseEntity<?> deleteUser(@PathVariable String email) {
 		this.USER_SERVICE.deleteUser(email);
 		return new ResponseEntity<>("User Deleted Successfully", HttpStatus.OK);
 	}
 
-	@GetMapping("/email/{email}")
+	@GetMapping("/guard/email/{email}")
 	public ResponseEntity<?> getByEmail(@PathVariable String email) throws UserNotFoundException {
 		try {
 			return new ResponseEntity<>(this.USER_SERVICE.findUserByEmail(email), HttpStatus.OK);
