@@ -1,1 +1,26 @@
-<p>login works!</p>
+<p>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Sign In</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</p>
+<div class="logo"><h1 class="h5">Please enter your login credentials </h1></div>
+<div class ="h3">
+  <form #logInForm="ngForm" (ngSubmit)="onSubmit(logInForm)">
+    <fieldset class="backcolor">
+      <mat-form-field appearance="fill">
+        <input ngModel matInput placeholder="email" type="text" id="username" name="email" />
+      </mat-form-field><br> <br>
+      <mat-form-field appearance="fill">
+        <input ngModel matInput type="password" placeholder="Password" id="password" name="password" />
+      </mat-form-field>
+      <br>
+      <button color="primary" mat-button mat-raised-button type="submit">
+        Submit
+      </button>
+
+    </fieldset>
+  </form>
+</div>
+
