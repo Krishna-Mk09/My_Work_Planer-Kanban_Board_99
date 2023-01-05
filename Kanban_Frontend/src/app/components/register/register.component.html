@@ -1,107 +1,93 @@
-<form  [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" [formGroup]="userForm" novalidate>
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title >
+      <mat-card-title>
         <h1> Registration Form </h1>
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-
-      <div class="row" >
+      <div class="row">
         <div class="col">
-          <mat-form-field class="full-width"  appearance="fill">
+          <mat-form-field appearance="fill" class="full-width">
             <input matInput placeholder="First name" formControlName="firstName">
-            <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
+            <mat-error *ngIf="userForm.controls['firstName'].hasError('required')">
               First name is <strong>required</strong>
-            </mat-error> <mat-error *ngIf="addressForm.controls['firstName'].hasError('minlength')">
-            First cannot be less than 2 char
-          </mat-error> <mat-error *ngIf="addressForm.controls['firstName'].hasError('maxlength')">
-            First cannot be greater than 20 char
-          </mat-error>
-            <mat-error *ngIf="addressForm.controls['firstName'].hasError('pattern')">
+            </mat-error>
+            <mat-error *ngIf="userForm.controls['firstName'].hasError('minlength')">
+              First cannot be less than 2 char
+            </mat-error>
+            <mat-error *ngIf="userForm.controls['firstName'].hasError('maxlength')">
+              First cannot be greater than 20 char
+            </mat-error>
+            <mat-error *ngIf="userForm.controls['firstName'].hasError('pattern')">
               First cannot be numbers
             </mat-error>
           </mat-form-field>
         </div>
-
-
-
-
-
         <div class="col">
           <mat-form-field class="full-width" appearance="fill">
             <input matInput placeholder="Last name" formControlName="lastName">
-            <mat-error *ngIf="addressForm.controls['lastName'].hasError('required')">
+            <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">
               Last name is <strong>required</strong>
             </mat-error>
-            <mat-error *ngIf="addressForm.controls['lastName'].hasError('minlength')">
+            <mat-error *ngIf="userForm.controls['lastName'].hasError('minlength')">
               Last name is cannot be lessthan 8 char
             </mat-error>
-            <mat-error *ngIf="addressForm.controls['lastName'].hasError('maxlength')">
+            <mat-error *ngIf="userForm.controls['lastName'].hasError('maxlength')">
               Last name is cannot be greater than 25char
             </mat-error>
-            <mat-error *ngIf="addressForm.controls['lastName'].hasError('pattern')">
+            <mat-error *ngIf="userForm.controls['lastName'].hasError('pattern')">
               Last name cannot be numbers
             </mat-error>
           </mat-form-field>
         </div>
-
-
-
-
-
       </div>
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width" appearance="fill">
             <input matInput placeholder="Email" formControlName="email">
-            <mat-error *ngIf="addressForm.controls['email'].hasError('required')">
-               email is <strong>required</strong>
+            <mat-error *ngIf="userForm.controls['email'].hasError('required')">
+              email is <strong>required</strong>
             </mat-error>
-            <mat-error *ngIf="addressForm.controls['email'].hasError('minlength')">
-               email should have min 8 char
+            <mat-error *ngIf="userForm.controls['email'].hasError('minlength')">
+              email should have min 8 char
             </mat-error>
-            <mat-error *ngIf="addressForm.controls['email'].hasError('pattern')">
+            <mat-error *ngIf="userForm.controls['email'].hasError('pattern')">
               please provide proper email
             </mat-error>
           </mat-form-field>
         </div>
       </div>
-
-
-
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width" appearance="fill">
             <input matInput placeholder="Password" formControlName="password">
-            <mat-error *ngIf="addressForm.controls['password'].hasError('required')">
+            <mat-error *ngIf="userForm.controls['password'].hasError('required')">
               password is <strong>required</strong>
             </mat-error>
-            <mat-error *ngIf="addressForm.controls['password'].hasError('minlength')">
+            <mat-error *ngIf="userForm.controls['password'].hasError('minlength')">
               password should be atleast 8 char
             </mat-error>
-            <mat-error *ngIf="addressForm.controls['password'].hasError('pattern')">
+            <mat-error *ngIf="userForm.controls['password'].hasError('pattern')">
               password should be combination of numbers alphabets and symbols
             </mat-error>
           </mat-form-field>
         </div>
       </div>
-
-
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width" appearance="fill">
             <input matInput placeholder="confirmPassword" formControlName="confirmPassword">
-            <mat-error *ngIf="addressForm.controls['confirmPassword'].hasError('required')">
+            <mat-error *ngIf="userForm.controls['confirmPassword'].hasError('required')">
               confirmPassword is <strong>required</strong>
             </mat-error>
-            <mat-error *ngIf="addressForm.controls['confirmPassword'].hasError('minlength')">
+            <mat-error *ngIf="userForm.controls['confirmPassword'].hasError('minlength')">
               confirmPassword should have min 4 charecters
             </mat-error>
-            <mat-error *ngIf="addressForm.controls['confirmPassword'].hasError('maxlength')">
+            <mat-error *ngIf="userForm.controls['confirmPassword'].hasError('maxlength')">
               confirmPassword should have max of 6 charecters
             </mat-error>
-            <mat-error *ngIf="addressForm.controls['confirmPassword'].hasError('pattern')">
+            <mat-error *ngIf="userForm.controls['confirmPassword'].hasError('pattern')">
               confirmPassword should be combination of numbers alphabets and symbols
             </mat-error>
           </mat-form-field>
@@ -111,10 +97,10 @@
         <div class="col">
           <mat-form-field class="full-width" appearance="fill">
             <textarea matInput placeholder="mobileNumber" formControlName="mobileNumber"></textarea>
-            <mat-error *ngIf="addressForm.controls['mobileNumber'].hasError('required')">
+            <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('required')">
               mobileNumber is <strong>required</strong>
             </mat-error>
-            <mat-error *ngIf="addressForm.controls['mobileNumber'].hasError('pattern')">
+            <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('pattern')">
               mobileNumber cannot be alphabets and symbols
             </mat-error>
           </mat-form-field>
@@ -122,7 +108,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <pre>   <button mat-raised-button color="primary" type="submit"> Submit </button></pre>
+      <pre><button color="primary" mat-raised-button type="submit"> Submit </button></pre>
     </mat-card-actions>
   </mat-card>
 </form>
