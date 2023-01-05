@@ -4,6 +4,8 @@ import com.kanban.userservice.domain.User;
 import com.kanban.userservice.exception.UserAlreadyExistsException;
 import com.kanban.userservice.exception.UserNotFoundException;
 
+import java.util.List;
+
 public interface UserService {
 
 	/**
@@ -38,4 +40,6 @@ public interface UserService {
 	User loginUser(String email, String password) throws UserNotFoundException;
 
 	User findUserByEmail(String email) throws UserNotFoundException;
+
+	List<String> findAllEmails();
 }

@@ -78,4 +78,9 @@ public class UserController {
 		}
 	}
 
+	@GetMapping("/guard/all-emails")
+	public ResponseEntity<?> getAllEmails() {
+		return new ResponseEntity<>(this.USER_SERVICE.findAllEmails(), HttpStatus.OK);
+	}
+
 }

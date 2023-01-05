@@ -16,6 +16,9 @@ import com.kanban.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -96,6 +99,16 @@ public class UserServiceImpl implements UserService {
 			throw new UserNotFoundException();
 		}
 		return userByEmail;
+	}
+
+	@Override
+	public List<String> findAllEmails() {
+		List<User> users = USER_REPOSITORY.findAll();
+		List<String> emails = new ArrayList<>();
+		for (User user : users) {
+			emails.add(user.getEmail());
+		}
+		return emails;
 	}
 }
 
