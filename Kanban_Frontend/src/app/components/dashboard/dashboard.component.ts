@@ -6,10 +6,23 @@ import {KanbanService} from "../../services/kanban.service";
 import {Kanban} from "../../model/kanban/Kanban";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {Board} from "../../model/kanban/Board";
+import {Column} from "../../model/kanban/Column";
 
 export interface DialogData {
   boardName: string;
   columnName: string;
+  taskName: string;
+  taskDescription: string;
+  taskPriority: string;
+  taskStatus: string;
+  taskStartDate: Date;
+  taskDueDate: Date;
+  taskAssignee: string;
+
+}
+
+export interface TaskDetails{
+
 }
 
 @Component({
@@ -73,6 +86,41 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  addTaskToColumn(column: Column) {
+    const dialogRef = this.dialog.open(AddTaskPopupDialog, {
+      width: '250px',
+      data: {
+        taskName: '',
+        taskDescription: '',
+        taskAssignee: '',
+        taskStartDate: '',
+        taskDueDate: '',
+        taskPriority: '',
+        taskStatus: ''}
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (result : DialogData) => {
+        this.currentUserKanban?.boards?.forEach((b: Board) => {
+          if (b.boardName === this.boardToDisplay?.boardName) {
+            b.columns?.forEach((c: any) => {
+              if (c.columnName === column.columnName) {
+                c.tasks?.push({
+                  name: result.taskName,
+                  description: result.taskDescription,
+                  assigneeEmail: result.taskAssignee,
+                  startDate: result.taskStartDate,
+                  dueDate: result.taskDueDate,
+                  priority: result.taskPriority,
+                  status: result.taskStatus});
+              }
+            });
+          }
+        });
+        this.kanbanService.updateKanban(this.currentUserKanban!);
+      }
+    })
+  }
+
   displayBoard(board: Board) {
     this.boardToDisplay = board;
   }
@@ -98,6 +146,20 @@ export class AddBoardPopupDialog {
 })
 export class AddColumnPopupDialog {
   constructor(public dialogRef: MatDialogRef<AddColumnPopupDialog>,
+              @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  }
+
+  onNoClick() {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'add-task-popup',
+  templateUrl: './add-task-popup.html'
+})
+export class AddTaskPopupDialog {
+  constructor(public dialogRef: MatDialogRef<AddTaskPopupDialog>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 

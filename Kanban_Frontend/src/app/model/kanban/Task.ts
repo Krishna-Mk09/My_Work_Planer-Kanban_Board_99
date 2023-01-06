@@ -3,7 +3,7 @@ export type Task = {
   description?:string,
   priority?:string,
   status?:string,
-  startDate?:string,
-  dueDate?:string,
+  startDate?:Date,
+  dueDate?:Date,
   assigneeEmail?:string
 }

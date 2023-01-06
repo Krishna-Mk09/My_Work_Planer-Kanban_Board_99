@@ -16,8 +16,16 @@
     <h2>{{boardToDisplay?.boardName}}</h2>
     <div *ngFor="let column of boardToDisplay?.columns">
       <h3>{{column.columnName}}</h3>
+      <a (click)="addTaskToColumn(column)" >Add Task </a>
       <div *ngFor="let task of column.tasks">
-        <p>{{task.name}}</p>
+        <p>Task name - {{task.name}}</p>
+        <p>Task Description - {{task.description}}</p>
+        <p>Task Priority - {{task.priority}}</p>
+        <p>Task Status - {{task.status}}</p>
+        <p>Task Start Date - {{task.startDate}}</p>
+        <p>Task Due Date - {{task.dueDate}}</p>
+        <p>Task Assignee - {{task.assigneeEmail}}</p>
+
       </div>
     </div>
     <a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null">Add Column</a>
