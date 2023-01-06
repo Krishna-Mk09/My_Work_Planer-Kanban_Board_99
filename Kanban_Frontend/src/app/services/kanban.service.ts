@@ -6,7 +6,7 @@ import {Kanban} from "../model/kanban/Kanban";
   providedIn: 'root'
 })
 export class KanbanService {
-  
+
   endPointURL: string = "http://localhost:9005/kanban";
   currentUserKanban?: Kanban;
 
