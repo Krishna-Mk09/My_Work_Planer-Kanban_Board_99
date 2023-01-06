@@ -1,4 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
+
   <mat-sidenav [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [fixedInViewport]
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="(isHandset$ | async) === false"
@@ -11,22 +12,10 @@
       <a (click)="addBoardToKanban()" mat-list-item>Add Board</a>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
     <!-- Add content here -->
     <h2>{{boardToDisplay?.boardName}}</h2>
-    <!--    <div *ngFor="let column of boardToDisplay?.columns" class="column">-->
-    <!--      <h3>{{column.columnName}}</h3>-->
-    <!--      <a (click)="addTaskToColumn(column)" >Add Task </a>-->
-    <!--      <div *ngFor="let task of column.tasks" class="task">-->
-    <!--        <p>Task name - {{task.name}}</p>-->
-    <!--        <p>Task Description - {{task.description}}</p>-->
-    <!--        <p>Task Priority - {{task.priority}}</p>-->
-    <!--        <p>Task Status - {{task.status}}</p>-->
-    <!--        <p>Task Start Date - {{task.startDate}}</p>-->
-    <!--        <p>Task Due Date - {{task.dueDate}}</p>-->
-    <!--        <p>Task Assignee - {{task.assigneeEmail}}</p>-->
-    <!--      </div>-->
-    <!--    </div>-->
     <a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null">Add Column</a>
     <div cdkDropListGroup>
       <div *ngFor="let column of boardToDisplay?.columns" class="container">

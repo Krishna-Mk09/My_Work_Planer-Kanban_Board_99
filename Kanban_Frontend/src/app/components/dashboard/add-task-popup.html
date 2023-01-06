@@ -1,6 +1,8 @@
 <h1 mat-dialog-title>Add Column</h1>
+
 <div mat-dialog-content>
   <p>Enter Column's Name</p>
+
   <mat-form-field appearance="fill">
     <mat-label>Task Name</mat-label>
     <input [(ngModel)]="data.taskName" matInput>
@@ -18,12 +20,12 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Start Date</mat-label>
-    <input [(ngModel)]="data.taskStartDate" type="date" matInput>
+    <input [(ngModel)]="data.taskStartDate" matInput type="date">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Due Date</mat-label>
-    <input [(ngModel)]="data.taskDueDate" type="date" matInput>
+    <input [(ngModel)]="data.taskDueDate" matInput type="date">
   </mat-form-field>
 
   <mat-form-field appearance="fill">
@@ -32,12 +34,11 @@
   </mat-form-field>
 
   <mat-form-field appearance="fill">
-    <mat-label>Assigne email</mat-label>
+    <mat-label>Assignee email</mat-label>
     <input [(ngModel)]="data.taskAssignee" matInput>
   </mat-form-field>
-
-
 </div>
+
 <div mat-dialog-actions>
   <button (click)="onNoClick()" mat-button>No Thanks</button>
   <button [mat-dialog-close]="data" cdkFocusInitial mat-button>Ok</button>

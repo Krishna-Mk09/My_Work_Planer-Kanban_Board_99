@@ -20,11 +20,6 @@ export interface DialogData {
   taskStartDate: Date;
   taskDueDate: Date;
   taskAssignee: string;
-
-}
-
-export interface TaskDetails{
-
 }
 
 @Component({
@@ -98,10 +93,11 @@ export class DashboardComponent implements OnInit {
         taskStartDate: '',
         taskDueDate: '',
         taskPriority: '',
-        taskStatus: ''}
+        taskStatus: ''
+      }
     });
     dialogRef.afterClosed().subscribe({
-      next: (result : DialogData) => {
+      next: (result: DialogData) => {
         this.currentUserKanban?.boards?.forEach((b: Board) => {
           if (b.boardName === this.boardToDisplay?.boardName) {
             b.columns?.forEach((c: any) => {
@@ -113,7 +109,8 @@ export class DashboardComponent implements OnInit {
                   startDate: result.taskStartDate,
                   dueDate: result.taskDueDate,
                   priority: result.taskPriority,
-                  status: result.taskStatus});
+                  status: result.taskStatus
+                });
               }
             });
           }
@@ -142,6 +139,7 @@ export class DashboardComponent implements OnInit {
   }
 }
 
+// Component for adding a new board to the Kanban
 @Component({
   selector: 'add-board-popup',
   templateUrl: './add-board-popup.html'
@@ -156,6 +154,7 @@ export class AddBoardPopupDialog {
   }
 }
 
+// Component for adding a column to a board
 @Component({
   selector: 'add-column-popup',
   templateUrl: './add-column-popup.html'
@@ -170,6 +169,7 @@ export class AddColumnPopupDialog {
   }
 }
 
+// Component for adding a task to a column
 @Component({
   selector: 'add-task-popup',
   templateUrl: './add-task-popup.html'

@@ -1,4 +1,5 @@
 <h1 mat-dialog-title>Add Column</h1>
+
 <div mat-dialog-content>
   <p>Enter Column's Name</p>
   <mat-form-field appearance="fill">
@@ -6,6 +7,7 @@
     <input [(ngModel)]="data.columnName" matInput>
   </mat-form-field>
 </div>
+
 <div mat-dialog-actions>
   <button (click)="onNoClick()" mat-button>No Thanks</button>
   <button [mat-dialog-close]="data.columnName" cdkFocusInitial mat-button>Ok</button>
