@@ -1,14 +1,66 @@
-<mat-toolbar color="primary">
-  Kanban Board
+<header class="header">
+  <div class="header__content">
 
-  <a mat-button routerLink=""> Home</a>
-  &nbsp;
-  <a mat-button routerLink="register">Register</a>
-  &nbsp;
-  <a color="accent" mat-raised-button routerLink="login">Login</a>
+    <div class="header__logo-container">
+        <img src="https://res.cloudinary.com/dduwkdctl/image/upload/v1673022626/Kanban%20Project/planning_avbnab.png"
+             alt="Kanban Logo Image" class="header__logo-img" />
+      <span class="header__logo-sub">MY WORK PLANNER</span>
+    </div>
 
-  <a mat-button routerLink="dashboard">Dashboard</a>
+    <div >
+      <ul class="header__links">
+        <li>
+          <a routerLink="" class="header__link"> Home </a>
+        </li>
+        <li>
+          <a routerLink="dashboard" class="header__link">Boards </a>
+        </li>
+        <li>
+<!--         To Do: Move registor to Home page -->
+          <a routerLink="register" class="header__link">Registor</a>
+        </li>
+        <li>
+<!--         To Do: Move registor to Home page and works with relation of logout-->
+          <a routerLink="login" class="header__link">Login</a>
+        </li>
+        <li>
+<!--         To Do: Add relation to login   -->
+          <a (click)="logout()" class="header__link" >Log Out</a>
+        </li>
+        <li>
+          <!--         To Do: Move registor to Home page and works with relation of logout-->
+          <a routerLink="profile" class="header__link">Profile</a>
+        </li>
+      </ul>
 
-  <a (click)="logout()" color="accent" mat-button>Logout</a>
+      <div class="header__main-ham-menu-cont">
+        <img (click)="changeColour1()" src="https://res.cloudinary.com/dduwkdctl/image/upload/v1668626865/Chaurasiaaditya.in/small%20icons/ham-menu_usixmk.svg"
+             alt="hamburger menu" class="header__main-ham-menu" />
+      </div>
+    </div>
+  </div>
 
-</mat-toolbar>
+<!--  Below is for mobile view Only   -->
+  <div class="header__sm-menu" [style.visibility]="changeColour()" >
+    <div class="header__sm-menu-content">
+      <ul class="header__sm-menu-links">
+        <li class="header__sm-menu-link">
+          <a (click)="changeColour1()" routerLink=""> Home </a>
+        </li>
+        <li class="header__sm-menu-link">
+          <a (click)="changeColour1()" routerLink="dashboard"> Boards </a>
+        </li>
+        <li (click)="changeColour1()" class="header__sm-menu-link">
+          <a routerLink="register"> Registor </a>
+        </li>
+        <li (click)="changeColour1()" class="header__sm-menu-link">
+          <a routerLink="login"> Login </a>
+        </li>
+        <li (click)="changeColour1()" class="header__sm-menu-link">
+          <a (click)="logout()"> Log out </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</header>
