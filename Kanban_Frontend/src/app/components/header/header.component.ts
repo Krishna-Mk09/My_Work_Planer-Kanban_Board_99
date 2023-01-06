@@ -14,6 +14,20 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  aditya:string = "hidden";
+
+  changeColour(){
+    return this.aditya;
+  }
+
+  changeColour1(){
+    if(this.aditya === "hidden"){
+      this.aditya= "visible";
+    } else {
+      this.aditya = "hidden";
+    }
+  }
+
   logout() {
     this.authentication.logoutUser();
   }
