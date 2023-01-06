@@ -3,11 +3,12 @@
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]="(isHandset$ | async) === false"
                class="sidenav">
-    <mat-toolbar>Menu</mat-toolbar>
+    <mat-toolbar>Boards</mat-toolbar>
     <mat-nav-list>
-      <a href="#" mat-list-item>Link 1</a>
-      <a href="#" mat-list-item>Link 2</a>
-      <a href="#" mat-list-item>Link 3</a>
+      <div *ngFor="let board of currentUserKanban?.boards">
+        <a mat-list-item>{{board.boardName}}</a>
+      </div>
+      <a (click)="addBoardToKanban()" mat-list-item>Add Board</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -21,7 +21,8 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
-import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {AddBoardPopupDialog, DashboardComponent} from './components/dashboard/dashboard.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddBoardPopupDialog
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
     LayoutModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
