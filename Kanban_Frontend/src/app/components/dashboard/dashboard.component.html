@@ -1,1 +1,16 @@
-<p>dashboard works!</p>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [fixedInViewport]
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false"
+               class="sidenav">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a href="#" mat-list-item>Link 1</a>
+      <a href="#" mat-list-item>Link 2</a>
+      <a href="#" mat-list-item>Link 3</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- Add content here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
