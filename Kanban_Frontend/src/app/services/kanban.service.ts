@@ -15,7 +15,7 @@ export class KanbanService {
 
   getKanbanByEmail() {
     return this.httpClient.get<Kanban>(
-      `${this.endPointURL}/${localStorage.getItem('user_email')}`)
+      `${this.endPointURL}/get-kanban/${localStorage.getItem('user_email')}`)
       .subscribe({
           next: (response: Kanban) => this.currentUserKanban = response,
           error: (error) => console.log(error)
