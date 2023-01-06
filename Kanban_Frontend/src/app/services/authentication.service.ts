@@ -26,6 +26,7 @@ export class AuthenticationService {
         localStorage.setItem('token', response.token);
         localStorage.setItem('user_email', user.email!);
         this.getUserProfile();
+        this.router.navigateByUrl("dashboard")
       }
     });
   }
@@ -46,8 +47,6 @@ export class AuthenticationService {
       next: (response) => {
         this.currentUser = response;
         this.isLoggedIn = true;
-        // TODO: Update this URL
-        this.router.navigateByUrl("");
         console.log(this.currentUser)
       }
     });
