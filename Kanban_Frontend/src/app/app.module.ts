@@ -17,6 +17,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {LayoutModule} from '@angular/cdk/layout';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 
 @NgModule({
@@ -26,8 +30,7 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    DashboardComponent,
-
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +45,14 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
     MatToolbarModule,
     FormsModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
