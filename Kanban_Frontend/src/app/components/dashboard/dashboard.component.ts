@@ -7,6 +7,8 @@ import {Kanban} from "../../model/kanban/Kanban";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {Board} from "../../model/kanban/Board";
 import {Column} from "../../model/kanban/Column";
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
+import {Task} from "../../model/kanban/Task";
 
 export interface DialogData {
   boardName: string;
@@ -123,6 +125,20 @@ export class DashboardComponent implements OnInit {
 
   displayBoard(board: Board) {
     this.boardToDisplay = board;
+  }
+
+  drop(event: CdkDragDrop<Task[] | undefined>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data!, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data!,
+        event.container.data!,
+        event.previousIndex!,
+        event.currentIndex!,
+      );
+    }
+    this.kanbanService.updateKanban(this.currentUserKanban!);
   }
 }
 

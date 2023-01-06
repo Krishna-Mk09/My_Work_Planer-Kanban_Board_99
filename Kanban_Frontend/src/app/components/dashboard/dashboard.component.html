@@ -14,20 +14,39 @@
   <mat-sidenav-content>
     <!-- Add content here -->
     <h2>{{boardToDisplay?.boardName}}</h2>
-    <div *ngFor="let column of boardToDisplay?.columns" class="column">
-      <h3>{{column.columnName}}</h3>
-      <a (click)="addTaskToColumn(column)" >Add Task </a>
-      <div *ngFor="let task of column.tasks" class="task">
-        <p>Task name - {{task.name}}</p>
-        <p>Task Description - {{task.description}}</p>
-        <p>Task Priority - {{task.priority}}</p>
-        <p>Task Status - {{task.status}}</p>
-        <p>Task Start Date - {{task.startDate}}</p>
-        <p>Task Due Date - {{task.dueDate}}</p>
-        <p>Task Assignee - {{task.assigneeEmail}}</p>
-
+    <!--    <div *ngFor="let column of boardToDisplay?.columns" class="column">-->
+    <!--      <h3>{{column.columnName}}</h3>-->
+    <!--      <a (click)="addTaskToColumn(column)" >Add Task </a>-->
+    <!--      <div *ngFor="let task of column.tasks" class="task">-->
+    <!--        <p>Task name - {{task.name}}</p>-->
+    <!--        <p>Task Description - {{task.description}}</p>-->
+    <!--        <p>Task Priority - {{task.priority}}</p>-->
+    <!--        <p>Task Status - {{task.status}}</p>-->
+    <!--        <p>Task Start Date - {{task.startDate}}</p>-->
+    <!--        <p>Task Due Date - {{task.dueDate}}</p>-->
+    <!--        <p>Task Assignee - {{task.assigneeEmail}}</p>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null">Add Column</a>
+    <div cdkDropListGroup>
+      <div *ngFor="let column of boardToDisplay?.columns" class="container">
+        <h3>{{column.columnName}}</h3>
+        <div
+          (cdkDropListDropped)="drop($event)"
+          [cdkDropListData]="column.tasks"
+          cdkDropList class="list">
+          <div *ngFor="let task of column.tasks" cdkDrag class="box">
+            <p>Task name - {{task.name}}</p>
+            <p>Task Description - {{task.description}}</p>
+            <p>Task Priority - {{task.priority}}</p>
+            <p>Task Status - {{task.status}}</p>
+            <p>Task Start Date - {{task.startDate}}</p>
+            <p>Task Due Date - {{task.dueDate}}</p>
+            <p>Task Assignee - {{task.assigneeEmail}}</p>
+          </div>
+          <a (click)="addTaskToColumn(column)">Add Task </a>
+        </div>
       </div>
     </div>
-    <a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null">Add Column</a>
   </mat-sidenav-content>
 </mat-sidenav-container>

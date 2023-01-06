@@ -28,6 +28,7 @@ import {
   DashboardComponent
 } from './components/dashboard/dashboard.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
