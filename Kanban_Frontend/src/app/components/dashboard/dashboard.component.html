@@ -6,12 +6,20 @@
     <mat-toolbar>Boards</mat-toolbar>
     <mat-nav-list>
       <div *ngFor="let board of currentUserKanban?.boards">
-        <a mat-list-item>{{board.boardName}}</a>
+        <a (click)="displayBoard(board)" mat-list-item>{{board.boardName}}</a>
       </div>
       <a (click)="addBoardToKanban()" mat-list-item>Add Board</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <!-- Add content here -->
+    <h2>{{boardToDisplay?.boardName}}</h2>
+    <div *ngFor="let column of boardToDisplay?.columns">
+      <h3>{{column.columnName}}</h3>
+      <div *ngFor="let task of column.tasks">
+        <p>{{task.name}}</p>
+      </div>
+    </div>
+    <a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null">Add Column</a>
   </mat-sidenav-content>
 </mat-sidenav-container>
