@@ -31,10 +31,10 @@
               Last name is <strong>required</strong>
             </mat-error>
             <mat-error *ngIf="userForm.controls['lastName'].hasError('minlength')">
-              Last name is cannot be lessthan 8 char
+              Last name is cannot be less than 8 char
             </mat-error>
             <mat-error *ngIf="userForm.controls['lastName'].hasError('maxlength')">
-              Last name is cannot be greater than 25char
+              Last name is cannot be greater than 20char
             </mat-error>
             <mat-error *ngIf="userForm.controls['lastName'].hasError('pattern')">
               Last name cannot be numbers
@@ -49,11 +49,8 @@
             <mat-error *ngIf="userForm.controls['email'].hasError('required')">
               email is <strong>required</strong>
             </mat-error>
-            <mat-error *ngIf="userForm.controls['email'].hasError('minlength')">
-              email should have min 8 char
-            </mat-error>
             <mat-error *ngIf="userForm.controls['email'].hasError('pattern')">
-              please provide proper email
+              Please provide proper email
             </mat-error>
           </mat-form-field>
         </div>
@@ -61,15 +58,15 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width" appearance="fill">
-            <input matInput placeholder="Password" formControlName="password">
+            <input formControlName="password" matInput placeholder="Password" type="password">
             <mat-error *ngIf="userForm.controls['password'].hasError('required')">
               password is <strong>required</strong>
             </mat-error>
             <mat-error *ngIf="userForm.controls['password'].hasError('minlength')">
-              password should be atleast 8 char
+              Password should be atleast 8 char
             </mat-error>
             <mat-error *ngIf="userForm.controls['password'].hasError('pattern')">
-              password should be combination of numbers alphabets and symbols
+              Password should be combination of numbers alphabets and symbols
             </mat-error>
           </mat-form-field>
         </div>
@@ -77,7 +74,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width" appearance="fill">
-            <input matInput placeholder="confirmPassword" formControlName="confirmPassword">
+            <input formControlName="confirmPassword" matInput placeholder="Confirm Password" type="password">
             <mat-error *ngIf="userForm.controls['confirmPassword'].hasError('required')">
               confirmPassword is <strong>required</strong>
             </mat-error>
@@ -96,12 +93,12 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width" appearance="fill">
-            <textarea matInput placeholder="mobileNumber" formControlName="mobileNumber"></textarea>
+            <textarea formControlName="mobileNumber" matInput placeholder="Mobile Number"></textarea>
             <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('required')">
-              mobileNumber is <strong>required</strong>
+              Mobile Number is <strong>required</strong>
             </mat-error>
             <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('pattern')">
-              mobileNumber cannot be alphabets and symbols
+              Mobile Number cannot be alphabets and symbols
             </mat-error>
           </mat-form-field>
         </div>
