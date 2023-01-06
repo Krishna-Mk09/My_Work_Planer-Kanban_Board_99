@@ -52,4 +52,12 @@ export class AuthenticationService {
       }
     });
   }
+
+  getAllEmails() {
+    return this.httpClient.get(
+      `${this.endPointURL}/guard/all-emails`,
+      {headers: new HttpHeaders({Authorization: `Bearer ${localStorage.getItem('token')}`})}
+    )
+
+  }
 }
