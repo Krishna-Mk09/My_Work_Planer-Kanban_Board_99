@@ -5,7 +5,6 @@
   width: 100%;
 }
 
-
 /*Dash Board */
 
 .home-hero {
@@ -16,6 +15,10 @@
   min-height: 80rem;
   max-height: 120rem;
   position: relative
+}
+
+.hero_image {
+  margin: 0 auto;
 }
 
 @media only screen and (max-width: 37.5em) {
@@ -199,3 +202,8 @@
     top: calc(100% + 1.2rem)
   }
 }
+
+.register1 {
+  margin-top: 230px;
+}
+
