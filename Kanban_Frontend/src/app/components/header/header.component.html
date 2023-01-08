@@ -2,46 +2,53 @@
   <div class="header__content">
 
     <div class="header__logo-container">
-        <img src="https://res.cloudinary.com/dduwkdctl/image/upload/v1673022626/Kanban%20Project/planning_avbnab.png"
-             alt="Kanban Logo Image" class="header__logo-img" />
-      <span class="header__logo-sub">MY WORK PLANNER</span>
+      <a routerLink="">
+        <img alt="Kanban Logo Image"
+             class="header__logo-img"
+             src="https://res.cloudinary.com/dduwkdctl/image/upload/v1673022626/Kanban%20Project/planning_avbnab.png"/>
+      </a>
+      <a routerLink="">
+        <span class="header__logo-sub">MY WORK PLANNER</span>
+      </a>
     </div>
 
-    <div >
+    <div>
       <ul class="header__links">
         <li>
-          <a routerLink="" class="header__link"> Home </a>
+          <a class="header__link" routerLink=""> Home </a>
         </li>
         <li>
-          <a routerLink="dashboard" class="header__link">Boards </a>
+          <a class="header__link" routerLink="dashboard">Boards </a>
         </li>
         <li>
-<!--         To Do: Move registor to Home page -->
-          <a routerLink="register" class="header__link">Register</a>
+          <!--         TODO: Move registor to Home page -->
+          <a class="header__link" routerLink="register">Register</a>
         </li>
         <li>
-<!--         To Do: Move registor to Home page and works with relation of logout-->
-          <a routerLink="login" class="header__link">Login</a>
+          <!--         TODO: Move registor to Home page and works with relation of logout-->
+          <a class="header__link" routerLink="login">Login</a>
         </li>
         <li>
-<!--         To Do: Add relation to login   -->
-          <a (click)="logout()" class="header__link" >Logout</a>
+          <!--         TODO: Add relation to login   -->
+          <a (click)="logout()" class="header__link">Logout</a>
         </li>
         <li>
-          <!--         To Do: Move registor to Home page and works with relation of logout-->
-          <a routerLink="profile" class="header__link">Profile</a>
+          <!--         TODO: Move register to Home page and works with relation of logout-->
+          <a class="header__link" routerLink="profile">Profile</a>
         </li>
       </ul>
 
       <div class="header__main-ham-menu-cont">
-        <img (click)="changeColour1()" src="https://res.cloudinary.com/dduwkdctl/image/upload/v1668626865/Chaurasiaaditya.in/small%20icons/ham-menu_usixmk.svg"
-             alt="hamburger menu" class="header__main-ham-menu" />
+        <img (click)="changeColour1()"
+             alt="hamburger menu"
+             class="header__main-ham-menu"
+             src="https://res.cloudinary.com/dduwkdctl/image/upload/v1668626865/Chaurasiaaditya.in/small%20icons/ham-menu_usixmk.svg"/>
       </div>
     </div>
   </div>
 
-<!--  Below is for mobile view Only   -->
-  <div class="header__sm-menu" [style.visibility]="changeColour()" >
+  <!--  Below is for mobile view Only   -->
+  <div [style.visibility]="changeColour()" class="header__sm-menu">
     <div class="header__sm-menu-content">
       <ul class="header__sm-menu-links">
         <li class="header__sm-menu-link">
