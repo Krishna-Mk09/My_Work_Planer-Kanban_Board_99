@@ -1,6 +1,6 @@
 .register {
-  z-index: 10000;
-  top: 80px;
+  z-index: 1;
+  /*top: 80px;*/
   position: relative;
   height: 100%;
   width: 100%;
@@ -33,6 +33,11 @@
 .col:last-child {
   margin-right: 0;
 }
-.hh{
+
+.hh {
   background-color: beige;
+}
+
+.register {
+
 }
