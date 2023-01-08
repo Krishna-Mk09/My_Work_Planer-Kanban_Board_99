@@ -1,8 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
 
-  <mat-sidenav [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [fixedInViewport]
-               [mode]="(isHandset$ | async) ? 'over' : 'side'"
-               [opened]="(isHandset$ | async) === false"
+  <mat-sidenav mode="side" opened
                class="sidenav">
     <mat-toolbar>Boards</mat-toolbar>
     <mat-nav-list>
@@ -14,12 +12,17 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
+    <h1>Header works</h1>
+    <h1>Header works</h1>
+    <h1>Header works</h1>
+    <h1>Header works</h1>
     <!-- Add content here -->
     <h2>{{boardToDisplay?.boardName}}</h2>
     <a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null">Add Column</a>
     <div cdkDropListGroup>
       <div *ngFor="let column of boardToDisplay?.columns" class="container">
         <h3>{{column.columnName}}</h3>
+
         <div
           (cdkDropListDropped)="drop($event)"
           [cdkDropListData]="column.tasks"

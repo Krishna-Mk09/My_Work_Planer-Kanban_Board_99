@@ -29,6 +29,7 @@ import {
 } from './components/dashboard/dashboard.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {DragDropModule} from "@angular/cdk/drag-drop";
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
     DashboardComponent,
     AddBoardPopupDialog,
     AddColumnPopupDialog,
-    AddTaskPopupDialog
+    AddTaskPopupDialog,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
