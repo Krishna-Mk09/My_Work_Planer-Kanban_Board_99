@@ -60,4 +60,8 @@
   border: 2px solid black;
 }
 
+.sidebar-content {
+  min-height: 1200px;
+}
+
 
