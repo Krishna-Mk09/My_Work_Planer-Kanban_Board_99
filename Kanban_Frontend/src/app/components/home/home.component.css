@@ -11,7 +11,7 @@
   color: #fff;
   background: linear-gradient(to right, rgba(245, 245, 245, .7), rgba(245, 245, 245, .7)), url("https://res.cloudinary.com/dduwkdctl/image/upload/v1669708933/Chaurasiaaditya.in/images/background2_osubfe.svg");
   background-position: center;
-  height: 100vh;
+  height: auto;
   min-height: 80rem;
   max-height: 120rem;
   position: relative
