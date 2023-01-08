@@ -4,6 +4,7 @@ import {HomeComponent} from "./components/home/home.component";
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {LoginGuard} from "./guards/login.guard";
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
   },
   {
     path: "dashboard",
-    component: DashboardComponent
+    component: DashboardComponent,
+    canActivate: [LoginGuard]
   }
 ];
 
