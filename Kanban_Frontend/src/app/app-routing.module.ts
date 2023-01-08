@@ -13,13 +13,11 @@ const routes: Routes = [
   },
   {
     path: "login",
-    component: LoginComponent,
-    outlet: 'registerOutlet'
+    component: LoginComponent
   },
   {
     path: "register",
-    component: RegisterComponent,
-    outlet: 'registerOutlet'
+    component: RegisterComponent
   },
   {
     path: "dashboard",
