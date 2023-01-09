@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {AuthenticationService} from "../../services/authentication.service";
 import {FormBuilder, Validators} from '@angular/forms';
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-login',
@@ -22,9 +21,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-//     if (logInForm.valid && logInForm.value != null) {
-//       this.authentication.loginUser(logInForm.value);
-//     }
+    if (this.logInForm.valid && this.logInForm.value != null) {
+      this.authentication.loginUser(this.logInForm.value);
+    }
   }
 }
 
