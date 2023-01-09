@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
 	 * @return User
 	 */
 	@Override
-	public User updateUser(User user) {
+	public User updateUser(User user, String email) {
 		return this.USER_REPOSITORY.save(user);
 	}
 
