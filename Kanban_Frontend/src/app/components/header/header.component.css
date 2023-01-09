@@ -4,7 +4,9 @@
   width: 100%;
   z-index: 1000;
   background: #fff;
-  box-shadow: 0 10px 100px rgba(0, 0, 0, .1)
+  box-shadow: 0 10px 100px rgba(0, 0, 0, .1);
+  background-color: rgb(21, 69, 117);
+  color:white;
 }
 
 .header__content {
@@ -33,7 +35,9 @@
 }
 
 .header__links {
-  display: flex
+  display: flex;
+
+
 }
 
 .header__link {
@@ -44,7 +48,8 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 500;
-  transition: color .3s
+  transition: color .3s;
+   color: azure;
 }
 
 .header__link:hover {
