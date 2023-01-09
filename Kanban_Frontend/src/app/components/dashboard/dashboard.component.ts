@@ -18,6 +18,7 @@ export interface DialogData {
   taskStartDate: Date;
   taskDueDate: Date;
   taskAssignee: string;
+  email: string;
 }
 
 @Component({
@@ -129,6 +130,28 @@ export class DashboardComponent implements OnInit {
     }
     this.kanbanService.updateKanban(this.currentUserKanban!);
   }
+
+
+  addMembersToBoard(){
+    const dialogRef = this.dialog.open(AddMemberPopupDialog, {
+      width: '250px',
+      data: {email: ''}
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (result: string) => {
+        this.currentUserKanban?.boards?.forEach((b:Board) => {
+          if (b.boardName === this.boardToDisplay?.boardName) {
+            b.members?.push(result)
+          }
+        })
+        this.kanbanService.addMemberToBoard(this.currentUserKanban!, result).subscribe(
+          {
+            next: (result) => console.log(result)
+          }
+        )
+      }
+    })
+  }
 }
 
 // Component for adding a new board to the Kanban
@@ -168,6 +191,20 @@ export class AddColumnPopupDialog {
 })
 export class AddTaskPopupDialog {
   constructor(public dialogRef: MatDialogRef<AddTaskPopupDialog>,
+              @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  }
+
+  onNoClick() {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'add-member-popup',
+  templateUrl: './add-member-popup.html'
+})
+export class AddMemberPopupDialog {
+  constructor(public dialogRef: MatDialogRef<AddMemberPopupDialog>,
               @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
