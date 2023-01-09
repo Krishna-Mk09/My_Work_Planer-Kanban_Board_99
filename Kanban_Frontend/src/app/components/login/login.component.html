@@ -7,8 +7,8 @@
   </div>
   <div class="h3">
     <form [formGroup]="logInForm" (ngSubmit)="onSubmit()">
-      <fieldset class="backcolor">
-        <mat-form-field appearance="fill">
+      <div class="backcolor">
+        <mat-form-field appearance="fill" class="email">
           <input matInput placeholder="email" type="email" id="email" name="email" formControlName="email"/>
           <mat-error *ngIf="logInForm.controls['email'].hasError('required')">
             email is <strong>required</strong>
@@ -37,7 +37,7 @@
           Submit
         </button> <br>
         Not a member? <a href="#">SignUp</a>
-      </fieldset>
+      </div>
     </form>
   </div>
 </div>
