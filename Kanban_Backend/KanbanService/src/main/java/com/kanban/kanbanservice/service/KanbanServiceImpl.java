@@ -4,6 +4,9 @@ import com.kanban.kanbanservice.domain.Board;
 import com.kanban.kanbanservice.domain.Kanban;
 import com.kanban.kanbanservice.repository.KanbanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,12 +14,13 @@ import java.util.List;
 @Service
 public class KanbanServiceImpl implements KanbanService {
 	private final KanbanRepository KANBAN_REPOSITORY;
+	private final MongoTemplate mongoTemplate;
 
 	@Autowired
-	public KanbanServiceImpl(KanbanRepository kanbanRepository) {
-		KANBAN_REPOSITORY = kanbanRepository;
+	public KanbanServiceImpl(KanbanRepository KANBAN_REPOSITORY, MongoTemplate mongoTemplate) {
+		this.KANBAN_REPOSITORY = KANBAN_REPOSITORY;
+		this.mongoTemplate = mongoTemplate;
 	}
-
 
 	/**
 	 * Get the Kanban Board by email id
@@ -100,5 +104,12 @@ public class KanbanServiceImpl implements KanbanService {
 			}
 		}
 		return "Member added to board";
+	}
+
+
+	@Override
+	public List<String> getAllEmailsInBoard(String email, String boardName) {
+		Query query = new Query(Criteria.where("email").is(email).and("boards.boardName").is(boardName));
+		return mongoTemplate.find(query, Kanban.class).get(0).getBoards().get(0).getMembers();
 	}
 }

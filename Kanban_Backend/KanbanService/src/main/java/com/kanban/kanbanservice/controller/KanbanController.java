@@ -51,4 +51,9 @@ public class KanbanController {
     public ResponseEntity<?> addMemberToBoardByEmail(@RequestBody Kanban kanban, @PathVariable String email) {
         return new ResponseEntity<>(this.KANBAN_SERVICE.addMemberToBoardByEmail(kanban,email), HttpStatus.OK);
     }
+
+    @GetMapping("/all-emails-in-board/{email}/{boardName}")
+    public ResponseEntity<?> getAllEmailsInBoard(@PathVariable String email, @PathVariable String boardName) {
+        return new ResponseEntity<>(this.KANBAN_SERVICE.getAllEmailsInBoard(email, boardName),HttpStatus.OK);
+    }
 }
