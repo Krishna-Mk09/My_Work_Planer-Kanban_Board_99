@@ -35,13 +35,13 @@
           [cdkDropListData]="column.tasks"
           cdkDropList class="list">
           <div *ngFor="let task of column.tasks" cdkDrag class="box">
-            <p>Task name - {{task.name}}</p>
-            <p>Task Description - {{task.description}}</p>
-            <p>Task Priority - {{task.priority}}</p>
-            <p>Task Status - {{task.status}}</p>
-            <p>Task Start Date - {{task.startDate}}</p>
-            <p>Task Due Date - {{task.dueDate}}</p>
-            <p>Task Assignee - {{task.assigneeEmail}}</p>
+            <p class="taskName">Task name - {{task.name}}</p>
+            <p class="taskDescription">Task Description - {{task.description}}</p>
+            <p class="taskPriority">Task Priority - {{task.priority}}</p>
+            <p class="taskStatus">Task Status - {{task.status}}</p>
+            <p class="taskStartDate">Task Start Date - {{task.startDate}}</p>
+            <p class="taskDueDate">Task Due Date - {{task.dueDate}}</p>
+            <p class="taskAssigneDate">Task Assignee - {{task.assigneeEmail}}</p>
           </div>
           <a (click)="addTaskToColumn(column)">Add Task </a>
         </div>
