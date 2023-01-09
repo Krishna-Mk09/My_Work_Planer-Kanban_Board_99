@@ -1,12 +1,30 @@
+
 .login {
   top: 80px;
   position: relative;
   height: 100%;
   width: 100%;
-  min-height: 800px;
+  min-height: 400px;
+  font-family: monospace;
+
 }
 .h3{
 padding-left:400px;
-padding-right:400px;
+padding-right:450px;
+text-align:center;
+padding-top:10px;
+padding-bottom:10px;
+background-color: azure;
 
+}
+
+.h5{
+padding-top:50px;
+color:white;
+
+
+}
+.logo{
+padding-bottom:2px;
+background-color: rgb(57, 57, 61);
 }

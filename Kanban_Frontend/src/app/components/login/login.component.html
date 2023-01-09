@@ -1,6 +1,10 @@
 <div class="login">
 
-  <div class="logo"><h1 class="h5">Please enter your login credentials </h1></div>
+  <div class="logo">
+    <h1 class="h5">
+      <pre>                                                                        Please enter your login credentials</pre>
+    </h1>
+  </div>
   <div class="h3">
     <form [formGroup]="logInForm" (ngSubmit)="onSubmit()">
       <fieldset class="backcolor">
@@ -28,10 +32,11 @@
             Password should be combination of numbers alphabets and symbols
           </mat-error>
         </mat-form-field>
-        <br>
+        <br>  <br>
         <button color="primary" mat-button mat-raised-button type="submit">
           Submit
-        </button>
+        </button> <br>
+        Not a member? <a href="#">SignUp</a>
       </fieldset>
     </form>
   </div>
