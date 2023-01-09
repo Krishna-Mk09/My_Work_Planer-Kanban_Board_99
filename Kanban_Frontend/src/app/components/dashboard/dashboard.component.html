@@ -12,12 +12,19 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="sidebar-content">
-    <h1>Header works</h1>
-    <h1>Header works</h1>
-    <h1>Header works</h1>
-    <h1>Header works</h1>
+
     <!-- Add content here -->
+    <div>
     <h2>{{boardToDisplay?.boardName}}</h2>
+      <h2>Members</h2>
+      <a (click)="addMembersToBoard()" *ngIf="boardToDisplay != null">Add Members</a>
+      <div *ngIf="boardToDisplay?.members?.length != 0" >
+        <h1>Heloooooo</h1>
+        <h2 *ngFor="let member of boardToDisplay?.members">
+          {{member}}
+        </h2>
+      </div>
+    </div>
     <a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null">Add Column</a>
     <div cdkDropListGroup>
       <div *ngFor="let column of boardToDisplay?.columns" class="container">

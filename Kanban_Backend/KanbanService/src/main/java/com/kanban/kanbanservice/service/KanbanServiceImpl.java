@@ -99,7 +99,7 @@ public class KanbanServiceImpl implements KanbanService {
 					kanbanByEmail.getBoards().add(board);
 					this.KANBAN_REPOSITORY.save(kanban);
 					this.KANBAN_REPOSITORY.save(kanbanByEmail);
-					this.updateKanban(kanban);
+//					this.updateKanban(kanban);
 				}
 			}
 		}

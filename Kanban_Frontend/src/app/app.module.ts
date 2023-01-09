@@ -24,6 +24,7 @@ import {MatListModule} from '@angular/material/list';
 import {
   AddBoardPopupDialog,
   AddColumnPopupDialog,
+  AddMemberPopupDialog,
   AddTaskPopupDialog,
   DashboardComponent
 } from './components/dashboard/dashboard.component';
@@ -42,7 +43,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AddBoardPopupDialog,
     AddColumnPopupDialog,
     AddTaskPopupDialog,
-    FooterComponent
+    FooterComponent,
+    AddMemberPopupDialog
   ],
   imports: [
     BrowserModule,
