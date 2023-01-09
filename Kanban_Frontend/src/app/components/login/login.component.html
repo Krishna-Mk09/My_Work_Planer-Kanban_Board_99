@@ -2,20 +2,22 @@
 
   <div class="logo"><h1 class="h5">Please enter your login credentials </h1></div>
   <div class="h3">
-    <form [formGroup]="logInForm" (ngSubmit)="onSubmit()" >
+    <form [formGroup]="logInForm" (ngSubmit)="onSubmit()">
       <fieldset class="backcolor">
         <mat-form-field appearance="fill">
-          <input  matInput placeholder="email" type="email" id="email" name="email"  formControlName="email"/>
-        <mat-error *ngIf="logInForm.controls['email'].hasError('required')">
-          email is <strong>required</strong>
-        </mat-error>
-        <mat-error *ngIf="logInForm.controls['email'].hasError('pattern')">
-          Please provide proper email
-        </mat-error>
+          <input matInput placeholder="email" type="email" id="email" name="email" formControlName="email"/>
+          <mat-error *ngIf="logInForm.controls['email'].hasError('required')">
+            email is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="logInForm.controls['email'].hasError('pattern')">
+            Please provide proper email
+          </mat-error>
         </mat-form-field>
+
         <br> <br>
         <mat-form-field appearance="fill">
-          <input  matInput type="password" placeholder="Password" id="password" name="password"  formControlName="password"/>
+          <input matInput type="password" placeholder="Password" id="password" name="password"
+                 formControlName="password"/>
           <mat-error *ngIf="logInForm.controls['password'].hasError('required')">
             password is <strong>required</strong>
           </mat-error>
@@ -30,7 +32,6 @@
         <button color="primary" mat-button mat-raised-button type="submit">
           Submit
         </button>
-
       </fieldset>
     </form>
   </div>
