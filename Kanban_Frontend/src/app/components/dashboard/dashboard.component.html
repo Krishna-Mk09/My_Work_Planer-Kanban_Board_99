@@ -15,17 +15,17 @@
 
     <!-- Add content here -->
     <div>
-      <h2  class="styleBoard">{{boardToDisplay?.boardName}}</h2>
-<!--      <h2>Members</h2>-->
+      <h2 class="styleBoard">{{boardToDisplay?.boardName}}</h2>
+      <!--      <h2>Members</h2>-->
       <a (click)="addMembersToBoard()" *ngIf="boardToDisplay != null"><h2> Add-Members: </h2></a>
       <div *ngIf="boardToDisplay?.members?.length != 0">
-<!--        <h1>Heloooooo</h1>-->
+        <!--        <h1>Heloooooo</h1>-->
         <h2 *ngFor="let member of boardToDisplay?.members">
           {{member}}
         </h2>
       </div>
     </div>
-    <a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null"> <h2> Add-Column: </h2></a>
+    <a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null"><h2> Add-Column: </h2></a>
     <div cdkDropListGroup>
       <div *ngFor="let column of boardToDisplay?.columns" class="container">
         <h3>{{column.columnName}}</h3>
@@ -35,13 +35,13 @@
           [cdkDropListData]="column.tasks"
           cdkDropList class="list">
           <div *ngFor="let task of column.tasks" cdkDrag class="box">
-            <p class="taskName">  Task name - {{task.name}}</p>
+            <p class="taskName"> Task name - {{task.name}}</p>
             <p class="taskDescription"> Task Description - {{task.description}}</p>
             <p class="taskPriority"> Task Priority - {{task.priority}}</p>
             <p class="taskStatus"> Task Status - {{task.status}}</p>
             <p class="taskStartDate"> Task Start Date - {{task.startDate}}</p>
-            <p class="taskDueDate">  Task Due Date - {{task.dueDate}}</p>
-            <p class="taskAssigneDate">  Task Assignee - {{task.assigneeEmail}}</p>
+            <p class="taskDueDate"> Task Due Date - {{task.dueDate}}</p>
+            <p class="taskAssigneDate"> Task Assignee - {{task.assigneeEmail}}</p>
           </div>
           <pre> <a (click)="addTaskToColumn(column)" class="task1">   Add Task </a></pre>
         </div>
