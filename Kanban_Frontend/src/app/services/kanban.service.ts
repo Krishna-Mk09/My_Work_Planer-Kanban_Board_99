@@ -37,9 +37,9 @@ export class KanbanService {
       `${this.endPointURL}/delete-kanban/${localStorage.getItem('user_email')}`);
   }
 
-  addMemberToBoard(kanban: Kanban) {
+  addMemberToBoard(kanban: Kanban, email: string) {
     return this.httpClient.put(
-      `${this.endPointURL}/add-member-to-board/${localStorage.getItem('user_email')}`, kanban);
+      `${this.endPointURL}/add-member-to-board/${email}`, kanban);
   }
 
   // TODO: Send message to Notification
