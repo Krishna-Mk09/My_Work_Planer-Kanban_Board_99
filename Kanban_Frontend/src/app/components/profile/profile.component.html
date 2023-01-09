@@ -1,0 +1,29 @@
+<div class="profile">
+
+  <div class="update_profile">
+
+    <a >Update Profile</a>
+    <form  class="userForm">
+      <mat-form-field appearance="fill">
+        <mat-label>
+          Update FirstName
+        </mat-label>
+        <input matInput type="text" name="firstName"  [(ngModel)]="currentUser!.firstName" required >
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>
+          Update Last Name
+        </mat-label>
+        <input matInput type="text" name="lastName"  [(ngModel)]="currentUser!.lastName" required >
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>
+          Update Mobile Number
+        </mat-label>
+        <input matInput type="text" name="mobileNumber"  [(ngModel)]="currentUser!.mobileNumber" required >
+      </mat-form-field>
+
+      <button type="submit" (click)="updateUser()" >Submit </button>
+    </form>
+  </div>
+</div>
