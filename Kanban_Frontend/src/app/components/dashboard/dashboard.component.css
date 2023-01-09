@@ -63,5 +63,21 @@
 .sidebar-content {
   min-height: 1200px;
 }
+.styleBoard{
+background-color: rgb(60, 163, 237);
+padding-top:15px;
+padding-bottom:10px;
+padding-left:5px;
+background-color: rgb(245, 131, 9);
 
+}
+.sidenav{
+
+background-color: rgb(134, 217, 217);
+}
+
+.list{
+background-color: rgb(9, 81, 112);
+color:white;
+}
 
