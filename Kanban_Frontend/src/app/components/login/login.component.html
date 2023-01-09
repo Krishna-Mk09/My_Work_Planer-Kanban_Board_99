@@ -1,24 +1,70 @@
 <div class="login">
 
-<div class="logo"><h1 class="h5">Please enter your login credentials </h1></div>
-<div class ="h3">
-  <form #logInForm="ngForm" (ngSubmit)="onSubmit(logInForm)">
-    <fieldset class="backcolor">
-      <mat-form-field appearance="fill">
-        <input ngModel matInput placeholder="email" type="text" id="username" name="email" />
-      </mat-form-field><br> <br>
-      <mat-form-field appearance="fill">
-        <input ngModel matInput type="password" placeholder="Password" id="password" name="password" />
-      </mat-form-field>
-      <br>
-      <button color="primary" mat-button mat-raised-button type="submit">
-        Submit
-      </button>
+  <div class="logo"><h1 class="h5">Please enter your login credentials </h1></div>
+  <div class="h3">
+    <form [formGroup]="logInForm" (ngSubmit)="onSubmit()" >
+      <fieldset class="backcolor">
+        <mat-form-field appearance="fill">
+          <input  matInput placeholder="email" type="email" id="email" name="email"  formControlName="email"/>
+        <mat-error *ngIf="logInForm.controls['email'].hasError('required')">
+          email is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="logInForm.controls['email'].hasError('pattern')">
+          Please provide proper email
+        </mat-error>
+        </mat-form-field>
+        <br> <br>
+        <mat-form-field appearance="fill">
+          <input  matInput type="password" placeholder="Password" id="password" name="password"  formControlName="password"/>
+          <mat-error *ngIf="logInForm.controls['password'].hasError('required')">
+            password is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="logInForm.controls['password'].hasError('minlength')">
+            Password should be atleast 8 char
+          </mat-error>
+          <mat-error *ngIf="logInForm.controls['password'].hasError('pattern')">
+            Password should be combination of numbers alphabets and symbols
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <button color="primary" mat-button mat-raised-button type="submit">
+          Submit
+        </button>
 
-    </fieldset>
-  </form>
+      </fieldset>
+    </form>
+  </div>
 </div>
 
+<!--</div>-->
+<!--<div class="row">-->
+<!--  <div class="col">-->
+<!--    <mat-form-field class="full-width" appearance="fill">-->
+<!--      <input matInput placeholder="Email" formControlName="email">-->
+<!--      <mat-error *ngIf="userForm.controls['email'].hasError('required')">-->
+<!--        email is <strong>required</strong>-->
+<!--      </mat-error>-->
+<!--      <mat-error *ngIf="userForm.controls['email'].hasError('pattern')">-->
+<!--        Please provide proper email-->
+<!--      </mat-error>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--  <div class="col">-->
+<!--    <mat-form-field class="full-width" appearance="fill">-->
+<!--      <input formControlName="password" matInput placeholder="Password" type="password">-->
+<!--      <mat-error *ngIf="userForm.controls['password'].hasError('required')">-->
+<!--        password is <strong>required</strong>-->
+<!--      </mat-error>-->
+<!--      <mat-error *ngIf="userForm.controls['password'].hasError('minlength')">-->
+<!--        Password should be atleast 8 char-->
+<!--      </mat-error>-->
+<!--      <mat-error *ngIf="userForm.controls['password'].hasError('pattern')">-->
+<!--        Password should be combination of numbers alphabets and symbols-->
+<!--      </mat-error>-->
+<!--    </mat-form-field>-->
 
-</div>
-
+<!--#logInForm="ngForm" (ngSubmit)="onSubmit(logInForm)"-->
+<!--  </div>-->
+<!--</div>-->

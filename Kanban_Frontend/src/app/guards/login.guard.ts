@@ -16,7 +16,7 @@ export class LoginGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.authenticationService.isLoggedIn) {
-      this.router.navigateByUrl("dashboard");
+//       this.router.navigateByUrl("dashboard");
       return true;
     } else {
       this.snackbar.open("You must be logged in to access this page", "Close", {duration: 3000});

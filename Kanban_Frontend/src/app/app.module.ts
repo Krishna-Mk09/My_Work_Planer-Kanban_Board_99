@@ -56,6 +56,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ReactiveFormsModule,
     MatToolbarModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
     LayoutModule,

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {AuthenticationService} from "../../services/authentication.service";
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,16 +9,22 @@ import {AuthenticationService} from "../../services/authentication.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(private authentication: AuthenticationService) {
+
+ constructor(private authentication: AuthenticationService , private fb: FormBuilder) {
   }
+
+  logInForm = this.fb.group({
+   email: [null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)]],
+   password: [null, [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/)]]
+   });
 
   ngOnInit(): void {
   }
 
-  onSubmit(logInForm: NgForm): void {
-    if (logInForm.valid && logInForm.value != null) {
-      this.authentication.loginUser(logInForm.value);
-    }
+  onSubmit(): void {
+//     if (logInForm.valid && logInForm.value != null) {
+//       this.authentication.loginUser(logInForm.value);
+//     }
   }
-
 }
+
