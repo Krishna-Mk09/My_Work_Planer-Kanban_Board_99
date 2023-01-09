@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {User} from "../../model/user/User";
 import {AuthenticationService} from "../../services/authentication.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {NotificationService} from "../../services/notification.service";
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,11 @@ export class RegisterComponent {
     mobileNumber: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(/^[6-9]{2}[0-9]{8}/)]],
   });
 
-  constructor(private fb: FormBuilder, private authentication: AuthenticationService, private snackBar: MatSnackBar) {
+  constructor(
+    private fb: FormBuilder,
+    private authentication: AuthenticationService,
+    private snackBar: MatSnackBar,
+    private notificationService: NotificationService) {
   }
 
   onSubmit(): void {
@@ -42,5 +47,6 @@ export class RegisterComponent {
         }
       }
     });
+    this.notificationService.sendMail(user);
   }
 }
