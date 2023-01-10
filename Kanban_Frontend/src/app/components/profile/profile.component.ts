@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 import {User} from "../../model/user/User";
+import {ProfileimageService} from "../../services/profileimage.service";
 
 @Component({
   selector: 'app-profile',
@@ -9,23 +10,38 @@ import {User} from "../../model/user/User";
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(public authentication: AuthenticationService) { }
+  image?: File
 
   currentUser?: User;
+  imageURL?: string;
+
+  constructor(public authentication: AuthenticationService, private profileService: ProfileimageService) {
+  }
 
   updateUser(): void {
     console.log(this.currentUser)
     this.authentication.updateUserProfile(this.currentUser!);
   }
 
+  uploadProfilePicture() {
+    this.profileService.uploadProfilePicture(this.image!).subscribe({
+      next: (response: any) => this.imageURL = response['secure_url'],
+      error: (err) => console.log(err)
+    });
+    setTimeout(() => {
+      this.currentUser!.imageURL = this.imageURL!;
+      this.updateUser();
+    }, 3000);
+  }
 
-
+  updateImage(event: any) {
+    this.image = event.target.files![0];
+  }
 
   ngOnInit(): void {
     setTimeout(() => {
       this.currentUser = this.authentication.currentUser;
-    },1000)
-
+    }, 1000)
   }
 
 }

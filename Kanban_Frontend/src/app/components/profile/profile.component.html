@@ -2,13 +2,19 @@
 
   <div class="update_profile">
 
-    <a >Update Profile</a>
-    <form  class="userForm">
+    <div>
+      <img [src]="currentUser?.imageURL">
+      <input (change)="updateImage($event)" type="file">
+      <button (click)="uploadProfilePicture()">Upload</button>
+    </div>
+
+    <a>Update Profile</a>
+    <form class="userForm">
       <mat-form-field appearance="fill">
         <mat-label>
           Update FirstName
         </mat-label>
-        <input matInput type="text" name="firstName"  [(ngModel)]="currentUser!.firstName" required >
+        <input [(ngModel)]="currentUser!.firstName" matInput name="firstName" required type="text">
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>
