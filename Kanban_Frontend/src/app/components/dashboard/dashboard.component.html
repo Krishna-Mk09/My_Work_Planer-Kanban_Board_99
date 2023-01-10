@@ -15,9 +15,12 @@
 
     <!-- Add content here -->
     <div>
-      <h2 class="styleBoard">{{boardToDisplay?.boardName}}</h2>
+      <h2 class="styleBoard">{{boardToDisplay?.boardName}}
+        <h2 class="styleBoard1"><a (click)="addMembersToBoard()" *ngIf="boardToDisplay != null"><h2> Add-Members: </h2>
+        </a></h2>
+      </h2>
       <!--      <h2>Members</h2>-->
-      <a (click)="addMembersToBoard()" *ngIf="boardToDisplay != null"><h2> Add-Members: </h2></a>
+
       <div *ngIf="boardToDisplay?.members?.length != 0">
         <!--        <h1>Heloooooo</h1>-->
         <h2 *ngFor="let member of boardToDisplay?.members">
@@ -25,7 +28,7 @@
         </h2>
       </div>
     </div>
-    <a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null"><h2> Add-Column: </h2></a>
+    <a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null"><h2> Add-Column </h2></a>
     <div cdkDropListGroup>
       <div *ngFor="let column of boardToDisplay?.columns" class="container">
         <h3>{{column.columnName}}</h3>

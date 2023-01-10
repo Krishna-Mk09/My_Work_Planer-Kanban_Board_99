@@ -63,21 +63,34 @@
 .sidebar-content {
   min-height: 1200px;
 }
+
 .styleBoard{
-background-color: rgb(60, 163, 237);
-padding-top:15px;
-padding-bottom:10px;
-padding-left:5px;
-background-color: rgb(245, 131, 9);
-
+  background-color: rgb(222, 132, 15);
+  padding-top:15px;
+  padding-left:5px;
 }
-.sidenav{
 
-background-color: rgb(134, 217, 217);
+.styleBoard1{
+  display: flex;
+  padding-left:30px;
+  justify-content: end;
+}
+
+.sidenav{
+  background-color: rgb(134, 217, 217);
 }
 
 .list{
+  background-color: rgb(9, 81, 112);
+  color:white;
+}
+.taskName{
 background-color: rgb(9, 81, 112);
+width:100%;
 color:white;
+padding-top:5px;
+padding-bottom:5px;
+padding-left:10px;
+border-radius:4px;
 }
 
