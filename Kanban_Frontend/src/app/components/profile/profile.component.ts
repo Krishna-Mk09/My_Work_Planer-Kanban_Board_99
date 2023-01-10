@@ -11,7 +11,7 @@ import {ProfileimageService} from "../../services/profileimage.service";
 export class ProfileComponent implements OnInit {
 
   image?: File
-
+  wantToUpdate: boolean = false;
   currentUser?: User;
   imageURL?: string;
 

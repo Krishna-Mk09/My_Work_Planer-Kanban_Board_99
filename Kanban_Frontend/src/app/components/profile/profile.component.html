@@ -1,35 +1,62 @@
 <div class="profile">
 
   <div class="update_profile">
-
-    <div>
-      <img [src]="currentUser?.imageURL">
-      <input (change)="updateImage($event)" type="file">
-      <button (click)="uploadProfilePicture()">Upload</button>
+    <img [src]="currentUser?.imageURL" alt="profile picture" class="image">
+    <div class="upload">
+      <input (change)="updateImage($event)" type="file"><br>
+      <button (click)="uploadProfilePicture()" color="warn" mat-raised-button>Upload</button>
     </div>
-
-    <a>Update Profile</a>
+  </div>
+  <div class="update_form">
+    <h1>Welcome {{currentUser?.firstName}}</h1>
     <form class="userForm">
-      <mat-form-field appearance="fill">
-        <mat-label>
-          Update FirstName
-        </mat-label>
-        <input [(ngModel)]="currentUser!.firstName" matInput name="firstName" required type="text">
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>
-          Update Last Name
-        </mat-label>
-        <input matInput type="text" name="lastName"  [(ngModel)]="currentUser!.lastName" required >
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>
-          Update Mobile Number
-        </mat-label>
-        <input matInput type="text" name="mobileNumber"  [(ngModel)]="currentUser!.mobileNumber" required >
-      </mat-form-field>
-
-      <button type="submit" (click)="updateUser()" >Submit </button>
+      <div>Email -
+        <mat-form-field appearance="fill">
+          <input [(ngModel)]="currentUser!.email" disabled matInput name="email" type="text">
+        </mat-form-field>
+        <br>
+        <small>You cannot update email after registering</small>
+      </div>
+      <br>
+      <div>First Name -
+        <mat-form-field appearance="fill">
+          <mat-label *ngIf="wantToUpdate">
+            Update FirstName
+          </mat-label>
+          <input [(ngModel)]="currentUser!.firstName" [disabled]="!wantToUpdate" matInput name="firstName" required
+                 type="text">
+        </mat-form-field>
+      </div>
+      <br>
+      <div>Last Name -
+        <mat-form-field appearance="fill">
+          <mat-label *ngIf="wantToUpdate">
+            Update Last Name
+          </mat-label>
+          <input [(ngModel)]="currentUser!.lastName" [disabled]="!wantToUpdate" matInput name="lastName" required
+                 type="text">
+        </mat-form-field>
+      </div>
+      <br>
+      <div>Mobile Number -
+        <mat-form-field appearance="fill">
+          <mat-label *ngIf="wantToUpdate">
+            Update Mobile Number
+          </mat-label>
+          <input [(ngModel)]="currentUser!.mobileNumber" [disabled]="!wantToUpdate" matInput name="mobileNumber" required
+                 type="text">
+        </mat-form-field>
+      </div>
+      <br>
+      <button (click)="updateUser()" *ngIf="wantToUpdate" class="submit_button" color="warn" mat-raised-button
+              type="submit">Submit
+      </button>
+      <button (click)="wantToUpdate = !wantToUpdate" *ngIf="!wantToUpdate" class="submit_button" color="primary"
+              mat-raised-button>Edit Profile
+      </button>
+      <button (click)="wantToUpdate = !wantToUpdate" *ngIf="wantToUpdate" class="submit_button" color="accent"
+              mat-raised-button>Cancel
+      </button>
     </form>
   </div>
 </div>
