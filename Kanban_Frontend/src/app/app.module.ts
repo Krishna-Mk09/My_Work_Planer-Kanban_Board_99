@@ -30,8 +30,9 @@ import {
 } from './components/dashboard/dashboard.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {DragDropModule} from "@angular/cdk/drag-drop";
-import { FooterComponent } from './components/footer/footer.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {ProfileComponent} from './components/profile/profile.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatIconModule,
     MatListModule,
     MatDialogModule,
-    DragDropModule
+    DragDropModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
