@@ -1,12 +1,12 @@
 <div class="register">
-<form (ngSubmit)="onSubmit()" [formGroup]="userForm" novalidate>
+<form (ngSubmit)="onSubmit()" [formGroup]="userForm" novalidate class="back-round">
   <mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title>
-        <h1> Registration Form </h1>
+        <h1 > Registration Form </h1>
       </mat-card-title>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content class="h2">
       <div class="row">
         <div class="col">
           <mat-form-field appearance="fill" class="full-width">
@@ -106,9 +106,9 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <pre><button color="primary" mat-raised-button type="submit"> Submit </button></pre>
-      <a routerLink="login">
-        <button>Login</button>
+      <pre>  <button color="primary" mat-raised-button type="submit"> Submit </button></pre>
+      <a routerLink="login"> <br>
+        <button color="primary" mat-raised-button type="submit">  Login</button>
       </a>
     </mat-card-actions>
   </mat-card>

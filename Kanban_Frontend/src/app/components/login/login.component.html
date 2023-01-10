@@ -2,13 +2,13 @@
 
   <div class="logo">
     <h1 class="h5">
-      <pre>                                                                        Please enter your login credentials</pre>
+      <pre>                                                                                 Enter your login credentials</pre>
     </h1>
   </div>
   <div class="h3">
     <form [formGroup]="logInForm" (ngSubmit)="onSubmit()">
       <div class="backcolor">
-        <mat-form-field appearance="fill" class="email">
+        <mat-form-field appearance="fill" class="full-width">
           <input matInput placeholder="email" type="email" id="email" name="email" formControlName="email"/>
           <mat-error *ngIf="logInForm.controls['email'].hasError('required')">
             email is <strong>required</strong>
@@ -19,7 +19,7 @@
         </mat-form-field>
 
         <br> <br>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="full-width">
           <input matInput type="password" placeholder="Password" id="password" name="password"
                  formControlName="password"/>
           <mat-error *ngIf="logInForm.controls['password'].hasError('required')">
@@ -32,10 +32,11 @@
             Password should be combination of numbers alphabets and symbols
           </mat-error>
         </mat-form-field>
-        <br>  <br>
+        <br> <br>
         <button color="primary" mat-button mat-raised-button type="submit">
           Submit
-        </button> <br>
+        </button>
+        <br>
         Not a member? <a href="#">SignUp</a>
       </div>
     </form>

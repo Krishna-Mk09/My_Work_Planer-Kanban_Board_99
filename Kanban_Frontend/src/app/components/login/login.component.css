@@ -7,27 +7,32 @@
   min-height: 400px;
   font-family: monospace;
 
+
 }
 .h3{
-padding-left:400px;
-padding-right:450px;
-text-align:center;
-padding-top:10px;
-padding-bottom:10px;
-background-color: azure;
+  width:450px;
+  box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
 
+  padding-left:400px;
+  padding-right:450px;
+  text-align:center;
+  padding-top:10px;
+  padding-bottom:10px;
+  background-color: azure;
 }
 
 .h5{
-padding-top:50px;
-color:white;
-
+  padding-top:50px;
+  color:white;
 }
 
 .logo{
-padding-bottom:2px;
-background-color: rgb(57, 57, 61);
+  padding-bottom:2px;
+  background-color: black;
 }
-.email{
-padding-top:30px;
+
+.full-width {
+  width: 60%;
+  padding-top:30px;
+
 }

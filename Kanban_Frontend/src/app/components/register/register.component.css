@@ -2,23 +2,39 @@
   z-index: 1;
   /*top: 80px;*/
   position: relative;
+   display: flex;
+  justify-content: center;
+  background-image: url('/Kanban_Frontend/src/assets/images/2314950.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
   height: 100%;
   width: 100%;
-  max-width: 600px;
+  background-color:rgb(224, 247, 247);
+  color:rgb(64, 72, 84);
 }
 
+.back-round{
+}
+
+.h2{
+    color:rgb(64, 72, 84);
+
+
+}
 .full-width {
   width: 100%;
 }
 
 .shipping-card {
-  min-width: 120px;
-  margin: 20px auto;
+  min-width: 190px;
+  margin: 100px auto;
+
 }
 
 .row {
   display: flex;
   flex-direction: row;
+  height:70px;
 }
 
 .col {
