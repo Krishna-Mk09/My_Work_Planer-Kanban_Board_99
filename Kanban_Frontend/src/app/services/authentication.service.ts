@@ -28,6 +28,9 @@ export class AuthenticationService {
         localStorage.setItem('user_email', user.email!);
         this.getUserProfile();
         this.router.navigateByUrl("dashboard")
+        setTimeout(() => {
+          window.location.reload()
+        }, 100);
       }
     });
   }
