@@ -1,5 +1,4 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {BreakpointObserver} from '@angular/cdk/layout';
 import {KanbanService} from "../../services/kanban.service";
 import {Kanban} from "../../model/kanban/Kanban";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
@@ -29,7 +28,9 @@ export class DashboardComponent implements OnInit {
   currentUserKanban?: Kanban;
   boardToDisplay?: Board;
 
-  constructor(private breakpointObserver: BreakpointObserver, private kanbanService: KanbanService, public dialog: MatDialog) {
+  constructor(
+    private kanbanService: KanbanService,
+    public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
