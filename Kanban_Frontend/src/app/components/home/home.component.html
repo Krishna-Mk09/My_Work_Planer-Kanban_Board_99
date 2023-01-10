@@ -12,8 +12,11 @@
           style="width: 50%">
       </div>
       <!--        Right-->
-      <div style="width: 500px; margin-top: 50px">
+      <div *ngIf="!isLoggedIn" style="width: 500px; margin-top: 50px">
         <app-register></app-register>
+      </div>
+      <div *ngIf="isLoggedIn">
+        <img src="favicon.ico">
       </div>
     </div>
   </section>
