@@ -56,9 +56,9 @@ public class UserController {
 		}
 	}
 
-	@PutMapping("/guard/update")
-	public ResponseEntity<?> updateUser(@RequestBody User user) {
-		return new ResponseEntity<>(this.USER_SERVICE.updateUser(user), HttpStatus.OK);
+	@PutMapping("/guard/update/{email}")
+	public ResponseEntity<?> updateUser(@RequestBody User user, @PathVariable String email) {
+		return new ResponseEntity<>(this.USER_SERVICE.updateUser(user,email), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/guard/delete/{email}")

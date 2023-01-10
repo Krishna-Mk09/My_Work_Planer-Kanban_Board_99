@@ -22,7 +22,7 @@ public interface UserService {
 	 * @param user This is the user object which is to be updated in the database.
 	 * @return User
 	 */
-	User updateUser(User user);
+	User updateUser(User user, String email);
 
 	/**
 	 * This method is used to delete the user from the database and return the deleted user.

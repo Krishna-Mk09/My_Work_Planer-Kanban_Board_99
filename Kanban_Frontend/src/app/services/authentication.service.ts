@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {User} from "../model/user/User";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthenticationService {
   currentUser?: User;
   isLoggedIn: boolean = false;
 
-  constructor(private httpClient: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router, private snackBar: MatSnackBar) {
   }
 
   registerUser(user: User) {
@@ -50,6 +51,17 @@ export class AuthenticationService {
         console.log(this.currentUser)
       }
     });
+  }
+
+  updateUserProfile(user: User) {
+    return this.httpClient.put<User>(
+      `${this.endPointURL}/guard/update/${localStorage.getItem('user_email')}`,
+      user,
+      {headers: new HttpHeaders({Authorization: `Bearer ${localStorage.getItem('token')}`})}
+    ).subscribe({
+      next: () => this.snackBar.open("Profile Update Successfully !!!","Done",{duration:3000}),
+      error: (error) => console.log(error)
+    })
   }
 
   getAllEmails() {

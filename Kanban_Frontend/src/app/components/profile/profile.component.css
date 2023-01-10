@@ -1,0 +1,8 @@
+.profile{
+  top: 80px;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  min-height: 400px;
+  font-family: monospace;
+}

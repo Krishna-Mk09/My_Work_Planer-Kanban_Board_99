@@ -1,5 +1,4 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {BreakpointObserver} from '@angular/cdk/layout';
 import {KanbanService} from "../../services/kanban.service";
 import {Kanban} from "../../model/kanban/Kanban";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
@@ -22,9 +21,7 @@ export interface DialogData {
 }
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-dashboard', templateUrl: './dashboard.component.html', styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
 
@@ -32,10 +29,8 @@ export class DashboardComponent implements OnInit {
   boardToDisplay?: Board;
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
     private kanbanService: KanbanService,
-    public dialog: MatDialog
-  ) {
+    public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -48,38 +43,39 @@ export class DashboardComponent implements OnInit {
 
   addBoardToKanban() {
     const dialogRef = this.dialog.open(AddBoardPopupDialog, {
-      width: '250px',
-      data: {boardName: ''}
+      width: '250px', data: {boardName: null}
     });
     dialogRef.afterClosed().subscribe({
       next: (result: string) => {
-        this.currentUserKanban?.boards?.push({boardName: result, columns: [], members: []});
-        this.kanbanService.updateKanban(this.currentUserKanban!);
+        if (result !== null) {
+          this.currentUserKanban?.boards?.push({boardName: result, columns: [], members: []});
+          this.kanbanService.updateKanban(this.currentUserKanban!);
+        }
       }
     });
   }
 
   addColumnToBoard(board: Board) {
     const dialogRef = this.dialog.open(AddColumnPopupDialog, {
-      width: '250px',
-      data: {columnName: ''}
+      width: '250px', data: {columnName: ''}
     });
     dialogRef.afterClosed().subscribe({
       next: (result: string) => {
-        this.currentUserKanban?.boards?.forEach((b: Board) => {
-          if (b.boardName === board.boardName) {
-            b.columns?.push({columnName: result, tasks: []});
-          }
-        });
-        this.kanbanService.updateKanban(this.currentUserKanban!);
+        if (result !== null) {
+          this.currentUserKanban?.boards?.forEach((b: Board) => {
+            if (b.boardName === board.boardName) {
+              b.columns?.push({columnName: result, tasks: []});
+            }
+          });
+          this.kanbanService.updateKanban(this.currentUserKanban!);
+        }
       }
     })
   }
 
   addTaskToColumn(column: Column) {
     const dialogRef = this.dialog.open(AddTaskPopupDialog, {
-      width: '250px',
-      data: {
+      width: '250px', data: {
         taskName: '',
         taskDescription: '',
         taskAssignee: '',
@@ -91,24 +87,26 @@ export class DashboardComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe({
       next: (result: DialogData) => {
-        this.currentUserKanban?.boards?.forEach((b: Board) => {
-          if (b.boardName === this.boardToDisplay?.boardName) {
-            b.columns?.forEach((c: any) => {
-              if (c.columnName === column.columnName) {
-                c.tasks?.push({
-                  name: result.taskName,
-                  description: result.taskDescription,
-                  assigneeEmail: result.taskAssignee,
-                  startDate: result.taskStartDate,
-                  dueDate: result.taskDueDate,
-                  priority: result.taskPriority,
-                  status: result.taskStatus
-                });
-              }
-            });
-          }
-        });
-        this.kanbanService.updateKanban(this.currentUserKanban!);
+        if (result !== null) {
+          this.currentUserKanban?.boards?.forEach((b: Board) => {
+            if (b.boardName === this.boardToDisplay?.boardName) {
+              b.columns?.forEach((c: any) => {
+                if (c.columnName === column.columnName) {
+                  c.tasks?.push({
+                    name: result.taskName,
+                    description: result.taskDescription,
+                    assigneeEmail: result.taskAssignee,
+                    startDate: result.taskStartDate,
+                    dueDate: result.taskDueDate,
+                    priority: result.taskPriority,
+                    status: result.taskStatus
+                  });
+                }
+              });
+            }
+          });
+          this.kanbanService.updateKanban(this.currentUserKanban!);
+        }
       }
     })
   }
@@ -121,34 +119,28 @@ export class DashboardComponent implements OnInit {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data!, event.previousIndex, event.currentIndex);
     } else {
-      transferArrayItem(
-        event.previousContainer.data!,
-        event.container.data!,
-        event.previousIndex!,
-        event.currentIndex!,
-      );
+      transferArrayItem(event.previousContainer.data!, event.container.data!, event.previousIndex!, event.currentIndex!,);
     }
     this.kanbanService.updateKanban(this.currentUserKanban!);
   }
 
 
-  addMembersToBoard(){
+  addMembersToBoard() {
     const dialogRef = this.dialog.open(AddMemberPopupDialog, {
-      width: '250px',
-      data: {email: ''}
+      width: '250px', data: {email: ''}
     });
     dialogRef.afterClosed().subscribe({
       next: (result: string) => {
-        this.currentUserKanban?.boards?.forEach((b:Board) => {
-          if (b.boardName === this.boardToDisplay?.boardName) {
-            b.members?.push(result)
-          }
-        })
-        this.kanbanService.addMemberToBoard(this.currentUserKanban!, result).subscribe(
-          {
+        if (result !== null) {
+          this.currentUserKanban?.boards?.forEach((b: Board) => {
+            if (b.boardName === this.boardToDisplay?.boardName) {
+              b.members?.push(result)
+            }
+          })
+          this.kanbanService.addMemberToBoard(this.currentUserKanban!, result).subscribe({
             next: (result) => console.log(result)
-          }
-        )
+          })
+        }
       }
     })
   }
@@ -156,59 +148,51 @@ export class DashboardComponent implements OnInit {
 
 // Component for adding a new board to the Kanban
 @Component({
-  selector: 'add-board-popup',
-  templateUrl: './add-board-popup.html'
+  selector: 'add-board-popup', templateUrl: './add-board-popup.html'
 })
 export class AddBoardPopupDialog {
-  constructor(public dialogRef: MatDialogRef<AddBoardPopupDialog>,
-              @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  constructor(public dialogRef: MatDialogRef<AddBoardPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
   onNoClick() {
-    this.dialogRef.close();
+    this.dialogRef.close(null);
   }
 }
 
 // Component for adding a column to a board
 @Component({
-  selector: 'add-column-popup',
-  templateUrl: './add-column-popup.html'
+  selector: 'add-column-popup', templateUrl: './add-column-popup.html'
 })
 export class AddColumnPopupDialog {
-  constructor(public dialogRef: MatDialogRef<AddColumnPopupDialog>,
-              @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  constructor(public dialogRef: MatDialogRef<AddColumnPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
   onNoClick() {
-    this.dialogRef.close();
+    this.dialogRef.close(null);
   }
 }
 
 // Component for adding a task to a column
 @Component({
-  selector: 'add-task-popup',
-  templateUrl: './add-task-popup.html'
+  selector: 'add-task-popup', templateUrl: './add-task-popup.html'
 })
 export class AddTaskPopupDialog {
-  constructor(public dialogRef: MatDialogRef<AddTaskPopupDialog>,
-              @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  constructor(public dialogRef: MatDialogRef<AddTaskPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
   onNoClick() {
-    this.dialogRef.close();
+    this.dialogRef.close(null);
   }
 }
 
 @Component({
-  selector: 'add-member-popup',
-  templateUrl: './add-member-popup.html'
+  selector: 'add-member-popup', templateUrl: './add-member-popup.html'
 })
 export class AddMemberPopupDialog {
-  constructor(public dialogRef: MatDialogRef<AddMemberPopupDialog>,
-              @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  constructor(public dialogRef: MatDialogRef<AddMemberPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
   onNoClick() {
-    this.dialogRef.close();
+    this.dialogRef.close(null);
   }
 }

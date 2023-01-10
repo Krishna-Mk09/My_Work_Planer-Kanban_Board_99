@@ -31,6 +31,7 @@ import {
 import {MatDialogModule} from "@angular/material/dialog";
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import { FooterComponent } from './components/footer/footer.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AddColumnPopupDialog,
     AddTaskPopupDialog,
     FooterComponent,
-    AddMemberPopupDialog
+    AddMemberPopupDialog,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
