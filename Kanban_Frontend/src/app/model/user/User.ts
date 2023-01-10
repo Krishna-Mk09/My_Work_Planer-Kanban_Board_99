@@ -4,4 +4,5 @@ export type User = {
   email?: string | null,
   password?: string | null,
   mobileNumber?: string | null,
+  imageURL?: string | null,
 }
