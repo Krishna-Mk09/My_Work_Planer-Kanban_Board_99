@@ -170,4 +170,10 @@ li {
   list-style: none
 }
 
+.thumbnail_image {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
 

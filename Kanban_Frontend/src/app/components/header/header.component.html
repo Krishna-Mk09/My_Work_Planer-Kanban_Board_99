@@ -22,19 +22,21 @@
         </li>
         <li>
           <!--         TODO: Move registor to Home page -->
-          <a class="header__link" routerLink="register">Register</a>
+          <a *ngIf="!isLoggedIn" class="header__link" routerLink="register">Register</a>
         </li>
         <li>
           <!--         TODO: Move registor to Home page and works with relation of logout-->
-          <a class="header__link" routerLink="login">Login</a>
+          <a *ngIf="!isLoggedIn" class="header__link" routerLink="login">Login</a>
         </li>
         <li>
           <!--         TODO: Add relation to login   -->
-          <a (click)="logout()" class="header__link">Logout</a>
+          <a (click)="logout()" *ngIf="isLoggedIn" class="header__link">Logout</a>
         </li>
         <li>
           <!--         TODO: Move register to Home page and works with relation of logout-->
-          <a class="header__link" routerLink="profile">Profile</a>
+          <!--          <a class="header__link" matTooltip="Your Profile" routerLink="profile">Profile</a>-->
+          <img *ngIf="isLoggedIn" [src]="currentUser?.imageURL" alt="Profile thumbnail" class="thumbnail_image"
+               matTooltip="Your Profile" routerLink="profile">
         </li>
       </ul>
 
