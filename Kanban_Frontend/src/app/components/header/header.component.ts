@@ -15,10 +15,12 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.currentUser = this.authentication.currentUser;
-      this.isLoggedIn = this.authentication.isLoggedIn;
-    }, 1000)
+    if(`${localStorage.getItem('token')}` !== "null") {
+      setTimeout(() => {
+        this.currentUser = this.authentication.currentUser;
+        this.isLoggedIn = true;
+      }, 1000)
+    }
   }
 
   changeColour() {
