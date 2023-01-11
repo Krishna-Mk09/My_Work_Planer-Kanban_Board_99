@@ -17,7 +17,7 @@ export class RegisterComponent {
     email: [null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)]],
     password: [null, [Validators.required, Validators.minLength(6),Validators.maxLength(12), Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/)]],
     confirmPassword: [null, [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/)]],
-    mobileNumber: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(12), Validators.pattern(/^[6-9]{2}[0-9]{8}/)]],
+    mobileNumber: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern(/^[6-9]{2}[0-9]{8}/)]],
   }, { validators: [this.mustMatchValidator] });
 
   constructor(
