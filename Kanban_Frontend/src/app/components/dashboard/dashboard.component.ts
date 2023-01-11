@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
 
   addColumnToBoard(board: Board) {
     const dialogRef = this.dialog.open(AddColumnPopupDialog, {
-      width: '250px', data: {columnName: ''}
+      width: '250px', data: {columnName: ''}, disableClose: true
     });
     dialogRef.afterClosed().subscribe({
       next: (result: string) => {
@@ -85,7 +85,8 @@ export class DashboardComponent implements OnInit {
         taskDueDate: '',
         taskPriority: '',
         taskStatus: ''
-      }
+      },
+      disableClose: true
     });
     dialogRef.afterClosed().subscribe({
       next: (result: DialogData) => {
