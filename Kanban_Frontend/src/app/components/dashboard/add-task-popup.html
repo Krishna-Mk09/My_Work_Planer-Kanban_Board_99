@@ -15,7 +15,11 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Task priority</mat-label>
-    <input [(ngModel)]="data.taskPriority" matInput>
+    <mat-select [(ngModel)]="data.taskPriority">
+      <mat-option *ngFor="let priority of priorities" [value]="priority">
+        {{priority}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="fill">

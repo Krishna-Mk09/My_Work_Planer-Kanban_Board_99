@@ -21,52 +21,47 @@
           <a class="header__link" routerLink="dashboard">Boards </a>
         </li>
         <li>
-          <!--         TODO: Move registor to Home page -->
           <a *ngIf="!isLoggedIn" class="header__link" routerLink="register">Register</a>
         </li>
         <li>
-          <!--         TODO: Move registor to Home page and works with relation of logout-->
           <a *ngIf="!isLoggedIn" class="header__link" routerLink="login">Login</a>
         </li>
         <li>
-          <!--         TODO: Add relation to login   -->
           <a (click)="logout()" *ngIf="isLoggedIn" class="header__link">Logout</a>
         </li>
         <li>
-          <!--         TODO: Move register to Home page and works with relation of logout-->
-          <!--          <a class="header__link" matTooltip="Your Profile" routerLink="profile">Profile</a>-->
           <img *ngIf="isLoggedIn" [src]="currentUser?.imageURL" alt="Profile thumbnail" class="thumbnail_image"
                matTooltip="Your Profile" routerLink="profile">
         </li>
       </ul>
 
       <div class="header__main-ham-menu-cont">
-        <img (click)="changeColour1()"
-             alt="hamburger menu"
-             class="header__main-ham-menu"
-             src="https://res.cloudinary.com/dduwkdctl/image/upload/v1668626865/Chaurasiaaditya.in/small%20icons/ham-menu_usixmk.svg"/>
+        <mat-icon (click)="mobileMenu = !mobileMenu">subject</mat-icon>
       </div>
     </div>
   </div>
 
   <!--  Below is for mobile view Only   -->
-  <div [style.visibility]="changeColour()" class="header__sm-menu">
+  <div *ngIf="mobileMenu" class="header__sm-menu">
     <div class="header__sm-menu-content">
       <ul class="header__sm-menu-links">
         <li class="header__sm-menu-link">
-          <a (click)="changeColour1()" routerLink=""> Home </a>
+          <a (click)="mobileMenu = false" routerLink=""> Home </a>
         </li>
         <li class="header__sm-menu-link">
-          <a (click)="changeColour1()" routerLink="dashboard"> Boards </a>
+          <a (click)="mobileMenu = false" routerLink="dashboard"> Boards </a>
         </li>
-        <li (click)="changeColour1()" class="header__sm-menu-link">
+        <li (click)="mobileMenu = false" *ngIf="!isLoggedIn" class="header__sm-menu-link">
           <a routerLink="register"> Register </a>
         </li>
-        <li (click)="changeColour1()" class="header__sm-menu-link">
+        <li (click)="mobileMenu = false" *ngIf="!isLoggedIn" class="header__sm-menu-link">
           <a routerLink="login"> Login </a>
         </li>
-        <li (click)="changeColour1()" class="header__sm-menu-link">
+        <li (click)="mobileMenu = false" class="header__sm-menu-link">
           <a (click)="logout()"> Logout </a>
+        </li>
+        <li (click)="mobileMenu = false" class="header__sm-menu-link">
+          <a routerLink="profile"> Profile </a>
         </li>
       </ul>
     </div>

@@ -2,13 +2,18 @@
 
 <div mat-dialog-content>
   <p>Enter Members Email Id</p>
-  <mat-form-field appearance="fill">
-    <mat-label>Member's Email Id</mat-label>
-    <input [(ngModel)]="data.email" matInput>
-  </mat-form-field>
+  <form #addMember="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Member's Email Id</mat-label>
+      <input (keyup)="checkEmail()" [(ngModel)]="data.email" matInput name="emailId" required>
+    </mat-form-field>
+    <mat-error *ngIf="!isEmailValid && (addMember.control.pristine || addMember.control.untouched)">
+      Entered email address is not registered with us!
+    </mat-error>
+  </form>
 </div>
 
 <div mat-dialog-actions>
   <button (click)="onNoClick()" mat-button>No Thanks</button>
-  <button [mat-dialog-close]="data.email" cdkFocusInitial mat-button>Ok</button>
+  <button [disabled]="!isEmailValid" [mat-dialog-close]="data.email" cdkFocusInitial mat-button>Ok</button>
 </div>

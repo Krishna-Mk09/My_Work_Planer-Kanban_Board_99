@@ -6,6 +6,7 @@ import {Board} from "../../model/kanban/Board";
 import {Column} from "../../model/kanban/Column";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {Task} from "../../model/kanban/Task";
+import {AuthenticationService} from "../../services/authentication.service";
 
 export interface DialogData {
   boardName: string;
@@ -30,7 +31,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private kanbanService: KanbanService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog
+  ) {
   }
 
   ngOnInit(): void {
@@ -43,7 +45,7 @@ export class DashboardComponent implements OnInit {
 
   addBoardToKanban() {
     const dialogRef = this.dialog.open(AddBoardPopupDialog, {
-      width: '250px', data: {boardName: null}
+      width: '250px', data: {boardName: null}, disableClose: true
     });
     dialogRef.afterClosed().subscribe({
       next: (result: string) => {
@@ -57,7 +59,7 @@ export class DashboardComponent implements OnInit {
 
   addColumnToBoard(board: Board) {
     const dialogRef = this.dialog.open(AddColumnPopupDialog, {
-      width: '250px', data: {columnName: ''}
+      width: '250px', data: {columnName: ''}, disableClose: true
     });
     dialogRef.afterClosed().subscribe({
       next: (result: string) => {
@@ -83,7 +85,8 @@ export class DashboardComponent implements OnInit {
         taskDueDate: '',
         taskPriority: '',
         taskStatus: ''
-      }
+      },
+      disableClose: true
     });
     dialogRef.afterClosed().subscribe({
       next: (result: DialogData) => {
@@ -127,9 +130,9 @@ export class DashboardComponent implements OnInit {
 
   addMembersToBoard() {
     const dialogRef = this.dialog.open(AddMemberPopupDialog, {
-      width: '250px', data: {email: ''}
+      width: '250px', data: {email: undefined}, disableClose: true
     });
-    dialogRef.afterClosed().subscribe({
+    dialogRef.beforeClosed().subscribe({
       next: (result: string) => {
         if (result !== null) {
           this.currentUserKanban?.boards?.forEach((b: Board) => {
@@ -177,6 +180,7 @@ export class AddColumnPopupDialog {
   selector: 'add-task-popup', templateUrl: './add-task-popup.html'
 })
 export class AddTaskPopupDialog {
+  priorities = ['Low', 'Medium', 'High'];
   constructor(public dialogRef: MatDialogRef<AddTaskPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
@@ -188,11 +192,34 @@ export class AddTaskPopupDialog {
 @Component({
   selector: 'add-member-popup', templateUrl: './add-member-popup.html'
 })
-export class AddMemberPopupDialog {
-  constructor(public dialogRef: MatDialogRef<AddMemberPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+export class AddMemberPopupDialog implements OnInit {
+  allEmails?: string[];
+  isEmailValid?: boolean;
+
+  constructor(
+    public dialogRef: MatDialogRef<AddMemberPopupDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private authentication: AuthenticationService
+  ) {
   }
 
   onNoClick() {
     this.dialogRef.close(null);
+  }
+
+  checkEmail() {
+    this.isEmailValid = this.allEmails?.includes(this.data.email, 0);
+    console.log(this.isEmailValid);
+    console.log(this.data.email);
+  }
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.authentication.getAllEmails().subscribe({
+        next: (result) => {
+          this.allEmails = result;
+        }
+      });
+    }, 1000);
   }
 }

@@ -7,7 +7,7 @@ import {User} from "../../model/user/User";
 })
 export class HeaderComponent implements OnInit {
 
-  aditya: string = "hidden";
+  mobileMenu: boolean = false;
   currentUser?: User;
   isLoggedIn: boolean = false;
 
@@ -15,21 +15,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.currentUser = this.authentication.currentUser;
-      this.isLoggedIn = this.authentication.isLoggedIn;
-    }, 1000)
-  }
-
-  changeColour() {
-    return this.aditya;
-  }
-
-  changeColour1() {
-    if (this.aditya === "hidden") {
-      this.aditya = "visible";
-    } else {
-      this.aditya = "hidden";
+    if (`${localStorage.getItem('token')}` !== "null") {
+      this.isLoggedIn = true;
+      setTimeout(() => {
+        this.currentUser = this.authentication.currentUser;
+      }, 1000)
     }
   }
 
