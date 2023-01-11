@@ -150,7 +150,7 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  deleteBoard(boardName: string) {
+  deleteBoard(boardName: string | undefined) {
     let boardMembers: string[] = []
     this.currentUserKanban?.boards?.forEach((b: Board) => {
       if (b.boardName === boardName) {
