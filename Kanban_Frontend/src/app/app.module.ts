@@ -33,6 +33,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
 import {FooterComponent} from './components/footer/footer.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MatListModule,
     MatDialogModule,
     DragDropModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
