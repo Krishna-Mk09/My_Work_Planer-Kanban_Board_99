@@ -15,21 +15,18 @@
 
     <!-- Add content here -->
     <div>
-
       <h2 class="styleBoard">{{boardToDisplay?.boardName}}
-        <h2 class="styleBoard1"><a (click)="addMembersToBoard()" *ngIf="boardToDisplay != null"><h2><i class="fa fa-user-plus fa-1x" aria-hidden="true"></i> </h2>
-        </a></h2>
+        <h2 class="styleBoard1"><a (click)="addMembersToBoard()" *ngIf="boardToDisplay != null"><h2><i
+          class="fa fa-user-plus fa-1x" aria-hidden="true"></i></h2></a></h2>
       </h2>
       <!--      <h2>Members</h2>-->
-
       <div *ngIf="boardToDisplay?.members?.length != 0">
         <!--        <h1>Heloooooo</h1>-->
-        <h2 *ngFor="let member of boardToDisplay?.members">
-          {{member}}
-        </h2>
+        <h2 *ngFor="let member of boardToDisplay?.members">{{member}}</h2>
       </div>
     </div>
-    <a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null"><h2> Add-Column </h2></a>
+    <a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null" class="girds"><h2> Add-Column </h2>
+    </a>
     <div cdkDropListGroup>
       <div *ngFor="let column of boardToDisplay?.columns" class="container">
         <h3>{{column.columnName}}</h3>
@@ -40,11 +37,12 @@
           cdkDropList class="list">
           <div *ngFor="let task of column.tasks" cdkDrag class="box">
             <p class="taskName"> Task name - {{task.name}}</p>
-            <p class="taskDescription"> Task Description - {{task.description}}</p>
+            <p class="taskDescription"><i class="fa fa-pencil fa-2x" aria-hidden="true "></i> {{task.description}}</p>
             <p class="taskPriority"> Task Priority - {{task.priority}}</p>
-            <p class="taskStatus"> Task Status - {{task.status}}</p>
-            <p class="taskStartDate"> Task Start Date - {{task.startDate}}</p>
-            <p class="taskDueDate"> Task Due Date - {{task.dueDate}}</p>
+            <p class="taskStatus"><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>   {{task.status}}</p>
+            <p class="taskStartDate"><i class="fa fa-hourglass-start fa-2x" aria-hidden="true"></i>  {{task.startDate}}
+            </p>
+            <p class="taskDueDate"><i class="fa fa-hourglass-end fa-2x" aria-hidden="true"></i>  {{task.dueDate}}</p>
             <p class="taskAssigneDate"> Task Assignee - {{task.assigneeEmail}}</p>
           </div>
           <pre> <a (click)="addTaskToColumn(column)" class="task1">   Add Task </a></pre>

@@ -64,34 +64,39 @@
   min-height: 1200px;
 }
 
-.styleBoard{
+.styleBoard {
   background-color: rgb(222, 132, 15);
-  padding-top:15px;
-  padding-left:5px;
+  padding-top: 15px;
+  padding-left: 5px;
 }
 
-.styleBoard1{
+.styleBoard1 {
   display: flex;
-  padding-left:30px;
+  padding-left: 30px;
   justify-content: start;
 }
 
-.sidenav{
+.sidenav {
   background-color: rgb(134, 217, 217);
 }
 
-.list{
+.list {
   background-color: rgb(9, 81, 112);
-  color:white;
-}
-.taskName{
-background-color: rgb(9, 81, 112);
-width:100%;
-
-color:white;
-padding-top:50px;
-padding-bottom:50px;
-padding-left:10px;
-border-radius:2px;
+  color: white;
 }
 
+.taskName {
+  background-color: rgb(9, 81, 112);
+  width: 100%;
+
+  color: white;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 10px;
+  border-radius: 2px;
+}
+
+.girds{
+  display:flex;
+  justify-content: center;
+}
