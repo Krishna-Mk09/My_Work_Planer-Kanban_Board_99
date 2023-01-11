@@ -27,10 +27,11 @@ export class AuthenticationService {
         localStorage.setItem('token', response.token);
         localStorage.setItem('user_email', user.email!);
         this.getUserProfile();
-        this.router.navigateByUrl("dashboard")
-        setTimeout(() => {
-          window.location.reload()
-        }, 100);
+        this.router.navigateByUrl("dashboard").then(() => {
+          setTimeout(() => {
+            window.location.reload()
+          }, 100);
+        });
       }
     });
   }
@@ -40,7 +41,11 @@ export class AuthenticationService {
     localStorage.removeItem('user_email');
     this.isLoggedIn = false;
     // TODO: Update this URL
-    this.router.navigateByUrl("");
+    this.router.navigateByUrl("").then(() => {
+      setTimeout(() => {
+        window.location.reload()
+      }, 100);
+    });
   }
 
   getUserProfile() {
@@ -62,13 +67,13 @@ export class AuthenticationService {
       user,
       {headers: new HttpHeaders({Authorization: `Bearer ${localStorage.getItem('token')}`})}
     ).subscribe({
-      next: () => this.snackBar.open("Profile Update Successfully !!!","Done",{duration:3000}),
+      next: () => this.snackBar.open("Profile Update Successfully !!!", "Done", {duration: 3000}),
       error: (error) => console.log(error)
     })
   }
 
   getAllEmails() {
-    return this.httpClient.get(
+    return this.httpClient.get<string[]>(
       `${this.endPointURL}/guard/all-emails`,
       {headers: new HttpHeaders({Authorization: `Bearer ${localStorage.getItem('token')}`})}
     )
