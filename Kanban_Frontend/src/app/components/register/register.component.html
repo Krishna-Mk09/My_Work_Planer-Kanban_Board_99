@@ -11,6 +11,8 @@
           <div class="col">
             <mat-form-field appearance="fill" class="full-width">
               <input matInput placeholder="First name" formControlName="firstName">
+            </mat-form-field>
+            <div  *ngIf="userForm.controls['firstName'].touched || userForm.controls['firstName'].dirty" >
               <mat-error *ngIf="userForm.controls['firstName'].hasError('required')">
                 First name is <strong>required</strong>
               </mat-error>
@@ -23,24 +25,26 @@
               <mat-error *ngIf="userForm.controls['firstName'].hasError('pattern')">
                 First cannot be numbers
               </mat-error>
-            </mat-form-field>
+            </div>
           </div>
           <div class="col">
             <mat-form-field class="full-width" appearance="fill">
               <input matInput placeholder="Last name" formControlName="lastName">
-              <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">
-                Last name is <strong>required</strong>
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['lastName'].hasError('minlength')">
-                Last name is cannot be less than 2 char
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['lastName'].hasError('maxlength')">
-                Last name is cannot be greater than 20char
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['lastName'].hasError('pattern')">
-                Last name cannot be numbers
-              </mat-error>
             </mat-form-field>
+            <div  *ngIf="userForm.controls['lastName'].touched || userForm.controls['lastName'].dirty">
+            <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">
+              Last name is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="userForm.controls['lastName'].hasError('minlength')">
+              Last name is cannot be less than 2 char
+            </mat-error>
+            <mat-error *ngIf="userForm.controls['lastName'].hasError('maxlength')">
+              Last name is cannot be greater than 20char
+            </mat-error>
+            <mat-error *ngIf="userForm.controls['lastName'].hasError('pattern')">
+              Last name cannot be numbers
+            </mat-error>
+          </div>
           </div>
         </div>
         <div class="row">
@@ -48,7 +52,7 @@
             <mat-form-field class="full-width" appearance="fill">
               <input matInput placeholder="Email" formControlName="email">
             </mat-form-field>
-            <div  *ngIf="userForm.controls['password'].touched || userForm.controls['password'].dirty">
+            <div  *ngIf="userForm.controls['email'].touched || userForm.controls['email'].dirty">
               <mat-error *ngIf="userForm.controls['email'].hasError('required')">
                 email is <strong>required</strong>
               </mat-error>
@@ -98,13 +102,21 @@
           <div class="col">
             <mat-form-field class="full-width" appearance="fill">
               <input formControlName="mobileNumber" matInput placeholder="Mobile Number">
+            </mat-form-field>
+            <div  *ngIf="userForm.controls['mobileNumber'].touched || userForm.controls['mobileNumber'].dirty">
               <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('required')">
                 Mobile Number is <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('minlength')">
+                Mobile Number cannot be lessthan 10 digits
+              </mat-error>
+              <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('maxlength')">
+                Mobile Number cannot be more than 12
               </mat-error>
               <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('pattern')">
                 Mobile Number cannot be alphabets and symbols
               </mat-error>
-            </mat-form-field>
+            </div>
           </div>
         </div>
       </mat-card-content>
