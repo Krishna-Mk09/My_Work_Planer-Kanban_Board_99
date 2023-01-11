@@ -6,6 +6,9 @@
     <mat-nav-list>
       <div *ngFor="let board of currentUserKanban?.boards">
         <a (click)="displayBoard(board)" mat-list-item>{{board.boardName}}</a>
+        <button (click)="deleteBoard(board?.boardName)" mat-raised-button>
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
       <a (click)="addBoardToKanban()" mat-list-item>Add Board</a>
     </mat-nav-list>

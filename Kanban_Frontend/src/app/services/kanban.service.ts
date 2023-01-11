@@ -13,7 +13,11 @@ export class KanbanService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getKanbanByEmail() {
+  saveKanban(kanban: Kanban) {
+    return this.httpClient.post<Kanban>(`${this.endPointURL}/save-kanban`, kanban);
+  }
+
+  getCurrentUserKanban() {
     return this.httpClient.get<Kanban>(
       `${this.endPointURL}/get-kanban/${localStorage.getItem('user_email')}`)
       .subscribe({
@@ -21,6 +25,10 @@ export class KanbanService {
           error: (error) => console.log(error)
         }
       )
+  }
+
+  getKanbanByEmail(email: string) {
+    return this.httpClient.get<Kanban>(`${this.endPointURL}/get-kanban/${email}`);
   }
 
   updateKanban(kanban: Kanban) {

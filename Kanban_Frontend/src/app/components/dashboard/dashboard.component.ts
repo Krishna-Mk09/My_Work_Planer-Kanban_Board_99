@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.kanbanService.getKanbanByEmail();
+    this.kanbanService.getCurrentUserKanban();
     setTimeout(() => {
       this.currentUserKanban = this.kanbanService.currentUserKanban;
       console.log(this.currentUserKanban);
@@ -148,6 +148,38 @@ export class DashboardComponent implements OnInit {
         }
       }
     })
+  }
+
+  deleteBoard(boardName: string | undefined) {
+    let boardMembers: string[] = []
+    this.currentUserKanban?.boards?.forEach((b: Board) => {
+      if (b.boardName === boardName) {
+        boardMembers = b.members!;
+      }
+    });
+    if (boardMembers.length != 0) {
+      boardMembers.forEach((member: string) => {
+        this.kanbanService.getKanbanByEmail(member).subscribe({
+          next: (result: Kanban) => {
+            result.boards?.forEach((b: Board) => {
+              if (b.boardName === boardName) {
+                result.boards?.splice(result.boards.indexOf(b), 1);
+                this.kanbanService.saveKanban(result).subscribe({
+                  error: (err) => console.log(err)
+                });
+              }
+            })
+          }, error: (err) => console.log(err)
+        });
+      })
+    } else {
+      this.currentUserKanban?.boards?.forEach((b: Board, index: number) => {
+        if (b.boardName === boardName) {
+          this.currentUserKanban?.boards?.splice(index, 1);
+        }
+      });
+      this.kanbanService.updateKanban(this.currentUserKanban!);
+    }
   }
 }
 
