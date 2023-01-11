@@ -9,6 +9,7 @@ import {Task} from "../../model/kanban/Task";
 import {AuthenticationService} from "../../services/authentication.service";
 
 export interface DialogData {
+  boardToDisplay: Board;
   boardName: string;
   columnName: string;
   taskName: string;
@@ -84,7 +85,8 @@ export class DashboardComponent implements OnInit {
         taskStartDate: '',
         taskDueDate: '',
         taskPriority: '',
-        taskStatus: ''
+        taskStatus: '',
+        boardToDisplay: this.boardToDisplay
       },
       disableClose: true
     });
@@ -179,13 +181,20 @@ export class AddColumnPopupDialog {
 @Component({
   selector: 'add-task-popup', templateUrl: './add-task-popup.html'
 })
-export class AddTaskPopupDialog {
+export class AddTaskPopupDialog implements OnInit {
   priorities = ['Low', 'Medium', 'High'];
+  boardMembers?: string[];
+
   constructor(public dialogRef: MatDialogRef<AddTaskPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
   onNoClick() {
     this.dialogRef.close(null);
+  }
+
+
+  ngOnInit(): void {
+    this.boardMembers = this.data.boardToDisplay?.members;
   }
 }
 
@@ -209,8 +218,6 @@ export class AddMemberPopupDialog implements OnInit {
 
   checkEmail() {
     this.isEmailValid = this.allEmails?.includes(this.data.email, 0);
-    console.log(this.isEmailValid);
-    console.log(this.data.email);
   }
 
   ngOnInit(): void {
