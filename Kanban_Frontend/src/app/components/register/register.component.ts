@@ -61,4 +61,5 @@ export class RegisterComponent {
     });
     this.notificationService.sendMail(user);
   }
+
 }
