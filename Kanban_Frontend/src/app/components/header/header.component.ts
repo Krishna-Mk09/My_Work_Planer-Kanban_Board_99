@@ -7,7 +7,7 @@ import {User} from "../../model/user/User";
 })
 export class HeaderComponent implements OnInit {
 
-  aditya: string = "hidden";
+  mobileMenu: boolean = false;
   currentUser?: User;
   isLoggedIn: boolean = false;
 
@@ -20,18 +20,6 @@ export class HeaderComponent implements OnInit {
       setTimeout(() => {
         this.currentUser = this.authentication.currentUser;
       }, 1000)
-    }
-  }
-
-  changeColour() {
-    return this.aditya;
-  }
-
-  changeColour1() {
-    if (this.aditya === "hidden") {
-      this.aditya = "visible";
-    } else {
-      this.aditya = "hidden";
     }
   }
 
