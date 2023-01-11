@@ -73,7 +73,7 @@
 .styleBoard1{
   display: flex;
   padding-left:30px;
-  justify-content: end;
+  justify-content: start;
 }
 
 .sidenav{
@@ -87,10 +87,11 @@
 .taskName{
 background-color: rgb(9, 81, 112);
 width:100%;
+
 color:white;
-padding-top:5px;
-padding-bottom:5px;
+padding-top:50px;
+padding-bottom:50px;
 padding-left:10px;
-border-radius:4px;
+border-radius:2px;
 }
 
