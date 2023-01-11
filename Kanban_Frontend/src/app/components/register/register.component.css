@@ -34,7 +34,7 @@
 .row {
   display: flex;
   flex-direction: row;
-  height:70px;
+
 }
 
 .col {
