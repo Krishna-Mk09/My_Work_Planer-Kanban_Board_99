@@ -180,6 +180,7 @@ export class AddColumnPopupDialog {
   selector: 'add-task-popup', templateUrl: './add-task-popup.html'
 })
 export class AddTaskPopupDialog {
+  priorities = ['Low', 'Medium', 'High'];
   constructor(public dialogRef: MatDialogRef<AddTaskPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
