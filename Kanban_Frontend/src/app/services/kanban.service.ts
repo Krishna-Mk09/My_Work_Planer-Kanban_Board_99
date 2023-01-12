@@ -46,7 +46,7 @@ export class KanbanService {
   }
 
   addMemberToBoard(kanban: Kanban, email: string) {
-    return this.httpClient.put(
+    return this.httpClient.put<Kanban>(
       `${this.endPointURL}/add-member-to-board/${email}`, kanban);
   }
 
