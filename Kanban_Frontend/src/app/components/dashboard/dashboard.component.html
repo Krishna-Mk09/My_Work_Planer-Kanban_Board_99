@@ -2,15 +2,15 @@
 
   <mat-sidenav mode="side" opened
                class="sidenav">
-    <mat-toolbar>Boards</mat-toolbar>
+    <mat-toolbar class="b1">Boards</mat-toolbar>
     <mat-nav-list>
       <div *ngFor="let board of currentUserKanban?.boards">
-        <a (click)="displayBoard(board)" mat-list-item>{{board.boardName}}</a>
-        <button (click)="deleteBoard(board?.boardName)" mat-raised-button>
+        <a class="BoardName"(click)="displayBoard(board)" mat-list-item>{{board.boardName}}</a>
+        <button  (click)="deleteBoard(board?.boardName)" mat-raised-button>
           <mat-icon>delete</mat-icon>
         </button>
       </div>
-      <a (click)="addBoardToKanban()" mat-list-item>Add Board</a>
+      <a (click)="addBoardToKanban()" mat-list-item> <button><i class="fa fa-window-maximize" aria-hidden="true"></i> &nbsp; Add Board</button> </a>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -19,8 +19,9 @@
     <!-- Add content here -->
     <div>
       <h2 class="styleBoard">{{boardToDisplay?.boardName}}
-        <h2 class="styleBoard1"><a (click)="addMembersToBoard()" *ngIf="boardToDisplay != null"><h2><i
-          class="fa fa-user-plus fa-1x" aria-hidden="true"></i></h2></a></h2>
+        <h2 class="styleBoard1"><a (click)="addMembersToBoard()" *ngIf="boardToDisplay != null">
+          <pre><h2><i class="fa fa-user-plus fa-1x" aria-hidden="true"></i> Add-member</h2></pre></a> &nbsp; &nbsp;&nbsp;<a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null" class="girds"><h2><i class="fa fa-columns fa-1x" aria-hidden="true"></i> Add-Column </h2>
+        </a></h2>
       </h2>
       <!--      <h2>Members</h2>-->
       <div *ngIf="boardToDisplay?.members?.length != 0">
@@ -28,11 +29,10 @@
         <h2 *ngFor="let member of boardToDisplay?.members">{{member}}</h2>
       </div>
     </div>
-    <a (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null" class="girds"><h2> Add-Column </h2>
-    </a>
+
     <div cdkDropListGroup>
       <div *ngFor="let column of boardToDisplay?.columns" class="container">
-        <h3>{{column.columnName}}</h3>
+        <h3 class="col"> Column : {{column.columnName}}</h3>
 
         <div
           (cdkDropListDropped)="drop($event)"
@@ -40,15 +40,14 @@
           cdkDropList class="list">
           <div *ngFor="let task of column.tasks" cdkDrag class="box">
             <p class="taskName"> Task name - {{task.name}}</p>
-            <p class="taskDescription"><i class="fa fa-pencil fa-2x" aria-hidden="true "></i> {{task.description}}</p>
+            <p class="taskDescription"><i class="fa fa-pencil fa-2x" aria-hidden="true "></i>&nbsp;&nbsp;{{task.description}}</p>
             <p class="taskPriority"> Task Priority - {{task.priority}}</p>
             <p class="taskStatus"><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>   {{task.status}}</p>
-            <p class="taskStartDate"><i class="fa fa-hourglass-start fa-2x" aria-hidden="true"></i>  {{task.startDate}}
-            </p>
-            <p class="taskDueDate"><i class="fa fa-hourglass-end fa-2x" aria-hidden="true"></i>  {{task.dueDate}}</p>
+            <p class="taskStartDate"><i class="fa fa-hourglass-start fa-2x" aria-hidden="true"></i> &nbsp; &nbsp;{{task.startDate}}</p>
+            <p class="taskDueDate"><i class="fa fa-hourglass-end fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;  {{task.dueDate}}</p>
             <p class="taskAssigneDate"> Task Assignee - {{task.assigneeEmail}}</p>
           </div>
-          <pre> <a (click)="addTaskToColumn(column)" class="task1">   Add Task </a></pre>
+          <pre> <a (click)="addTaskToColumn(column)" class="task1">  <i class="fa fa-tasks fs-2x" aria-hidden="true"></i>&nbsp; Add Task </a></pre>
         </div>
       </div>
     </div>

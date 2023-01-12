@@ -1,8 +1,10 @@
 .sidenav-container {
-  top: 80px;
+  top: 70px;
   position: relative;
   height: 100%;
   width: 100%;
+  display: grid;
+  background-color: steelblue;
 }
 
 .sidenav {
@@ -22,10 +24,15 @@
 .container {
   width: 380px;
   max-width: 100%;
-  margin: 0 25px 25px 0;
   display: inline-block;
   vertical-align: top;
+  text-align: center;
+  color: white;
+  font-family: Cambria;
+
+
 }
+
 
 .list {
   border: solid 1px #ccc;
@@ -34,6 +41,8 @@
   border-radius: 4px;
   overflow: hidden;
   display: block;
+  margin-left: 20px;
+
 }
 
 .box {
@@ -48,36 +57,56 @@
   cursor: move;
   background: white;
   font-size: 14px;
+
 }
 
 .column {
   background-color: aquamarine;
   grid-template-columns: auto auto auto auto;
+
 }
 
 .task {
   background-color: beige;
   border: 2px solid black;
+
 }
 
 .sidebar-content {
   min-height: 1200px;
+
 }
 
 .styleBoard {
-  background-color: rgb(222, 132, 15);
+  background-color: rgb(222, 135, 22);
   padding-top: 15px;
   padding-left: 5px;
+  text-align: center;
+  font-size: x-large;
+
+  font-size: 20px;
+font-family: "Arial Black";
+
+
+}
+.BoardName{
+  color: black;
+  font-family: "Arial";
+  font-size: 25px;
+  padding-left: 20px;
 }
 
 .styleBoard1 {
   display: flex;
   padding-left: 30px;
   justify-content: start;
+
 }
 
+
 .sidenav {
-  background-color: rgb(134, 217, 217);
+  background-color:rgb(235, 235, 192)
+
 }
 
 .list {
@@ -88,15 +117,114 @@
 .taskName {
   background-color: rgb(9, 81, 112);
   width: 100%;
-
   color: white;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 40px;
+  padding-bottom: 40px;
   padding-left: 10px;
   border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  font-size: large;
 }
 
-.girds{
-  display:flex;
+.taskDescription {
+  background-color: sandybrown;
+  width: 100%;
+  color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 10px;
+  border-radius: 2px;
+  display: flex;
   justify-content: center;
+  font-size: large;
+  margin-top: 0%;
+}
+
+.taskPriority {
+  background-color: teal;
+  width: 100%;
+  color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 10px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  font-size: large;
+  margin-top: 0%;
+}
+
+.taskStatus {
+  background-color: tan;
+  width: 100%;
+  color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 10px;
+  border-radius: 2px;
+  display: flex;
+  grid-template-columns: 50%;
+  justify-content: center;
+  font-size: large;
+  margin-top: 0%;
+}
+
+.taskAssigneDate {
+  background-color: green;
+  width: 100%;
+  color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 10px;
+  border-radius: 2px;
+  display: flex;
+  grid-template-columns: 50%;
+  justify-content: center;
+  font-size: large;
+  margin-top: 0%;
+}
+.taskStartDate{
+  background-color:rgb(159, 52, 52);
+  width: 100%;
+  color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 10px;
+  border-radius: 2px;
+  display: flex;
+  grid-template-columns: 50%;
+  justify-content: center;
+  font-size: large;
+  margin-top: 0%;
+}
+.taskDueDate{
+  background-color:rgb(136, 161, 168);
+  width: 100%;
+  color: white;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 10px;
+  border-radius: 2px;
+  display: flex;
+  grid-template-columns: 50%;
+  justify-content: center;
+  font-size: large;
+  margin-top: 0%;
+}
+.girds {
+  display: flex;
+  justify-content: center;
+  color: black;
+}
+.col{
+
+  font-size: 20px;
+ font-family: Arial;
+}
+.b1{
+  font-family: Arial;
+  font-size: 35px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
