@@ -43,6 +43,7 @@ export class DashboardComponent implements OnInit {
     this.kanbanService.getCurrentUserKanban();
     setTimeout(() => {
       this.currentUserKanban = this.kanbanService.currentUserKanban;
+      this.fetchDetailsOfTaskAssignee();
       console.log(this.currentUserKanban);
     }, 1000);
   }
@@ -79,11 +80,18 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  getUserByEmail (email: string) {
-    this.authentication.getUserByEmail(email).subscribe({
-      next: (response) => {
-        this.profileOfAssignee = response;
-      }
+  fetchDetailsOfTaskAssignee() {
+    this.currentUserKanban?.boards?.forEach((b: Board) => {
+      b.columns?.forEach((c: Column) => {
+        c.tasks?.forEach((t: Task) => {
+          this.authentication.getUserByEmail(t.assigneeEmail!).subscribe({
+            next: (response) => {
+              t.assigneeName = response.firstName;
+              t.assigneeImageURL = response.imageURL;
+            }
+          })
+        })
+      })
     })
   }
 
@@ -122,6 +130,7 @@ export class DashboardComponent implements OnInit {
             }
           });
           this.kanbanService.updateKanban(this.currentUserKanban!);
+          this.fetchDetailsOfTaskAssignee();
         }
       }
     })
