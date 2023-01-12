@@ -7,6 +7,7 @@ import {Column} from "../../model/kanban/Column";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {Task} from "../../model/kanban/Task";
 import {AuthenticationService} from "../../services/authentication.service";
+import {User} from "../../model/user/User";
 
 export interface DialogData {
   boardToDisplay: Board;
@@ -29,10 +30,12 @@ export class DashboardComponent implements OnInit {
 
   currentUserKanban?: Kanban;
   boardToDisplay?: Board;
+  profileOfAssignee?:User;
 
   constructor(
     private kanbanService: KanbanService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authentication: AuthenticationService
   ) {
   }
 
@@ -72,6 +75,14 @@ export class DashboardComponent implements OnInit {
           });
           this.kanbanService.updateKanban(this.currentUserKanban!);
         }
+      }
+    })
+  }
+
+  getUserByEmail (email: string) {
+    this.authentication.getUserByEmail(email).subscribe({
+      next: (response) => {
+        this.profileOfAssignee = response;
       }
     })
   }

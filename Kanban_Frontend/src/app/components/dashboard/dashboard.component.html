@@ -41,7 +41,7 @@
           (cdkDropListDropped)="drop($event)"
           [cdkDropListData]="column.tasks"
           cdkDropList class="list">
-          <div *ngFor="let task of column.tasks" cdkDrag class="box">
+          <div *ngFor="let task of column.tasks" cdkDrag class="box" (mouseover)="getUserByEmail(task.assigneeEmail!)">
             <p class="taskName"> Task name - {{task.name}}</p>
             <p class="taskDescription"> Task Description - {{task.description}}</p>
             <p class="taskPriority"> Task Priority - {{task.priority}}</p>
@@ -49,6 +49,8 @@
             <p class="taskStartDate"> Task Start Date - {{task.startDate}}</p>
             <p class="taskDueDate"> Task Due Date - {{task.dueDate}}</p>
             <p class="taskAssigneDate"> Task Assignee - {{task.assigneeEmail}}</p>
+            <p> {{profileOfAssignee?.firstName}}</p>
+
           </div>
           <pre> <a (click)="addTaskToColumn(column)" class="task1">   Add Task </a></pre>
         </div>

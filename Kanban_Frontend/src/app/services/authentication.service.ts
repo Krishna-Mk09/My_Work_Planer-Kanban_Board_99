@@ -61,6 +61,13 @@ export class AuthenticationService {
     });
   }
 
+  getUserByEmail(email: string) {
+    return this.httpClient.get<User>(
+      `${this.endPointURL}/guard/email/${email}`,
+      {headers: new HttpHeaders({Authorization: `Bearer ${localStorage.getItem('token')}`})}
+    )
+  }
+
   updateUserProfile(user: User) {
     return this.httpClient.put<User>(
       `${this.endPointURL}/guard/update/${localStorage.getItem('user_email')}`,
