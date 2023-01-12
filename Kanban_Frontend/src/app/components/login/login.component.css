@@ -1,38 +1,21 @@
-
 .login {
-  top: 80px;
-  position: relative;
-  height: 100%;
-  width: 100%;
-  min-height: 400px;
-  font-family: monospace;
-
-
+  margin-top: 120px;
 }
-.h3{
-  width:450px;
-  box-shadow: 0 0 3px 0 rgba(0,0,0,0.3);
 
-  padding-left:400px;
-  padding-right:450px;
-  text-align:center;
-  padding-top:10px;
-  padding-bottom:10px;
+.login_form {
+  width: 600px;
+  margin: 30px auto;
+  box-shadow: 2px 2px 10px 5px rgba(0, 0, 0, 0.34);
+  text-align: center;
   background-color: azure;
-}
-
-.h5{
-  padding-top:50px;
-  color:white;
-}
-
-.logo{
-  padding-bottom:2px;
-  background-color: black;
 }
 
 .full-width {
   width: 60%;
-  padding-top:30px;
-
+  padding-top: 30px;
 }
+
+.login_form h2 {
+  padding-top: 20px;
+}
+

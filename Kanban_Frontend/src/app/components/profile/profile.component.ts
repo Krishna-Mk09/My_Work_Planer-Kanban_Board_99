@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 import {User} from "../../model/user/User";
 import {ProfileimageService} from "../../services/profileimage.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,7 @@ export class ProfileComponent implements OnInit {
   currentUser?: User;
   imageURL?: string;
 
-  constructor(public authentication: AuthenticationService, private profileService: ProfileimageService) {
+  constructor(public authentication: AuthenticationService, private profileService: ProfileimageService, private snackbar: MatSnackBar) {
   }
 
   updateUser(): void {
@@ -25,7 +26,10 @@ export class ProfileComponent implements OnInit {
 
   uploadProfilePicture() {
     this.profileService.uploadProfilePicture(this.image!).subscribe({
-      next: (response: any) => this.imageURL = response['secure_url'],
+      next: (response: any) => {
+        this.imageURL = response['secure_url'];
+        this.snackbar.open("Profile Image updated successfully!", "Close", {duration: 3000});
+      },
       error: (err) => console.log(err)
     });
     setTimeout(() => {
