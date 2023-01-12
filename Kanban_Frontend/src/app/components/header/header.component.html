@@ -18,7 +18,7 @@
           <a class="header__link" routerLink=""> Home </a>
         </li>
         <li>
-          <a class="header__link" routerLink="dashboard">Boards </a>
+          <a class="header__link" *ngIf="isLoggedIn" routerLink="dashboard">Boards </a>
         </li>
         <li>
           <a *ngIf="!isLoggedIn" class="header__link" routerLink="register">Register</a>
