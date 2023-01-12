@@ -21,11 +21,11 @@ public class ApiGatewayServiceApplication {
     public RouteLocator myRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
 				.route(p -> p.path("/kanban/**")
-						.uri("http://kanban-service:8082/"))
+						.uri("lb://kanban-service"))
                 .route(p -> p.path("/user/**")
-						.uri("http://user-service:8081/"))
+						.uri("lb://user-service"))
 				.route(p -> p.path("/notification/**")
-						.uri("http://notification-service:8083/"))
+						.uri("lb://notification-service"))
 				.build();
     }
 
