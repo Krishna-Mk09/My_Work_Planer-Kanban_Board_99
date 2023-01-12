@@ -34,6 +34,7 @@ import {FooterComponent} from './components/footer/footer.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AddTaskPopupDialog,
     FooterComponent,
     AddMemberPopupDialog,
-    ProfileComponent
+    ProfileComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
