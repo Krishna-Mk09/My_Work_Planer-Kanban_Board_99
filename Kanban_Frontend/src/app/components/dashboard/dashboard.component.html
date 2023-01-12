@@ -46,6 +46,9 @@
             <p class="taskStartDate"><i class="fa fa-hourglass-start fa-2x" aria-hidden="true"></i> &nbsp; &nbsp;{{task.startDate}}</p>
             <p class="taskDueDate"><i class="fa fa-hourglass-end fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;  {{task.dueDate}}</p>
             <p class="taskAssigneDate"> Task Assignee - {{task.assigneeEmail}}</p>
+            <p> Task Assignee Name - {{task.assigneeName}}</p>
+            <img [src]="task.assigneeImageURL" alt="Profile image">
+
           </div>
           <pre> <a (click)="addTaskToColumn(column)" class="task1">  <i class="fa fa-tasks fs-2x" aria-hidden="true"></i>&nbsp; Add Task </a></pre>
         </div>

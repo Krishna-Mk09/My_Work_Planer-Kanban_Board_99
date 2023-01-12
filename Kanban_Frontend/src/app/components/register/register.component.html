@@ -1,6 +1,6 @@
 <div class="register">
-  <form (ngSubmit)="onSubmit()" [formGroup]="userForm" novalidate class="back-round">
-    <mat-card class="shipping-card">
+  <form (ngSubmit)="onSubmit()" [formGroup]="userForm" novalidate>
+    <mat-card class="container">
       <mat-card-header>
         <mat-card-title>
           <h1> Registration Form </h1>
@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col">
             <mat-form-field appearance="fill" class="full-width">
-              <input matInput placeholder="First name" formControlName="firstName">
+              <input formControlName="firstName" matInput placeholder="First name">
             </mat-form-field>
             <div *ngIf="userForm.controls['firstName'].touched || userForm.controls['firstName'].dirty">
               <mat-error *ngIf="userForm.controls['firstName'].hasError('required')">
@@ -28,8 +28,8 @@
             </div>
           </div>
           <div class="col">
-            <mat-form-field class="full-width" appearance="fill">
-              <input matInput placeholder="Last name" formControlName="lastName">
+            <mat-form-field appearance="fill" class="full-width">
+              <input formControlName="lastName" matInput placeholder="Last name">
             </mat-form-field>
             <div *ngIf="userForm.controls['lastName'].touched || userForm.controls['lastName'].dirty">
               <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">
@@ -49,8 +49,8 @@
         </div>
         <div class="row">
           <div class="col">
-            <mat-form-field class="full-width" appearance="fill">
-              <input matInput placeholder="Email" formControlName="email">
+            <mat-form-field appearance="fill" class="full-width">
+              <input formControlName="email" matInput placeholder="Email">
             </mat-form-field>
             <div *ngIf="userForm.controls['email'].touched || userForm.controls['email'].dirty">
               <mat-error *ngIf="userForm.controls['email'].hasError('required')">
@@ -64,7 +64,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <mat-form-field class="full-width" appearance="fill">
+            <mat-form-field appearance="fill" class="full-width">
               <input formControlName="password" matInput placeholder="Password" type="password">
             </mat-form-field>
             <div *ngIf="userForm.controls['password'].touched || userForm.controls['password'].dirty">
@@ -75,7 +75,7 @@
                 Password should be minimum of 6 char
               </mat-error>
               <mat-error *ngIf="userForm.controls['confirmPassword'].hasError('maxlength')">
-                Password should have max of 12 charecters
+                Password should have max of 12 characters
               </mat-error>
               <mat-error *ngIf="userForm.controls['password'].hasError('pattern')">
                 Password should be combination of numbers alphabets and symbols
@@ -85,7 +85,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <mat-form-field class="full-width" appearance="fill">
+            <mat-form-field appearance="fill" class="full-width">
               <input formControlName="confirmPassword" matInput placeholder="Confirm Password" type="password">
             </mat-form-field>
             <div *ngIf="userForm.controls['confirmPassword'].touched || userForm.controls['confirmPassword'].dirty">
@@ -100,7 +100,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <mat-form-field class="full-width" appearance="fill">
+            <mat-form-field appearance="fill" class="full-width">
               <input formControlName="mobileNumber" matInput placeholder="Mobile Number">
             </mat-form-field>
             <div *ngIf="userForm.controls['mobileNumber'].touched || userForm.controls['mobileNumber'].dirty">
@@ -120,15 +120,9 @@
           </div>
         </div>
       </mat-card-content>
-      <mat-card-actions>
-        <pre>  <button color="primary" mat-button mat-raised-button
-                       [disabled]="userForm.controls['firstName' && 'lastName' && 'email' && 'password' && 'confirmPassword' && 'mobileNumber'].invalid"
-                       type="submit"><pre> Submit   </pre></button></pre>
-        <a routerLink="/login"><br>
-          <button color="primary" mat-raised-button type="submit">
-            <pre>   Login   </pre>
-          </button>
-        </a>
+      <mat-card-actions class="buttons">
+        <button [disabled]="userForm.invalid" color="primary" mat-raised-button type="submit">Submit</button>
+        <button color="primary" mat-raised-button routerLink="/login">Login</button>
       </mat-card-actions>
     </mat-card>
   </form>

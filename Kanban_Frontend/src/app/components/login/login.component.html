@@ -1,11 +1,6 @@
 <div class="login">
-
-  <div class="logo">
-    <h1 class="h5">
-      <pre>                                                                                 Enter your login credentials</pre>
-    </h1>
-  </div>
-  <div class="h3">
+  <div class="login_form">
+    <h2>Enter your login credentials</h2>
     <form [formGroup]="logInForm" (ngSubmit)="onSubmit()">
       <div class="backcolor">
         <mat-form-field appearance="fill" class="full-width">
@@ -17,8 +12,6 @@
             Please provide proper email
           </mat-error>
         </mat-form-field>
-
-        <br> <br>
         <mat-form-field appearance="fill" class="full-width">
           <input matInput type="password" placeholder="Password" id="password" name="password"
                  formControlName="password"/>
@@ -37,7 +30,7 @@
           Submit
         </button>
         <br>
-        Not a member? <a href="#">SignUp</a>
+        <div style="padding: 20px">Not a member? <a href="#">SignUp</a></div>
       </div>
     </form>
   </div>

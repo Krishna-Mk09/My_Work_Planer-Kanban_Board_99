@@ -7,6 +7,7 @@ import {Column} from "../../model/kanban/Column";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {Task} from "../../model/kanban/Task";
 import {AuthenticationService} from "../../services/authentication.service";
+import {User} from "../../model/user/User";
 
 export interface DialogData {
   boardToDisplay: Board;
@@ -29,10 +30,12 @@ export class DashboardComponent implements OnInit {
 
   currentUserKanban?: Kanban;
   boardToDisplay?: Board;
+  profileOfAssignee?:User;
 
   constructor(
     private kanbanService: KanbanService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authentication: AuthenticationService
   ) {
   }
 
@@ -40,6 +43,7 @@ export class DashboardComponent implements OnInit {
     this.kanbanService.getCurrentUserKanban();
     setTimeout(() => {
       this.currentUserKanban = this.kanbanService.currentUserKanban;
+      this.fetchDetailsOfTaskAssignee();
       console.log(this.currentUserKanban);
     }, 1000);
   }
@@ -73,6 +77,21 @@ export class DashboardComponent implements OnInit {
           this.kanbanService.updateKanban(this.currentUserKanban!);
         }
       }
+    })
+  }
+
+  fetchDetailsOfTaskAssignee() {
+    this.currentUserKanban?.boards?.forEach((b: Board) => {
+      b.columns?.forEach((c: Column) => {
+        c.tasks?.forEach((t: Task) => {
+          this.authentication.getUserByEmail(t.assigneeEmail!).subscribe({
+            next: (response) => {
+              t.assigneeName = response.firstName;
+              t.assigneeImageURL = response.imageURL;
+            }
+          })
+        })
+      })
     })
   }
 
@@ -111,6 +130,7 @@ export class DashboardComponent implements OnInit {
             }
           });
           this.kanbanService.updateKanban(this.currentUserKanban!);
+          this.fetchDetailsOfTaskAssignee();
         }
       }
     })

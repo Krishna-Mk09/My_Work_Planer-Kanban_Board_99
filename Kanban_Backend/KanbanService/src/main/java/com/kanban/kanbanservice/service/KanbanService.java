@@ -37,7 +37,7 @@ KanbanService {
 	 */
 	void deleteKanbanByEmail(String email);
 
-	String addMemberToBoardByEmail(Kanban kanban, String email);
+	Kanban addMemberToBoardByEmail(Kanban kanban, String email);
 
 	List<String> getAllEmailsInBoard(String email, String boardName);
 }

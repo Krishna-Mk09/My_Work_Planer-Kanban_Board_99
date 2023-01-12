@@ -13,7 +13,10 @@ export class AuthenticationService {
   currentUser?: User;
   isLoggedIn: boolean = false;
 
-  constructor(private httpClient: HttpClient, private router: Router, private snackBar: MatSnackBar) {
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    private snackBar: MatSnackBar) {
   }
 
   registerUser(user: User) {
@@ -59,6 +62,13 @@ export class AuthenticationService {
         console.log(this.currentUser)
       }
     });
+  }
+
+  getUserByEmail(email: string) {
+    return this.httpClient.get<User>(
+      `${this.endPointURL}/guard/email/${email}`,
+      {headers: new HttpHeaders({Authorization: `Bearer ${localStorage.getItem('token')}`})}
+    )
   }
 
   updateUserProfile(user: User) {

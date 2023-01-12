@@ -1,9 +1,11 @@
 export type Task = {
-  name?:string,
-  description?:string,
-  priority?:string,
-  status?:string,
-  startDate?:Date,
-  dueDate?:Date,
-  assigneeEmail?:string
+  name?: string,
+  description?: string,
+  priority?: string,
+  status?: string,
+  startDate?: Date,
+  dueDate?: Date,
+  assigneeEmail?: string,
+  assigneeName?: string | null,
+  assigneeImageURL?: string | null
 }

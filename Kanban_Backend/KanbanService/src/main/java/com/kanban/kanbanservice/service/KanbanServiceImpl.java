@@ -86,7 +86,7 @@ public class KanbanServiceImpl implements KanbanService {
 	}
 
 	@Override
-	public String addMemberToBoardByEmail(Kanban kanban, String email) {
+	public Kanban addMemberToBoardByEmail(Kanban kanban, String email) {
 		Kanban kanbanByEmail = this.KANBAN_REPOSITORY.findKanbanByEmail(email);
 		if (kanbanByEmail != null) {
 			List<Board> boards = kanban.getBoards();
@@ -95,15 +95,17 @@ public class KanbanServiceImpl implements KanbanService {
 					if (kanbanByEmail.getBoards().contains(board)) {
 						continue;
 					}
-					board.getMembers().add(kanban.getEmail());
-					kanbanByEmail.getBoards().add(board);
+					if (!board.getMembers().contains(kanban.getEmail())) {
+						board.getMembers().add(kanban.getEmail());
+						kanbanByEmail.getBoards().add(board);
+					}
 					this.KANBAN_REPOSITORY.save(kanban);
 					this.KANBAN_REPOSITORY.save(kanbanByEmail);
 //					this.updateKanban(kanban);
 				}
 			}
 		}
-		return "Member added to board";
+		return kanban;
 	}
 
 
