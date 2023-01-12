@@ -13,7 +13,10 @@ export class AuthenticationService {
   currentUser?: User;
   isLoggedIn: boolean = false;
 
-  constructor(private httpClient: HttpClient, private router: Router, private snackBar: MatSnackBar) {
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    private snackBar: MatSnackBar) {
   }
 
   registerUser(user: User) {

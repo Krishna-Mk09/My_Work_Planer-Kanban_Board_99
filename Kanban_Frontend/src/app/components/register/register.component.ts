@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder,AbstractControl, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import {User} from "../../model/user/User";
 import {AuthenticationService} from "../../services/authentication.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -49,13 +49,13 @@ export class RegisterComponent {
     }
     this.authentication.registerUser(user).subscribe({
       next: () => {
-        this.snackBar.open("Registered Successfully!", "Close");
+        this.snackBar.open("Registered Successfully!", "Close", {duration: 3000});
       },
       error: (err) => {
         if (err.status === 409) {
-          this.snackBar.open("Email already exists!", "Close");
+          this.snackBar.open("Email already exists!", "Close", {duration: 3000});
         } else {
-          this.snackBar.open("Internal server error!", "Close");
+          this.snackBar.open("Internal server error!", "Close", {duration: 3000});
         }
       }
     });
