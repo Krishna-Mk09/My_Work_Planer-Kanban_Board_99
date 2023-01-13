@@ -163,6 +163,7 @@ li {
 .thumbnail_image {
   height: 30px;
   width: 30px;
+  margin-top: 15px;
   border-radius: 50%;
 }
 

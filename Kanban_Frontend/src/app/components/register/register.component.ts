@@ -47,7 +47,8 @@ export class RegisterComponent {
       lastName: this.userForm.get('lastName')?.value,
       email: this.userForm.get('email')?.value,
       password: this.userForm.get('password')?.value,
-      mobileNumber: this.userForm.get('mobileNumber')?.value
+      mobileNumber: this.userForm.get('mobileNumber')?.value,
+      imageURL: "https://res.cloudinary.com/dduwkdctl/image/upload/v1673595767/Kanban%20Project/blank-profile-picture_nodr1y.png",
     }
     this.authentication.registerUser(user).subscribe({
       next: () => {
