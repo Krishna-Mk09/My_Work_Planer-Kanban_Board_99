@@ -4,6 +4,7 @@ import {User} from "../../model/user/User";
 import {AuthenticationService} from "../../services/authentication.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {NotificationService} from "../../services/notification.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,8 @@ export class RegisterComponent {
     private fb: FormBuilder,
     private authentication: AuthenticationService,
     private snackBar: MatSnackBar,
-    private notificationService: NotificationService) {
+    private notificationService: NotificationService,
+    private router: Router) {
   }
 
     mustMatchValidator(fg: AbstractControl) {
@@ -50,6 +52,7 @@ export class RegisterComponent {
     this.authentication.registerUser(user).subscribe({
       next: () => {
         this.snackBar.open("Registered Successfully!", "Close", {duration: 3000});
+        this.router.navigateByUrl('/login');
       },
       error: (err) => {
         if (err.status === 409) {
@@ -59,7 +62,7 @@ export class RegisterComponent {
         }
       }
     });
-    this.notificationService.sendMail(user);
+    // this.notificationService.sendMail(user);
   }
 
 }

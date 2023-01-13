@@ -21,20 +21,20 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
-import {
-  AddBoardPopupDialog,
-  AddColumnPopupDialog,
-  AddMemberPopupDialog,
-  AddTaskPopupDialog,
-  DashboardComponent
-} from './components/dashboard/dashboard.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import {FooterComponent} from './components/footer/footer.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NotfoundComponent } from './components/notfound/notfound.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {NotfoundComponent} from './components/notfound/notfound.component';
+import {
+  AddBoardPopupDialog,
+  AddColumnPopupDialog,
+  AddMemberPopupDialog,
+  AddTaskPopupDialog
+} from "./components/dashboard/pop-up/pop-up.component";
 
 @NgModule({
   declarations: [
