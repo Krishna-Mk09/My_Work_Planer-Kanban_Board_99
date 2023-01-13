@@ -69,7 +69,7 @@ export class DashboardComponent implements OnInit {
 
   addTaskToColumn(column: Column) {
     const dialogRef = this.dialog.open(AddTaskPopupDialog, {
-      width: '250px', data: {
+      width: '300px', data: {
         taskName: '',
         taskDescription: '',
         taskAssignee: '',
