@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Kanban} from "../model/kanban/Kanban";
+import {Board} from "../model/kanban/Board";
+import {Column} from "../model/kanban/Column";
+import {Task} from "../model/kanban/Task";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +24,17 @@ export class KanbanService {
     return this.httpClient.get<Kanban>(
       `${this.endPointURL}/get-kanban/${localStorage.getItem('user_email')}`)
       .subscribe({
-          next: (response: Kanban) => this.currentUserKanban = response,
+          next: (response: Kanban) => {
+            response.boards?.forEach((b: Board) => {
+              b.columns?.forEach((c: Column) => {
+                c.tasks?.forEach((t: Task) => {
+                  t.startDate = new Date(t.startDate!);
+                  t.dueDate = new Date(t.dueDate!);
+                })
+              })
+            })
+            this.currentUserKanban = response;
+          },
           error: (error) => console.log(error)
         }
       )
