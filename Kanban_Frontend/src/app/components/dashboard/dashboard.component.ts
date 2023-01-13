@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
 
   currentUserKanban?: Kanban;
   boardToDisplay?: Board;
+  wantToEditColumnName: boolean = false;
 
   constructor(
     private kanbanService: KanbanService,
@@ -162,7 +163,7 @@ export class DashboardComponent implements OnInit {
             })
             setTimeout(() => {
               window.location.reload();
-            }, 100)
+            }, 100);
           }, error: (err) => console.log(err)
         });
       })
@@ -173,6 +174,9 @@ export class DashboardComponent implements OnInit {
         }
       });
       this.kanbanService.updateKanban(this.currentUserKanban!);
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     }
   }
 
@@ -220,5 +224,10 @@ export class DashboardComponent implements OnInit {
       this.fetchDetailsOfTaskAssignee();
       console.log(this.currentUserKanban);
     }, 1000);
+  }
+
+  editColumnName() {
+    this.kanbanService.updateKanban(this.currentUserKanban!);
+    this.wantToEditColumnName = false;
   }
 }
