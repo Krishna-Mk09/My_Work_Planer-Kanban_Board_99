@@ -5,7 +5,7 @@
     <mat-toolbar class="b1">Boards</mat-toolbar>
     <mat-nav-list>
       <div *ngFor="let board of currentUserKanban?.boards">
-        <a (click)="displayBoard(board)" class="BoardName" mat-list-item>{{board.boardName}}</a>
+        <a (click)="displayBoard(board)" class="board_name" mat-list-item>{{board.boardName}}</a>
       </div>
       <a (click)="addBoardToKanban()" mat-list-item>
         <button><i aria-hidden="true" class="fa fa-window-maximize"></i> &nbsp; Add Board</button>
@@ -58,26 +58,28 @@
           (cdkDropListDropped)="drop($event)"
           [cdkDropListData]="column.tasks"
           cdkDropList class="list">
-          <div *ngFor="let task of column.tasks" cdkDrag class="box">
-            <button (click)="deleteTask(task)" mat-raised-button>
-              <mat-icon>delete</mat-icon>
-            </button>
-            <p class="taskName"> Task name - {{task.name}}</p>
-            <p class="taskDescription"><i aria-hidden="true"
-                                          class="fa fa-pencil fa-2x"></i>&nbsp;&nbsp;{{task.description}}</p>
-            <p class="taskPriority"> Task Priority - {{task.priority}}</p>
-            <p class="taskStatus"><i aria-hidden="true" class="fa fa-thumbs-o-up fa-2x"></i>   {{task.status}}</p>
-            <p class="taskStartDate"><i aria-hidden="true" class="fa fa-hourglass-start fa-2x"></i> &nbsp;
-              &nbsp;{{task.startDate}}</p>
-            <p class="taskDueDate"><i aria-hidden="true"
-                                      class="fa fa-hourglass-end fa-2x"></i>&nbsp;&nbsp; {{task.dueDate}}</p>
-            <p class="taskAssigneDate"> Task Assignee - {{task.assigneeEmail}}</p>
-            <p> Task Assignee Name - {{task.assigneeName}}</p>
-            <img [src]="task.assigneeImageURL" alt="Profile image">
-
+          <div *ngFor="let task of column.tasks" cdkDrag class="task_container">
+            <div class="grid_one">
+              <div class="task_name">{{task?.name}}</div>
+              <div class="task_desc">{{task?.description}}</div>
+            </div>
+            <div class="priority">
+              <p *ngIf="task?.priority === 'Low'"><i class="fa-solid fa-circle low"></i></p>
+              <p *ngIf="task?.priority === 'Medium'"><i class="fa-solid fa-circle medium"></i></p>
+              <p *ngIf="task?.priority === 'High'"><i class="fa-solid fa-circle high"></i></p>
+            </div>
+            <div class="date">
+              <div><span><b>Started On</b> - {{task?.startDate?.toDateString()}}</span></div>
+              <div><span><b>Due Date</b> - {{task?.dueDate?.toDateString()}}</span></div>
+            </div>
+            <div>
+              <div>
+                {{task?.assigneeName}}
+                <img [src]="task?.assigneeImageURL" alt="Profile Image"></div>
+            </div>
           </div>
-          <pre> <a (click)="addTaskToColumn(column)" class="task1">  <i aria-hidden="true"
-                                                                        class="fa fa-tasks fs-2x"></i>&nbsp; Add Task </a></pre>
+          <pre> <a (click)="addTaskToColumn(column)" class="task1"><i aria-hidden="true"
+                                                                      class="fa fa-tasks fs-2x"></i>&nbsp; Add Task </a></pre>
         </div>
       </div>
     </div>

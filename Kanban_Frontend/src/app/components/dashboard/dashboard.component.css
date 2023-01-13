@@ -11,26 +11,13 @@
   width: 200px;
 }
 
-.sidenav .mat-toolbar {
-  background: inherit;
-}
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
 .container {
   width: 380px;
   max-width: 100%;
   display: inline-block;
   vertical-align: top;
   text-align: center;
-  color: white;
-  font-family: Cambria;
-
-
+  /*color: white;*/
 }
 
 
@@ -42,39 +29,10 @@
   overflow: hidden;
   display: block;
   margin-left: 20px;
-
-}
-
-.box {
-  padding: 20px 10px;
-  border-bottom: solid 1px #ccc;
-  color: rgba(0, 0, 0, 0.87);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  cursor: move;
-  background: white;
-  font-size: 14px;
-
-}
-
-.column {
-  background-color: aquamarine;
-  grid-template-columns: auto auto auto auto;
-
-}
-
-.task {
-  background-color: beige;
-  border: 2px solid black;
-
 }
 
 .sidebar-content {
   min-height: 1200px;
-
 }
 
 .styleBoard {
@@ -82,16 +40,13 @@
   padding-top: 15px;
   padding-left: 5px;
   text-align: center;
-  font-size: x-large;
-
   font-size: 20px;
-font-family: "Arial Black";
 
 
 }
-.BoardName{
+
+.board_name {
   color: black;
-  font-family: "Arial";
   font-size: 25px;
   padding-left: 20px;
 }
@@ -105,126 +60,96 @@ font-family: "Arial Black";
 
 
 .sidenav {
-  background-color:rgb(235, 235, 192)
-
+  background-color: rgb(235, 235, 192)
 }
 
-.list {
-  background-color: rgb(9, 81, 112);
-  color: white;
-}
+/*.list {*/
+/*  background-color: rgb(9, 81, 112);*/
+/*  color: white;*/
+/*}*/
 
-.taskName {
-  background-color: rgb(9, 81, 112);
-  width: 100%;
-  color: white;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  padding-left: 10px;
-  border-radius: 2px;
-  display: flex;
-  justify-content: center;
-  font-size: large;
-}
-
-.taskDescription {
-  background-color: sandybrown;
-  width: 100%;
-  color: white;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  padding-left: 10px;
-  border-radius: 2px;
-  display: flex;
-  justify-content: center;
-  font-size: large;
-  margin-top: 0%;
-}
-
-.taskPriority {
-  background-color: teal;
-  width: 100%;
-  color: white;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  padding-left: 10px;
-  border-radius: 2px;
-  display: flex;
-  justify-content: center;
-  font-size: large;
-  margin-top: 0%;
-}
-
-.taskStatus {
-  background-color: tan;
-  width: 100%;
-  color: white;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  padding-left: 10px;
-  border-radius: 2px;
-  display: flex;
-  grid-template-columns: 50%;
-  justify-content: center;
-  font-size: large;
-  margin-top: 0%;
-}
-
-.taskAssigneDate {
-  background-color: green;
-  width: 100%;
-  color: white;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  padding-left: 10px;
-  border-radius: 2px;
-  display: flex;
-  grid-template-columns: 50%;
-  justify-content: center;
-  font-size: large;
-  margin-top: 0%;
-}
-.taskStartDate{
-  background-color:rgb(159, 52, 52);
-  width: 100%;
-  color: white;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  padding-left: 10px;
-  border-radius: 2px;
-  display: flex;
-  grid-template-columns: 50%;
-  justify-content: center;
-  font-size: large;
-  margin-top: 0%;
-}
-.taskDueDate{
-  background-color:rgb(136, 161, 168);
-  width: 100%;
-  color: white;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  padding-left: 10px;
-  border-radius: 2px;
-  display: flex;
-  grid-template-columns: 50%;
-  justify-content: center;
-  font-size: large;
-  margin-top: 0%;
-}
 .girds {
   display: flex;
   justify-content: center;
   color: black;
 }
-.col{
 
+.col {
   font-size: 20px;
- font-family: Arial;
 }
-.b1{
-  font-family: Arial;
+
+.b1 {
   font-size: 35px;
   padding-top: 50px;
   padding-bottom: 50px;
 }
+
+.task_container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.task_container .low {
+  color: green;
+}
+
+.task_container .medium {
+  color: orange;
+}
+
+.task_container .high {
+  color: red;
+}
+
+.priority {
+  display: grid;
+  align-content: center;
+  justify-content: end;
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+.priority p {
+  margin: 0 auto;
+}
+
+.task_container img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.grid_one {
+  display: grid;
+  border: 2px solid black;
+  justify-content: start;
+}
+
+.task_name {
+  display: grid;
+  justify-content: start;
+  font-size: 25px;
+}
+
+.task_desc {
+  display: grid;
+  margin-top: 10px;
+  justify-content: start;
+  border: 2px solid black;
+}
+
+.date {
+  margin-top: 20px;
+  border: 2px solid red;
+  display: grid;
+  justify-content: start;
+}
+
+.date div {
+  display: grid;
+  justify-content: start;
+}
+
