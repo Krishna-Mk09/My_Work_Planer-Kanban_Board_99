@@ -2,18 +2,41 @@ import {Component, Inject, OnInit} from "@angular/core";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {AuthenticationService} from "../../../services/authentication.service";
 import {DialogData} from "../dialog.data";
+import {Kanban} from "../../../model/kanban/Kanban";
+import {KanbanService} from "../../../services/kanban.service";
+import {Board} from "../../../model/kanban/Board";
 
 
 // Component for adding a new board to the Kanban
 @Component({
   selector: 'add-board-popup', templateUrl: './add-board-popup.html'
 })
-export class AddBoardPopupDialog {
-  constructor(public dialogRef: MatDialogRef<AddBoardPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+export class AddBoardPopupDialog implements OnInit{
+  constructor(
+    public dialogRef: MatDialogRef<AddBoardPopupDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private kanbanService: KanbanService) {
+  }
+
+  currentUserKanban?: Kanban;
+  isBoardNameValid?: boolean;
+
+  checkBoardName() {
+    let boardNames: String[] = [];
+    this.currentUserKanban?.boards?.forEach((b: Board) => {
+      boardNames.push(b.boardName!);
+    });
+    this.isBoardNameValid = boardNames.includes(this.data.boardName,0);
   }
 
   onNoClick() {
     this.dialogRef.close(null);
+  }
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.currentUserKanban = this.kanbanService.currentUserKanban;
+    },1000)
   }
 }
 
