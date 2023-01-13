@@ -1,26 +1,20 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {KanbanService} from "../../services/kanban.service";
 import {Kanban} from "../../model/kanban/Kanban";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {MatDialog} from "@angular/material/dialog";
 import {Board} from "../../model/kanban/Board";
 import {Column} from "../../model/kanban/Column";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {Task} from "../../model/kanban/Task";
 import {AuthenticationService} from "../../services/authentication.service";
+import {
+  AddBoardPopupDialog,
+  AddColumnPopupDialog,
+  AddMemberPopupDialog,
+  AddTaskPopupDialog
+} from "./pop-up/pop-up.component";
+import {DialogData} from "./dialog.data";
 
-export interface DialogData {
-  boardToDisplay: Board;
-  boardName: string;
-  columnName: string;
-  taskName: string;
-  taskDescription: string;
-  taskPriority: string;
-  taskStatus: string;
-  taskStartDate: Date;
-  taskDueDate: Date;
-  taskAssignee: string;
-  email: string;
-}
 
 @Component({
   selector: 'app-dashboard', templateUrl: './dashboard.component.html', styleUrls: ['./dashboard.component.css']
@@ -30,16 +24,14 @@ export class DashboardComponent implements OnInit {
   currentUserKanban?: Kanban;
   boardToDisplay?: Board;
 
-  constructor(private kanbanService: KanbanService, public dialog: MatDialog, private authentication: AuthenticationService) {
+  constructor(
+    private kanbanService: KanbanService,
+    public dialog: MatDialog,
+    private authentication: AuthenticationService) {
   }
 
-  ngOnInit(): void {
-    this.kanbanService.getCurrentUserKanban();
-    setTimeout(() => {
-      this.currentUserKanban = this.kanbanService.currentUserKanban;
-      this.fetchDetailsOfTaskAssignee();
-      console.log(this.currentUserKanban);
-    }, 1000);
+  displayBoard(board: Board) {
+    this.boardToDisplay = board;
   }
 
   addBoardToKanban() {
@@ -71,21 +63,6 @@ export class DashboardComponent implements OnInit {
           this.kanbanService.updateKanban(this.currentUserKanban!);
         }
       }
-    })
-  }
-
-  fetchDetailsOfTaskAssignee() {
-    this.currentUserKanban?.boards?.forEach((b: Board) => {
-      b.columns?.forEach((c: Column) => {
-        c.tasks?.forEach((t: Task) => {
-          this.authentication.getUserByEmail(t.assigneeEmail!).subscribe({
-            next: (response) => {
-              t.assigneeName = response.firstName;
-              t.assigneeImageURL = response.imageURL;
-            }
-          })
-        })
-      })
     })
   }
 
@@ -129,20 +106,6 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  displayBoard(board: Board) {
-    this.boardToDisplay = board;
-  }
-
-  drop(event: CdkDragDrop<Task[] | undefined>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data!, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(event.previousContainer.data!, event.container.data!, event.previousIndex!, event.currentIndex!,);
-    }
-    this.kanbanService.updateKanban(this.currentUserKanban!);
-  }
-
-
   addMembersToBoard() {
     const dialogRef = this.dialog.open(AddMemberPopupDialog, {
       width: '250px', data: {email: undefined}, disableClose: true
@@ -160,6 +123,21 @@ export class DashboardComponent implements OnInit {
           })
         }
       }
+    })
+  }
+
+  fetchDetailsOfTaskAssignee() {
+    this.currentUserKanban?.boards?.forEach((b: Board) => {
+      b.columns?.forEach((c: Column) => {
+        c.tasks?.forEach((t: Task) => {
+          this.authentication.getUserByEmail(t.assigneeEmail!).subscribe({
+            next: (response) => {
+              t.assigneeName = response.firstName;
+              t.assigneeImageURL = response.imageURL;
+            }
+          })
+        })
+      })
     })
   }
 
@@ -225,80 +203,22 @@ export class DashboardComponent implements OnInit {
     });
     this.kanbanService.updateKanban(this.currentUserKanban!);
   }
-}
 
-// Component for adding a new board to the Kanban
-@Component({
-  selector: 'add-board-popup', templateUrl: './add-board-popup.html'
-})
-export class AddBoardPopupDialog {
-  constructor(public dialogRef: MatDialogRef<AddBoardPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-  }
-
-  onNoClick() {
-    this.dialogRef.close(null);
-  }
-}
-
-// Component for adding a column to a board
-@Component({
-  selector: 'add-column-popup', templateUrl: './add-column-popup.html'
-})
-export class AddColumnPopupDialog {
-  constructor(public dialogRef: MatDialogRef<AddColumnPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-  }
-
-  onNoClick() {
-    this.dialogRef.close(null);
-  }
-}
-
-// Component for adding a task to a column
-@Component({
-  selector: 'add-task-popup', templateUrl: './add-task-popup.html'
-})
-export class AddTaskPopupDialog implements OnInit {
-  priorities = ['Low', 'Medium', 'High'];
-  boardMembers?: string[];
-
-  constructor(public dialogRef: MatDialogRef<AddTaskPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-  }
-
-  onNoClick() {
-    this.dialogRef.close(null);
-  }
-
-
-  ngOnInit(): void {
-    this.boardMembers = this.data.boardToDisplay?.members;
-  }
-}
-
-@Component({
-  selector: 'add-member-popup', templateUrl: './add-member-popup.html'
-})
-export class AddMemberPopupDialog implements OnInit {
-  allEmails?: string[];
-  isEmailValid?: boolean;
-
-  constructor(public dialogRef: MatDialogRef<AddMemberPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private authentication: AuthenticationService) {
-  }
-
-  onNoClick() {
-    this.dialogRef.close(null);
-  }
-
-  checkEmail() {
-    this.isEmailValid = this.allEmails?.includes(this.data.email, 0);
+  drop(event: CdkDragDrop<Task[] | undefined>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data!, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data!, event.container.data!, event.previousIndex!, event.currentIndex!,);
+    }
+    this.kanbanService.updateKanban(this.currentUserKanban!);
   }
 
   ngOnInit(): void {
+    this.kanbanService.getCurrentUserKanban();
     setTimeout(() => {
-      this.authentication.getAllEmails().subscribe({
-        next: (result) => {
-          this.allEmails = result;
-        }
-      });
+      this.currentUserKanban = this.kanbanService.currentUserKanban;
+      this.fetchDetailsOfTaskAssignee();
+      console.log(this.currentUserKanban);
     }, 1000);
   }
 }
