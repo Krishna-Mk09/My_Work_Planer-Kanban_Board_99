@@ -30,11 +30,7 @@ export class DashboardComponent implements OnInit {
   currentUserKanban?: Kanban;
   boardToDisplay?: Board;
 
-  constructor(
-    private kanbanService: KanbanService,
-    public dialog: MatDialog,
-    private authentication: AuthenticationService
-  ) {
+  constructor(private kanbanService: KanbanService, public dialog: MatDialog, private authentication: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -104,8 +100,7 @@ export class DashboardComponent implements OnInit {
         taskPriority: '',
         taskStatus: '',
         boardToDisplay: this.boardToDisplay
-      },
-      disableClose: true
+      }, disableClose: true
     });
     dialogRef.afterClosed().subscribe({
       next: (result: DialogData) => {
@@ -187,6 +182,9 @@ export class DashboardComponent implements OnInit {
                 });
               }
             })
+            setTimeout(() => {
+              window.location.reload();
+            }, 100)
           }, error: (err) => console.log(err)
         });
       })
@@ -283,11 +281,7 @@ export class AddMemberPopupDialog implements OnInit {
   allEmails?: string[];
   isEmailValid?: boolean;
 
-  constructor(
-    public dialogRef: MatDialogRef<AddMemberPopupDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private authentication: AuthenticationService
-  ) {
+  constructor(public dialogRef: MatDialogRef<AddMemberPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private authentication: AuthenticationService) {
   }
 
   onNoClick() {
