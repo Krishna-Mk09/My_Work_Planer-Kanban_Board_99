@@ -5,7 +5,7 @@
     <mat-toolbar class="b1">Boards</mat-toolbar>
     <mat-nav-list>
       <div *ngFor="let board of currentUserKanban?.boards">
-        <a class="BoardName"(click)="displayBoard(board)" mat-list-item>{{board.boardName}}</a>
+        <a (click)="displayBoard(board)" class="BoardName" mat-list-item>{{board.boardName}}</a>
         <button  (click)="deleteBoard(board?.boardName)" mat-raised-button>
           <mat-icon>delete</mat-icon>
         </button>
@@ -33,18 +33,26 @@
     <div cdkDropListGroup>
       <div *ngFor="let column of boardToDisplay?.columns" class="container">
         <h3 class="col"> Column : {{column.columnName}}</h3>
-
+        <button (click)="deleteColumn(column)" mat-raised-button>
+          <mat-icon>delete</mat-icon>
+        </button>
         <div
           (cdkDropListDropped)="drop($event)"
           [cdkDropListData]="column.tasks"
           cdkDropList class="list">
           <div *ngFor="let task of column.tasks" cdkDrag class="box">
+            <button (click)="deleteTask(task)" mat-raised-button>
+              <mat-icon>delete</mat-icon>
+            </button>
             <p class="taskName"> Task name - {{task.name}}</p>
-            <p class="taskDescription"><i class="fa fa-pencil fa-2x" aria-hidden="true "></i>&nbsp;&nbsp;{{task.description}}</p>
+            <p class="taskDescription"><i aria-hidden="true"
+                                          class="fa fa-pencil fa-2x"></i>&nbsp;&nbsp;{{task.description}}</p>
             <p class="taskPriority"> Task Priority - {{task.priority}}</p>
             <p class="taskStatus"><i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>   {{task.status}}</p>
-            <p class="taskStartDate"><i class="fa fa-hourglass-start fa-2x" aria-hidden="true"></i> &nbsp; &nbsp;{{task.startDate}}</p>
-            <p class="taskDueDate"><i class="fa fa-hourglass-end fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;  {{task.dueDate}}</p>
+            <p class="taskStartDate"><i aria-hidden="true" class="fa fa-hourglass-start fa-2x"></i> &nbsp;
+              &nbsp;{{task.startDate}}</p>
+            <p class="taskDueDate"><i aria-hidden="true"
+                                      class="fa fa-hourglass-end fa-2x"></i>&nbsp;&nbsp; {{task.dueDate}}</p>
             <p class="taskAssigneDate"> Task Assignee - {{task.assigneeEmail}}</p>
             <p> Task Assignee Name - {{task.assigneeName}}</p>
             <img [src]="task.assigneeImageURL" alt="Profile image">

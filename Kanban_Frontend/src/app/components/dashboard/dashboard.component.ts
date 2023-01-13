@@ -7,7 +7,6 @@ import {Column} from "../../model/kanban/Column";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {Task} from "../../model/kanban/Task";
 import {AuthenticationService} from "../../services/authentication.service";
-import {User} from "../../model/user/User";
 
 export interface DialogData {
   boardToDisplay: Board;
@@ -30,7 +29,6 @@ export class DashboardComponent implements OnInit {
 
   currentUserKanban?: Kanban;
   boardToDisplay?: Board;
-  profileOfAssignee?:User;
 
   constructor(
     private kanbanService: KanbanService,
@@ -200,6 +198,34 @@ export class DashboardComponent implements OnInit {
       });
       this.kanbanService.updateKanban(this.currentUserKanban!);
     }
+  }
+
+  deleteColumn(column: Column) {
+    this.currentUserKanban?.boards?.forEach((b: Board) => {
+      if (b.boardName === this.boardToDisplay?.boardName) {
+        b.columns?.forEach((c: Column, index: number) => {
+          if (c.columnName === column.columnName) {
+            b.columns?.splice(index, 1);
+          }
+        })
+      }
+    });
+    this.kanbanService.updateKanban(this.currentUserKanban!);
+  }
+
+  deleteTask(task: Task) {
+    this.currentUserKanban?.boards?.forEach((b: Board) => {
+      if (b.boardName === this.boardToDisplay?.boardName) {
+        b.columns?.forEach((c: Column) => {
+          c.tasks?.forEach((t: Task, index: number) => {
+            if (t.name === task.name) {
+              c.tasks?.splice(index, 1);
+            }
+          })
+        })
+      }
+    });
+    this.kanbanService.updateKanban(this.currentUserKanban!);
   }
 }
 
