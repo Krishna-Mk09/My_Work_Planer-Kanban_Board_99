@@ -92,7 +92,7 @@ public class KanbanServiceImpl implements KanbanService {
 			List<Board> boards = kanban.getBoards();
 			for (Board board : boards) {
 				if (board.getMembers().contains(email)) {
-					if (!kanbanByEmail.getBoards().contains(board)) {
+					if (kanbanByEmail.getBoards().contains(board)) {
 						continue;
 					}
 					if (!board.getMembers().contains(kanban.getEmail())) {
