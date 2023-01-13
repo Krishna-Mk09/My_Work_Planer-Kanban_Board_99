@@ -35,6 +35,8 @@ import {
   AddMemberPopupDialog,
   AddTaskPopupDialog
 } from "./components/dashboard/pop-up/pop-up.component";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -74,7 +76,9 @@ import {
     MatDialogModule,
     DragDropModule,
     MatTooltipModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

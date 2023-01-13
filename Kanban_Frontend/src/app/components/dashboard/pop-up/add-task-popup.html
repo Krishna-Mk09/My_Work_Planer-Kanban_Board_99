@@ -24,12 +24,16 @@
 
   <mat-form-field appearance="fill">
     <mat-label>Start Date</mat-label>
-    <input [(ngModel)]="data.taskStartDate" matInput type="date">
+    <input [(ngModel)]="data.taskStartDate" [matDatepicker]="start" matInput>
+    <mat-datepicker-toggle [for]="start" matSuffix></mat-datepicker-toggle>
+    <mat-datepicker #start></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Due Date</mat-label>
-    <input [(ngModel)]="data.taskDueDate" matInput type="date">
+    <input [(ngModel)]="data.taskDueDate" [matDatepicker]="due" matInput>
+    <mat-datepicker-toggle [for]="due" matSuffix></mat-datepicker-toggle>
+    <mat-datepicker #due></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field appearance="fill">
