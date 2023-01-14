@@ -36,7 +36,12 @@ export class DashboardComponent implements OnInit {
 
   addBoardToKanban() {
     const dialogRef = this.dialog.open(AddBoardPopupDialog, {
-      width: '250px', data: {boardName: null}, disableClose: true
+      width: '250px',
+      data: {
+        boardName: null,
+        messageToDisplay: "Add"
+      },
+      disableClose: true
     });
     dialogRef.afterClosed().subscribe({
       next: (result: string) => {
@@ -295,6 +300,28 @@ export class DashboardComponent implements OnInit {
                   })
                 }
               })
+            }
+          })
+          this.kanbanService.updateKanban(this.currentUserKanban!);
+        }
+      }
+    });
+  }
+
+  editBoardName() {
+    const dialogRef = this.dialog.open(AddBoardPopupDialog, {
+      width: '250px', data: {
+        boardName: this.boardToDisplay?.boardName,
+        messageToDisplay: "Edit"
+      },
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (result: string) => {
+        if (result != null) {
+          this.currentUserKanban?.boards?.forEach((b: Board) => {
+            if (b.boardName === this.boardToDisplay?.boardName) {
+              b.boardName = result;
             }
           })
           this.kanbanService.updateKanban(this.currentUserKanban!);

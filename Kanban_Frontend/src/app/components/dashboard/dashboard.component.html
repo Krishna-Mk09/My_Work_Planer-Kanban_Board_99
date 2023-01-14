@@ -18,7 +18,12 @@
     <!-- Add content here -->
     <div class="styleBoard">
       <div *ngIf="boardToDisplay != null">
-        <h2>{{boardToDisplay?.boardName}}</h2>
+        <div>
+          <h2>{{boardToDisplay?.boardName}}</h2>
+          <button (click)="editBoardName()">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
         <button (click)="deleteBoard(boardToDisplay?.boardName)" mat-raised-button>
           <mat-icon>delete</mat-icon>
         </button>

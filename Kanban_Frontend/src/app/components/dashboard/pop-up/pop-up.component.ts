@@ -22,6 +22,7 @@ export class AddBoardPopupDialog implements OnInit{
   currentUserKanban?: Kanban;
   isBoardNameValid?: boolean;
   boardNames: String[] = [];
+  messageToDisplay?: string;
 
   checkBoardName() {
     this.isBoardNameValid = !this.boardNames.includes(this.data.boardName,0);
@@ -33,6 +34,7 @@ export class AddBoardPopupDialog implements OnInit{
 
   ngOnInit(): void {
     this.currentUserKanban = this.kanbanService.currentUserKanban;
+    this.messageToDisplay = this.data.messageToDisplay;
     this.currentUserKanban?.boards?.forEach((b: Board) => {
       this.boardNames.push(b.boardName!);
     });
