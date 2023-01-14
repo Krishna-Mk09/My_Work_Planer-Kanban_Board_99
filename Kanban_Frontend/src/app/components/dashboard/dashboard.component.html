@@ -70,6 +70,14 @@
                 {{task?.assigneeName}}
                 <img *ngIf="task?.assigneeImageURL !== ''" [src]="task?.assigneeImageURL" alt="Profile Image"></div>
             </div>
+            <div class="edit">
+              <button (click)="editTask(task, column?.columnName!)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button (click)="deleteTask(task)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
           </div>
           <a (click)="addTaskToColumn(column)" class="task1">
             <i aria-hidden="true" class="fa fa-tasks fs-2x"></i>&nbsp;Add Task </a>

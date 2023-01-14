@@ -83,6 +83,7 @@ export class AddTaskPopupDialog implements OnInit {
   boardToDisplay?: Board;
   isTaskNameValid?: boolean;
   taskNames: String[] = [];
+  messageToDisplay?: string;
   currentDate: Date = new Date();
   minimumDate:Date = new Date(this.currentDate.getFullYear(),this.currentDate.getMonth(),this.currentDate.getDate());
 
@@ -104,7 +105,7 @@ export class AddTaskPopupDialog implements OnInit {
   ngOnInit(): void {
     this.boardToDisplay = this.data.boardToDisplay;
     this.boardMembers = this.data.boardToDisplay?.members;
-
+    this.messageToDisplay = this.data.messageToDisplay;
     this.boardToDisplay.columns?.forEach((c: Column) => {
       c.tasks?.forEach((t) => {
         this.taskNames.push(t.name!);

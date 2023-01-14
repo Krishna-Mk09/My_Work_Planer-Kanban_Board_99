@@ -82,7 +82,8 @@ export class DashboardComponent implements OnInit {
         taskDueDate: '',
         taskPriority: '',
         taskStatus: '',
-        boardToDisplay: this.boardToDisplay
+        boardToDisplay: this.boardToDisplay,
+        messageToDisplay: "Add"
       }, disableClose: true
     });
     dialogRef.afterClosed().subscribe({
@@ -248,6 +249,50 @@ export class DashboardComponent implements OnInit {
               b.columns?.forEach((c: Column) => {
                 if (c.columnName === column.columnName) {
                   c.columnName = result;
+                }
+              })
+            }
+          })
+          this.kanbanService.updateKanban(this.currentUserKanban!);
+        }
+      }
+    });
+  }
+
+  editTask(task: Task, columnName: string) {
+    const dialogRef = this.dialog.open(AddTaskPopupDialog, {
+      width: '300px',
+      data: {
+        taskName: task.name,
+        taskDescription: task.description,
+        taskAssignee: task.assigneeEmail,
+        taskStartDate: task.startDate,
+        taskDueDate: task.dueDate,
+        taskPriority: task.priority,
+        taskStatus: task.status,
+        boardToDisplay: this.boardToDisplay,
+        messageToDisplay: "Edit"
+      },
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (result: Task) => {
+        if (result != null) {
+          this.currentUserKanban?.boards?.forEach((b: Board) => {
+            if (b.boardName === this.boardToDisplay?.boardName) {
+              b.columns?.forEach((c: Column) => {
+                if (c.columnName === columnName) {
+                  c.tasks?.forEach((t: Task) => {
+                    if (t.name === task.name) {
+                      t.name = result.name;
+                      t.description = result.description;
+                      t.assigneeEmail = result.assigneeEmail;
+                      t.startDate = result.startDate;
+                      t.dueDate = result.dueDate;
+                      t.priority = result.priority;
+                      t.status = result.status;
+                    }
+                  })
                 }
               })
             }
