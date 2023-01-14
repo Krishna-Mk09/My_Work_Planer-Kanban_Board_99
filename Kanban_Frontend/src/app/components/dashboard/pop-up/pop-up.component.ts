@@ -5,6 +5,7 @@ import {DialogData} from "../dialog.data";
 import {Kanban} from "../../../model/kanban/Kanban";
 import {KanbanService} from "../../../services/kanban.service";
 import {Board} from "../../../model/kanban/Board";
+import {Column} from "../../../model/kanban/Column";
 
 
 // Component for adding a new board to the Kanban
@@ -20,13 +21,10 @@ export class AddBoardPopupDialog implements OnInit{
 
   currentUserKanban?: Kanban;
   isBoardNameValid?: boolean;
+  boardNames: String[] = [];
 
   checkBoardName() {
-    let boardNames: String[] = [];
-    this.currentUserKanban?.boards?.forEach((b: Board) => {
-      boardNames.push(b.boardName!);
-    });
-    this.isBoardNameValid = boardNames.includes(this.data.boardName,0);
+    this.isBoardNameValid = !this.boardNames.includes(this.data.boardName,0);
   }
 
   onNoClick() {
@@ -34,9 +32,11 @@ export class AddBoardPopupDialog implements OnInit{
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.currentUserKanban = this.kanbanService.currentUserKanban;
-    },1000)
+    this.currentUserKanban = this.kanbanService.currentUserKanban;
+    this.currentUserKanban?.boards?.forEach((b: Board) => {
+      this.boardNames.push(b.boardName!);
+    });
+    this.boardNames.push("");
   }
 }
 
@@ -44,12 +44,30 @@ export class AddBoardPopupDialog implements OnInit{
 @Component({
   selector: 'add-column-popup', templateUrl: './add-column-popup.html'
 })
-export class AddColumnPopupDialog {
-  constructor(public dialogRef: MatDialogRef<AddColumnPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+export class AddColumnPopupDialog implements OnInit{
+  constructor(
+    public dialogRef: MatDialogRef<AddColumnPopupDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+
+  }
+  boardToDisplay?: Board;
+  isColumnValid?: boolean;
+  columnNames: String[] = [];
+
+  checkColumnName() {
+    this.isColumnValid = !this.columnNames.includes(this.data.columnName, 0);
   }
 
   onNoClick() {
     this.dialogRef.close(null);
+  }
+
+  ngOnInit(): void {
+    this.boardToDisplay = this.data.boardToDisplay;
+    this.boardToDisplay.columns?.forEach((c: Column) => {
+      this.columnNames.push(c.columnName!);
+    });
+    this.columnNames.push("");
   }
 }
 

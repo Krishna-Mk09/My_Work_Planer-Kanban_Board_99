@@ -2,18 +2,19 @@
 
 <div mat-dialog-content>
   <p>Enter Board's Name</p>
-  <form #addBoard="ngForm">
   <mat-form-field appearance="fill">
-    <mat-label class="board-name1">Board Name</mat-label>
-    <input (keyup)="checkBoardName()"  [(ngModel)]="data.boardName" name="boardName" matInput required>
+    <mat-label>Board Name</mat-label>
+    <input (keyup)="checkBoardName()" [(ngModel)]="data.boardName" matInput name="boardName" required>
   </mat-form-field>
-  <mat-error *ngIf="isBoardNameValid && (addBoard.control.pristine || addBoard.control.untouched)">
+  <mat-error *ngIf="data.boardName === null || data.boardName === ''">
+    Board Name Cannot be empty
+  </mat-error>
+  <mat-error *ngIf="!isBoardNameValid && data.boardName !== null && data.boardName !== ''">
     You Already Have a Board with this Name please select a different Name
   </mat-error>
-  </form>
 </div>
 
 <div mat-dialog-actions>
   <button (click)="onNoClick()" mat-button>No Thanks</button>
-  <button [disabled]="isBoardNameValid" [mat-dialog-close]="data.boardName" cdkFocusInitial mat-button>Ok</button>
+  <button [disabled]="!isBoardNameValid" [mat-dialog-close]="data.boardName" mat-button>Ok</button>
 </div>

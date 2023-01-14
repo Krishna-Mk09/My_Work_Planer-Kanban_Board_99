@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
 
   addColumnToBoard(board: Board) {
     const dialogRef = this.dialog.open(AddColumnPopupDialog, {
-      width: '250px', data: {columnName: ''}, disableClose: true
+      width: '250px', data: {columnName: '',boardToDisplay: this.boardToDisplay}, disableClose: true
     });
     dialogRef.afterClosed().subscribe({
       next: (result: string) => {

@@ -4,11 +4,17 @@
   <p>Enter Column's Name</p>
   <mat-form-field appearance="fill">
     <mat-label>Column Name</mat-label>
-    <input [(ngModel)]="data.columnName" matInput>
+    <input (keyup)="checkColumnName()" [(ngModel)]="data.columnName" matInput name="columnName" required>
   </mat-form-field>
+  <mat-error *ngIf="data.columnName === null || data.columnName === ''">
+    Column Name Cannot Be Empty
+  </mat-error>
+  <mat-error *ngIf="!isColumnValid && data.columnName !== null && data.columnName !== ''">
+    This Column Name already Exist in this Board
+  </mat-error>
 </div>
 
 <div mat-dialog-actions>
   <button (click)="onNoClick()" mat-button>No Thanks</button>
-  <button [mat-dialog-close]="data.columnName" cdkFocusInitial mat-button>Ok</button>
+  <button [disabled]="!isColumnValid" [mat-dialog-close]="data.columnName" mat-button>Ok</button>
 </div>
