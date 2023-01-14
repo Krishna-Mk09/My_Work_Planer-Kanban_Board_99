@@ -53,6 +53,7 @@ export class AddColumnPopupDialog implements OnInit{
   boardToDisplay?: Board;
   isColumnValid?: boolean;
   columnNames: String[] = [];
+  messageToDisplay?: string;
 
   checkColumnName() {
     this.isColumnValid = !this.columnNames.includes(this.data.columnName, 0);
@@ -64,6 +65,7 @@ export class AddColumnPopupDialog implements OnInit{
 
   ngOnInit(): void {
     this.boardToDisplay = this.data.boardToDisplay;
+    this.messageToDisplay = this.data.messageToDisplay;
     this.boardToDisplay.columns?.forEach((c: Column) => {
       this.columnNames.push(c.columnName!);
     });

@@ -12,4 +12,5 @@ export interface DialogData {
   taskDueDate: Date;
   taskAssignee: string;
   email: string;
+  messageToDisplay: string;
 }

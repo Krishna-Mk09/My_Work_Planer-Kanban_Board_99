@@ -25,7 +25,7 @@
       </div>
       <h2 class="styleBoard1"><a (click)="addMembersToBoard()" *ngIf="boardToDisplay != null">
         <i aria-hidden="true" class="fa fa-user-plus fa-1x"></i> Add-member</a> &nbsp; &nbsp;&nbsp;<a
-        (click)="addColumnToBoard(boardToDisplay!)" *ngIf="boardToDisplay != null" class="girds"><h2><i
+        (click)="addColumnToBoard()" *ngIf="boardToDisplay != null" class="girds"><h2><i
         aria-hidden="true" class="fa fa-columns fa-1x"></i> Add-Column </h2>
       </a></h2>
       <!--      <h2>Members</h2>-->
@@ -39,19 +39,10 @@
       <div *ngFor="let column of boardToDisplay?.columns" class="container">
         <div>
           <h3 class="col"> Column : {{column.columnName}}</h3>
-          <button (click)="wantToEditColumnName = !wantToEditColumnName">
+          <button (click)="editColumnName(column)">
             <mat-icon>edit</mat-icon>
           </button>
           <br>
-
-          <!--Edit Column-->
-          <mat-form-field *ngIf="wantToEditColumnName">
-            <mat-label>Enter Column Name -</mat-label>
-            <input [(ngModel)]="column.columnName" matInput type="text" value="{{column.columnName}}" >
-          </mat-form-field>
-          <button (click)="editColumnName()" *ngIf="wantToEditColumnName">
-            <mat-icon>check</mat-icon>
-          </button>
         </div>
         <button (click)="deleteColumn(column)" mat-raised-button>
           <mat-icon>delete</mat-icon>

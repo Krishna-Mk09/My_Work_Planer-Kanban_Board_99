@@ -23,7 +23,6 @@ export class DashboardComponent implements OnInit {
 
   currentUserKanban?: Kanban;
   boardToDisplay?: Board;
-  wantToEditColumnName: boolean = false;
 
   constructor(
     private kanbanService: KanbanService,
@@ -49,15 +48,21 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  addColumnToBoard(board: Board) {
+  addColumnToBoard() {
     const dialogRef = this.dialog.open(AddColumnPopupDialog, {
-      width: '250px', data: {columnName: '',boardToDisplay: this.boardToDisplay}, disableClose: true
+      width: '250px',
+      data: {
+        columnName: '',
+        boardToDisplay: this.boardToDisplay,
+        messageToDisplay: "Add"
+      },
+      disableClose: true
     });
     dialogRef.afterClosed().subscribe({
       next: (result: string) => {
         if (result !== null) {
           this.currentUserKanban?.boards?.forEach((b: Board) => {
-            if (b.boardName === board.boardName) {
+            if (b.boardName === this.boardToDisplay?.boardName) {
               b.columns?.push({columnName: result, tasks: []});
             }
           });
@@ -226,8 +231,30 @@ export class DashboardComponent implements OnInit {
     }, 1000);
   }
 
-  editColumnName() {
-    this.kanbanService.updateKanban(this.currentUserKanban!);
-    this.wantToEditColumnName = false;
+  editColumnName(column: Column) {
+    const dialogRef = this.dialog.open(AddColumnPopupDialog, {
+      width: '250px', data: {
+        columnName: column.columnName,
+        boardToDisplay: this.boardToDisplay,
+        messageToDisplay: "Edit"
+      },
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe({
+      next: (result: string) => {
+        if (result != null) {
+          this.currentUserKanban?.boards?.forEach((b: Board) => {
+            if (b.boardName === this.boardToDisplay?.boardName) {
+              b.columns?.forEach((c: Column) => {
+                if (c.columnName === column.columnName) {
+                  c.columnName = result;
+                }
+              })
+            }
+          })
+          this.kanbanService.updateKanban(this.currentUserKanban!);
+        }
+      }
+    });
   }
 }
