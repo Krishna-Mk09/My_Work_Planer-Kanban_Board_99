@@ -60,7 +60,7 @@
       <input [(ngModel)]="data.taskStatus" matInput name="taskstatus">
     </mat-form-field>
 
-    <mat-form-field appearance="fill" *ngIf="isMembersAvailable">
+    <mat-form-field appearance="fill" *ngIf="this.boardMembers?.length! !== 0">
       <mat-label>Task Assignee</mat-label>
       <mat-select [(ngModel)]="data.taskAssignee" name="taskassignee">
         <mat-option *ngFor="let member of boardMembers" [value]="member">

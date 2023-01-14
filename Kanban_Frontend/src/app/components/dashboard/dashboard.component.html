@@ -66,13 +66,13 @@
               <div><span><b>Due Date</b> - {{task?.dueDate?.toDateString()}}</span></div>
             </div>
             <div>
-              <div>
+              <div *ngIf="this.boardToDisplay?.members?.length !== 0">
                 {{task?.assigneeName}}
-                <img [src]="task?.assigneeImageURL" alt="Profile Image"></div>
+                <img *ngIf="task?.assigneeImageURL !== ''" [src]="task?.assigneeImageURL" alt="Profile Image"></div>
             </div>
           </div>
-          <pre> <a (click)="addTaskToColumn(column)" class="task1"><i aria-hidden="true"
-                                                                      class="fa fa-tasks fs-2x"></i>&nbsp; Add Task </a></pre>
+          <a (click)="addTaskToColumn(column)" class="task1">
+            <i aria-hidden="true" class="fa fa-tasks fs-2x"></i>&nbsp;Add Task </a>
         </div>
       </div>
     </div>

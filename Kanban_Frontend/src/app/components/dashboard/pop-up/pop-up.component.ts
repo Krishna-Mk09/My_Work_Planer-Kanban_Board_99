@@ -83,7 +83,6 @@ export class AddTaskPopupDialog implements OnInit {
   boardToDisplay?: Board;
   isTaskNameValid?: boolean;
   taskNames: String[] = [];
-  isMembersAvailable?: boolean;
   currentDate: Date = new Date();
   minimumDate:Date = new Date(this.currentDate.getFullYear(),this.currentDate.getMonth(),this.currentDate.getDate());
 
@@ -112,7 +111,6 @@ export class AddTaskPopupDialog implements OnInit {
       });
     });
     this.taskNames.push("");
-    this.isMembersAvailable = this.boardMembers?.length! != 0;
   }
 }
 
