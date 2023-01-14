@@ -81,12 +81,14 @@ export class AddTaskPopupDialog implements OnInit {
   boardToDisplay?: Board;
   isTaskNameValid?: boolean;
   taskNames: String[] = [];
-
+  isMembersAvailable?: boolean;
   currentDate: Date = new Date();
   minimumDate:Date = new Date(this.currentDate.getFullYear(),this.currentDate.getMonth(),this.currentDate.getDate());
 
 
-  constructor(public dialogRef: MatDialogRef<AddTaskPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  constructor(
+    public dialogRef: MatDialogRef<AddTaskPopupDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
   }
 
   checkTaskName() {
@@ -108,7 +110,7 @@ export class AddTaskPopupDialog implements OnInit {
       });
     });
     this.taskNames.push("");
-    console.log(this.taskNames);
+    this.isMembersAvailable = this.boardMembers?.length! != 0;
   }
 }
 
