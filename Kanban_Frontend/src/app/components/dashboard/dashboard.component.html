@@ -43,9 +43,11 @@
             <mat-icon>edit</mat-icon>
           </button>
           <br>
+
+          <!--Edit Column-->
           <mat-form-field *ngIf="wantToEditColumnName">
             <mat-label>Enter Column Name -</mat-label>
-            <input [(ngModel)]="column.columnName" matInput type="text" value="{{column.columnName}}">
+            <input [(ngModel)]="column.columnName" matInput type="text" value="{{column.columnName}}" >
           </mat-form-field>
           <button (click)="editColumnName()" *ngIf="wantToEditColumnName">
             <mat-icon>check</mat-icon>

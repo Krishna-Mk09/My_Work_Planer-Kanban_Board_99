@@ -1,57 +1,77 @@
-<h1 mat-dialog-title>Add Column</h1>
+<h1 mat-dialog-title>Add Task</h1>
 
 <div mat-dialog-content>
-  <p>Enter Column's Name</p>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Task Name</mat-label>
-    <input [(ngModel)]="data.taskName" matInput>
-  </mat-form-field>
+  <form #task="ngForm">
 
-  <mat-form-field appearance="fill">
-    <mat-label>Task Description</mat-label>
-    <input [(ngModel)]="data.taskDescription" matInput>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Task Name</mat-label>
+      <input (keyup)="checkTaskName()" [(ngModel)]="data.taskName" matInput name="taskname" required>
+    </mat-form-field>
+    <mat-error *ngIf="data.taskName === null || data.taskName === ''">
+      Task Name Cannot be empty
+    </mat-error>
+    <mat-error *ngIf="!isTaskNameValid && data.taskName !== null && data.taskName !== ''">
+      You Already Have a Task with this Name in This Board
+    </mat-error>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Task priority</mat-label>
-    <mat-select [(ngModel)]="data.taskPriority">
-      <mat-option *ngFor="let priority of priorities" [value]="priority">
-        {{priority}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Task Description</mat-label>
+      <input [(ngModel)]="data.taskDescription" matInput name="taskdescription">
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Start Date</mat-label>
-    <input [(ngModel)]="data.taskStartDate" [matDatepicker]="start" matInput>
-    <mat-datepicker-toggle [for]="start" matSuffix></mat-datepicker-toggle>
-    <mat-datepicker #start></mat-datepicker>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Task priority</mat-label>
+      <mat-select [(ngModel)]="data.taskPriority" name="taskpriority">
+        <mat-option *ngFor="let priority of priorities" [value]="priority">
+          {{priority}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Due Date</mat-label>
-    <input [(ngModel)]="data.taskDueDate" [matDatepicker]="due" matInput>
-    <mat-datepicker-toggle [for]="due" matSuffix></mat-datepicker-toggle>
-    <mat-datepicker #due></mat-datepicker>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input #startDate="ngModel" [(ngModel)]="data.taskStartDate" [matDatepicker]="$any(start)" [min]="minimumDate"
+             matInput name="startdate" required>
+      <mat-datepicker-toggle [for]="start" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #start></mat-datepicker>
+<!--      <div *ngIf="startDate?.invalid && (startDate?.dirty ||startDate.touched) ">-->
+        <mat-error *ngIf="startDate.errors?.['required']">
+          Date is required
+        </mat-error>
+<!--      </div>-->
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Task status</mat-label>
-    <input [(ngModel)]="data.taskStatus" matInput>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Due Date</mat-label>
+      <input #dueDate="ngModel" [(ngModel)]="data.taskDueDate" [matDatepicker]="$any(due)" [min]="data.taskStartDate"
+             matInput name="duedate" required>
+      <mat-datepicker-toggle [for]="due" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #due></mat-datepicker>
+      <div *ngIf="dueDate?.invalid && (startDate?.dirty ||dueDate.touched) ">
+        <mat-error *ngIf="dueDate.errors?.['required']">
+          Date is required
+        </mat-error>
+      </div>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Task Assignee</mat-label>
-    <mat-select [(ngModel)]="data.taskAssignee">
-      <mat-option *ngFor="let member of boardMembers" [value]="member">
-        {{member}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Task status</mat-label>
+      <input [(ngModel)]="data.taskStatus" matInput name="taskstatus">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Task Assignee</mat-label>
+      <mat-select [(ngModel)]="data.taskAssignee" name="taskassignee">
+        <mat-option *ngFor="let member of boardMembers" [value]="member">
+          {{member}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
 </div>
 
 <div mat-dialog-actions>
   <button (click)="onNoClick()" mat-button>No Thanks</button>
-  <button [mat-dialog-close]="data" cdkFocusInitial mat-button>Ok</button>
+  <button [disabled]="!isTaskNameValid || task.invalid" [mat-dialog-close]="data" mat-button>Ok</button>
 </div>

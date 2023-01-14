@@ -78,8 +78,19 @@ export class AddColumnPopupDialog implements OnInit{
 export class AddTaskPopupDialog implements OnInit {
   priorities = ['Low', 'Medium', 'High'];
   boardMembers?: string[];
+  boardToDisplay?: Board;
+  isTaskNameValid?: boolean;
+  taskNames: String[] = [];
+
+  currentDate: Date = new Date();
+  minimumDate:Date = new Date(this.currentDate.getFullYear(),this.currentDate.getMonth(),this.currentDate.getDate());
+
 
   constructor(public dialogRef: MatDialogRef<AddTaskPopupDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  }
+
+  checkTaskName() {
+    this.isTaskNameValid = !this.taskNames.includes(this.data.taskName, 0);
   }
 
   onNoClick() {
@@ -88,7 +99,16 @@ export class AddTaskPopupDialog implements OnInit {
 
 
   ngOnInit(): void {
+    this.boardToDisplay = this.data.boardToDisplay;
     this.boardMembers = this.data.boardToDisplay?.members;
+
+    this.boardToDisplay.columns?.forEach((c: Column) => {
+      c.tasks?.forEach((t) => {
+        this.taskNames.push(t.name!);
+      });
+    });
+    this.taskNames.push("");
+    console.log(this.taskNames);
   }
 }
 
