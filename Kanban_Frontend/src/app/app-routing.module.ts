@@ -32,6 +32,11 @@ const routes: Routes = [
     canActivate: [LoginGuard]
   },
   {
+    path: "notification",
+    component: NotfoundComponent,
+    canActivate: [LoginGuard]
+  },
+  {
     path: "**",
     component: NotfoundComponent
   }
