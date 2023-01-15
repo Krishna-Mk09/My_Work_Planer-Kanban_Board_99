@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "./services/authentication.service";
+import {NotificationService} from "./services/notification.service";
 
 @Component({
   selector: 'app-root',
@@ -7,14 +8,17 @@ import {AuthenticationService} from "./services/authentication.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Kanban_Frontend';
+  title = 'My Work Planner';
 
-  constructor(private authentication: AuthenticationService) {
+  constructor(
+    private authentication: AuthenticationService,
+    private notification: NotificationService) {
   }
 
   ngOnInit(): void {
     if (localStorage.getItem('token') != null) {
       this.authentication.getUserProfile();
+      this.notification.getNotification();
     }
   }
 }

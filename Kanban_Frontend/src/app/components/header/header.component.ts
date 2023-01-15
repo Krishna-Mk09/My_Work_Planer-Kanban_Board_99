@@ -1,7 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 import {User} from "../../model/user/User";
-import {MatDialog} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {NotificationService} from "../../services/notification.service";
+import {Notification} from "../../model/notification/Notification";
+
+export interface MessageData {
+  messages: string[];
+}
 
 @Component({
   selector: 'app-header', templateUrl: './header.component.html', styleUrls: ['./header.component.css']
@@ -11,10 +17,12 @@ export class HeaderComponent implements OnInit {
   mobileMenu: boolean = false;
   currentUser?: User;
   isLoggedIn: boolean = false;
+  currentUserNotification?: Notification;
 
   constructor(
     private authentication: AuthenticationService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private notification: NotificationService) {
   }
 
   ngOnInit(): void {
@@ -22,6 +30,7 @@ export class HeaderComponent implements OnInit {
       this.isLoggedIn = true;
       setTimeout(() => {
         this.currentUser = this.authentication.currentUser;
+        this.currentUserNotification = this.notification?.currentUserNotifications;
       }, 1000)
     }
   }
@@ -44,7 +53,10 @@ export class HeaderComponent implements OnInit {
 })
 export class NotificationPopupDialog implements OnInit {
 
-  constructor() {
+  constructor(
+    public dialogRef: MatDialogRef<NotificationPopupDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: MessageData
+  ) {
   }
 
   ngOnInit(): void {
