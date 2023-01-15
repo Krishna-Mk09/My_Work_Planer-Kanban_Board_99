@@ -2,5 +2,6 @@
   <div>Notifications</div>
   <div *ngFor="let message of this.currentUserNotification?.message?.reverse()">
     <p>{{message}}</p>
+    <mat-icon (click)="deleteNotification(message)">delete</mat-icon>
   </div>
 </div>
