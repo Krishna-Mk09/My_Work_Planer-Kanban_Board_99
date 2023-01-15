@@ -4,6 +4,7 @@ import {Kanban} from "../model/kanban/Kanban";
 import {Board} from "../model/kanban/Board";
 import {Column} from "../model/kanban/Column";
 import {Task} from "../model/kanban/Task";
+import {NotificationService} from "./notification.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,9 @@ export class KanbanService {
   endPointURL: string = "http://localhost:9005/kanban";
   currentUserKanban?: Kanban;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient,
+    private notificationService: NotificationService) {
   }
 
   saveKanban(kanban: Kanban) {
@@ -64,4 +67,14 @@ export class KanbanService {
   }
 
   // TODO: Send message to Notification
+  sendMessageToMember(message: string, email: string) {
+    let messageDTO = {
+      email: email,
+      message: message
+    };
+    return this.httpClient.put(`${this.endPointURL}/send-message`, messageDTO).subscribe({
+      next: () => this.notificationService.getNotification(),
+      error: (err) => console.log(err)
+    });
+  }
 }
