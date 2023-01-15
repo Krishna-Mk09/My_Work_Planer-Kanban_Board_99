@@ -72,9 +72,6 @@ services:
     networks:
       - kanban-network
     restart: always
-    #    volumes:
-    #      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
-    #      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
 
   api-gateway:
     container_name: api-gateway
@@ -83,9 +80,7 @@ services:
     networks:
       - kanban-network
     ports:
-      - 9005:9005
-
-
+      - "9005:9005"
 
   eurekaservice:
     container_name: spring-cloud-eureka
@@ -94,7 +89,7 @@ services:
     networks:
       - kanban-network
     ports:
-      - 8761:8761
+      - "8761:8761"
 
 
 networks:
