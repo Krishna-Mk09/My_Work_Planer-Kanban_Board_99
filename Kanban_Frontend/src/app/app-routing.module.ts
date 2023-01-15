@@ -7,6 +7,7 @@ import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {LoginGuard} from "./guards/login.guard";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {NotfoundComponent} from "./components/notfound/notfound.component";
+import {NotificationComponent} from "./components/notification/notification.component";
 
 const routes: Routes = [
   {
@@ -33,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: "notification",
-    component: NotfoundComponent,
+    component: NotificationComponent,
     canActivate: [LoginGuard]
   },
   {
