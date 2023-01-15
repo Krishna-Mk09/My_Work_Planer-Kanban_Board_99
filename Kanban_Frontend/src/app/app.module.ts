@@ -37,6 +37,7 @@ import {
 } from "./components/dashboard/pop-up/pop-up.component";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     FooterComponent,
     AddMemberPopupDialog,
     ProfileComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
