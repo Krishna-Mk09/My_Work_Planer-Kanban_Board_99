@@ -167,4 +167,17 @@ li {
   border-radius: 50%;
 }
 
+.notification {
+  margin: 10px;
+}
 
+.notification_link {
+  margin: 10px;
+  text-decoration: underline;
+  color: blue;
+}
+
+.fa-solid {
+  font-size: 20px;
+  margin-right: 20px;
+}
