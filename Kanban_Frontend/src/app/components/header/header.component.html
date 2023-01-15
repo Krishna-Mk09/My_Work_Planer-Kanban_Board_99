@@ -30,6 +30,9 @@
           <a (click)="logout()" *ngIf="isLoggedIn" class="header__link">Logout</a>
         </li>
         <li>
+          <i (click)="notificationPopUp()" *ngIf="isLoggedIn" class="fa-solid fa-bell header__link" ></i>
+        </li>
+        <li>
           <img *ngIf="isLoggedIn" [src]="currentUser?.imageURL" alt="Profile thumbnail" class="thumbnail_image"
                matTooltip="Your Profile" routerLink="profile">
         </li>
