@@ -6,6 +6,7 @@ import {Kanban} from "../../../model/kanban/Kanban";
 import {KanbanService} from "../../../services/kanban.service";
 import {Board} from "../../../model/kanban/Board";
 import {Column} from "../../../model/kanban/Column";
+import {User} from "../../../model/user/User";
 
 
 // Component for adding a new board to the Kanban
@@ -82,21 +83,30 @@ export class AddColumnPopupDialog implements OnInit{
 export class AddTaskPopupDialog implements OnInit {
   priorities = ['Low', 'Medium', 'High'];
   boardMembers?: string[];
+  users?: User[] = [];
   boardToDisplay?: Board;
   isTaskNameValid?: boolean;
   taskNames: String[] = [];
   messageToDisplay?: string;
   currentDate: Date = new Date();
+  isTaskAssigneeValid?: boolean;
   minimumDate:Date = new Date(this.currentDate.getFullYear(),this.currentDate.getMonth(),this.currentDate.getDate());
 
 
   constructor(
     public dialogRef: MatDialogRef<AddTaskPopupDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private authenticationService: AuthenticationService) {
   }
 
   checkTaskName() {
     this.isTaskNameValid = !this.taskNames.includes(this.data.taskName, 0);
+  }
+
+  checkTaskAssignee(user: User) {
+    this.isTaskAssigneeValid = user.numberOfTaskAssigned! !== 3;
+    console.log(this.isTaskAssigneeValid);
+    console.log(user.numberOfTaskAssigned);
   }
 
   onNoClick() {
@@ -107,6 +117,13 @@ export class AddTaskPopupDialog implements OnInit {
   ngOnInit(): void {
     this.boardToDisplay = this.data.boardToDisplay;
     this.boardMembers = this.data.boardToDisplay?.members;
+    this.boardMembers?.forEach((m: string) => {
+      this.authenticationService.getUserByEmail(m).subscribe((user: User) => {
+        this.users?.push(user);
+      });
+    });
+
+
     this.messageToDisplay = this.data.messageToDisplay;
     this.boardToDisplay.columns?.forEach((c: Column) => {
       c.tasks?.forEach((t) => {

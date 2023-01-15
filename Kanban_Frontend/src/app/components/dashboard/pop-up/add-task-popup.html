@@ -63,10 +63,14 @@
     <mat-form-field appearance="fill" *ngIf="this.boardMembers?.length! !== 0">
       <mat-label>Task Assignee</mat-label>
       <mat-select [(ngModel)]="data.taskAssignee" name="taskassignee">
-        <mat-option *ngFor="let member of boardMembers" [value]="member">
-          {{member}}
+        <mat-option *ngFor="let user of users" [value]="user.email" (onSelectionChange)="checkTaskAssignee(user)">
+          {{user.numberOfTaskAssigned}}
+          {{user.email}}
         </mat-option>
       </mat-select>
+      <mat-error *ngIf="isTaskAssigneeValid">
+        This User is Already Assigned to 3 Task in this Board
+      </mat-error>
     </mat-form-field>
   </form>
 </div>

@@ -14,6 +14,7 @@ import {
   AddTaskPopupDialog
 } from "./pop-up/pop-up.component";
 import {DialogData} from "./dialog.data";
+import {User} from "../../model/user/User";
 
 
 @Component({
@@ -113,6 +114,16 @@ export class DashboardComponent implements OnInit {
           });
           this.kanbanService.updateKanban(this.currentUserKanban!);
           this.fetchDetailsOfTaskAssignee();
+          if (result.taskAssignee !== null) {
+            this.authentication.getUserByEmail(result.taskAssignee).subscribe({
+              next: (response: User) => {
+                response.numberOfTaskAssigned! += 1;
+                if (response.numberOfTaskAssigned! < 4) {
+                  this.authentication.updateUserProfile(response);
+                }
+              }
+            });
+          }
         }
       }
     })

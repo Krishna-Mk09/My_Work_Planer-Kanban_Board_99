@@ -19,12 +19,12 @@
     <div class="styleBoard">
       <div *ngIf="boardToDisplay != null">
         <div>
-          <h2>{{boardToDisplay?.boardName}}</h2>
+          <h2>{{boardToDisplay.boardName}}</h2>
           <button (click)="editBoardName()">
             <mat-icon>edit</mat-icon>
           </button>
         </div>
-        <button (click)="deleteBoard(boardToDisplay?.boardName)" mat-raised-button>
+        <button (click)="deleteBoard(boardToDisplay.boardName)" mat-raised-button>
           <mat-icon>delete</mat-icon>
         </button>
       </div>
@@ -33,9 +33,8 @@
         (click)="addColumnToBoard()" *ngIf="boardToDisplay != null" class="girds"><h2><i
         aria-hidden="true" class="fa fa-columns fa-1x"></i> Add-Column </h2>
       </a></h2>
-      <!--      <h2>Members</h2>-->
+      <!-- Members -->
       <div *ngIf="boardToDisplay?.members?.length != 0">
-        <!--        <h1>Heloooooo</h1>-->
         <h2 *ngFor="let member of boardToDisplay?.members">{{member}}</h2>
       </div>
     </div>
