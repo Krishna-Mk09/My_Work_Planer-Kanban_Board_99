@@ -43,7 +43,6 @@ export class AuthenticationService {
     localStorage.removeItem('token');
     localStorage.removeItem('user_email');
     this.isLoggedIn = false;
-    // TODO: Update this URL
     this.router.navigateByUrl("").then(() => {
       setTimeout(() => {
         window.location.reload()
