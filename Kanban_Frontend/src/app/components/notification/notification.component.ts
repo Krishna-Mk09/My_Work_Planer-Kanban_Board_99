@@ -24,4 +24,8 @@ export class NotificationComponent implements OnInit {
     }, 1000)
   }
 
+  deleteNotification(message: string) {
+    this.currentUserNotification?.message?.splice(this.currentUserNotification?.message?.indexOf(message), 1);
+    this.notificationService.updateNotification(this.currentUserNotification!);
+  }
 }
