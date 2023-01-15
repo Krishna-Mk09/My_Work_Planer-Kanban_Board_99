@@ -1,1 +1,6 @@
-<p>notification works!</p>
+<div class="container">
+  <div>Notifications</div>
+  <div *ngFor="let message of this.currentUserNotification?.message?.reverse()">
+    <p>{{message}}</p>
+  </div>
+</div>

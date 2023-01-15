@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {NotificationService} from "../../services/notification.service";
+import {Notification} from "../../model/notification/Notification";
+
 
 @Component({
   selector: 'app-notification',
@@ -6,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent implements OnInit {
+  currentUserNotification?: Notification;
 
-  constructor() { }
+  constructor(
+    private notificationService: NotificationService
+  ) {
+  }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.currentUserNotification = this.notificationService.currentUserNotifications;
+      console.log(this.currentUserNotification);
+
+    }, 1000)
   }
 
 }
