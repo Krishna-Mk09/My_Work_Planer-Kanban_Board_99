@@ -35,7 +35,7 @@ public class NotificationController {
 		return new ResponseEntity<>(NOTIFICATION_SERVICE.getByEmail(email), HttpStatus.OK);
 	}
 
-	@PutMapping("/updateNotification/")
+	@PutMapping("/updateNotification")
 	public ResponseEntity<?> updateNotification(@RequestBody Notification notification) {
 		return new ResponseEntity<>(NOTIFICATION_SERVICE.updateNotification(notification), HttpStatus.ACCEPTED);
 	}
