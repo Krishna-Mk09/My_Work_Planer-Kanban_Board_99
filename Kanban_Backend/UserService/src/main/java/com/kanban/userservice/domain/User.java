@@ -14,7 +14,6 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class User {
 	private String firstName;
@@ -24,4 +23,9 @@ public class User {
 	private String password;
 	private long mobileNumber;
 	private String imageURL;
+	private int numberOfTaskAssigned;
+
+	public User() {
+		this.numberOfTaskAssigned = 0;
+	}
 }
