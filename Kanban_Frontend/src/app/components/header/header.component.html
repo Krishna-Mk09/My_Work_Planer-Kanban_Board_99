@@ -18,7 +18,7 @@
           <a class="header__link" routerLink=""> Home </a>
         </li>
         <li>
-          <a class="header__link" *ngIf="isLoggedIn" routerLink="dashboard">Boards </a>
+          <a *ngIf="isLoggedIn" class="header__link" routerLink="dashboard">Boards </a>
         </li>
         <li>
           <a *ngIf="!isLoggedIn" class="header__link" routerLink="register">Register</a>
@@ -30,7 +30,21 @@
           <a (click)="logout()" *ngIf="isLoggedIn" class="header__link">Logout</a>
         </li>
         <li>
-          <i (click)="notificationPopUp()" *ngIf="isLoggedIn" class="fa-solid fa-bell header__link" ></i>
+          <div [matMenuTriggerFor]="notification" class="header__link">
+            <i (click)="this.isHidden = true" [matBadgeHidden]="isHidden"
+               [matBadge]="currentUserNotification?.message?.length" class="fa-solid fa-bell" matBadgeColor="warn"></i>
+            <mat-menu #notification="matMenu">
+              <div *ngIf="currentUserNotification?.message?.length !== 0">
+                <div *ngFor="let message of currentUserNotification?.message?.slice(0,3)" class="notification">
+                  {{message}}
+                </div>
+                <a class="notification_link" routerLink="notification">Read all notifications</a>
+              </div>
+              <div *ngIf="currentUserNotification?.message?.length === 0">
+                No new notifications
+              </div>
+            </mat-menu>
+          </div>
         </li>
         <li>
           <img *ngIf="isLoggedIn" [src]="currentUser?.imageURL" alt="Profile thumbnail" class="thumbnail_image"
