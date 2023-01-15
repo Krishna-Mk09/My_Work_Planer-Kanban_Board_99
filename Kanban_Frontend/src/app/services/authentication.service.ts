@@ -20,10 +20,12 @@ export class AuthenticationService {
   }
 
   registerUser(user: User) {
+    user.email = user?.email?.toLowerCase();
     return this.httpClient.post(`${this.endPointURL}/add`, user);
   }
 
   loginUser(user: User) {
+    user.email = user?.email?.toLowerCase();
     this.httpClient.post(`${this.endPointURL}/login`, user).subscribe({
       next: (response: any) => {
         this.isLoggedIn = true;
