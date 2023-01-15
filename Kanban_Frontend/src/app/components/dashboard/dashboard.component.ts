@@ -123,6 +123,7 @@ export class DashboardComponent implements OnInit {
                 }
               }
             });
+            this.kanbanService.sendMessageToMember(`You have been assigned a task of ${result.taskName} in the board ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}`, result.taskAssignee);
           }
         }
       }
