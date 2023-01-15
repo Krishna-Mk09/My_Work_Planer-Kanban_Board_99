@@ -41,8 +41,8 @@
                 </div>
                 <a class="notification_link" routerLink="notification">Read all notifications</a>
               </div>
-              <div *ngIf="currentUserNotification?.message?.length === 0">
-                No new notifications
+              <div *ngIf="currentUserNotification?.message?.length === 0" class="notification">
+                No notifications
               </div>
             </mat-menu>
           </div>
