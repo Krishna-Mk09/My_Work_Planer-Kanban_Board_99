@@ -1,4 +1,4 @@
 export type Notification = {
   email?:string;
-  message?:string;
+  message?: string[];
 }
