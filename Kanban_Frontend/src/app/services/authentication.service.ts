@@ -42,6 +42,7 @@ export class AuthenticationService {
   logoutUser() {
     localStorage.removeItem('token');
     localStorage.removeItem('user_email');
+    localStorage.removeItem('user_firstname');
     this.isLoggedIn = false;
     this.router.navigateByUrl("").then(() => {
       setTimeout(() => {
@@ -58,6 +59,7 @@ export class AuthenticationService {
       next: (response) => {
         this.currentUser = response;
         this.isLoggedIn = true;
+        localStorage.setItem('user_firstname', response.firstName!);
         console.log(this.currentUser)
       }
     });
