@@ -1,13 +1,18 @@
 import {Injectable} from '@angular/core';
 import emailjs, {EmailJSResponseStatus} from "@emailjs/browser";
 import {User} from "../model/user/User";
+import {HttpClient} from "@angular/common/http";
+import {Notification} from "../model/notification/Notification";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
 
-  constructor() {
+  endPointURL: string = "http://localhost:9005/notification";
+  currentUserNotifications?: Notification;
+
+  constructor(private httpClient: HttpClient) {
   }
 
   sendMail(user: User) {
@@ -22,4 +27,21 @@ export class NotificationService {
         }
       )
   }
+
+  getNotification() {
+    this.httpClient.get<Notification>(`${this.endPointURL}/getByEmail/${localStorage.getItem('user_email')}`)
+      .subscribe({
+        next: (response) => this.currentUserNotifications = response,
+        error: (err) => console.log(err)
+      })
+  }
+
+  updateNotification(notification: Notification) {
+    this.httpClient.put<Notification>(`${this.endPointURL}/updateNotification`, notification)
+      .subscribe({
+        next: (response) => this.currentUserNotifications = response,
+        error: (err) => console.log(err)
+      })
+  }
+
 }
