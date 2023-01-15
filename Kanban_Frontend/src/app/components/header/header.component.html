@@ -29,13 +29,14 @@
         <li>
           <a (click)="logout()" *ngIf="isLoggedIn" class="header__link">Logout</a>
         </li>
-        <li>
+        <li *ngIf="isLoggedIn">
           <div [matMenuTriggerFor]="notification" class="header__link">
             <i (click)="this.isHidden = true" [matBadgeHidden]="isHidden"
                [matBadge]="currentUserNotification?.message?.length" class="fa-solid fa-bell" matBadgeColor="warn"></i>
             <mat-menu #notification="matMenu">
               <div *ngIf="currentUserNotification?.message?.length !== 0">
-                <div *ngFor="let message of currentUserNotification?.message?.slice(0,3)" class="notification">
+                <div *ngFor="let message of currentUserNotification?.message?.reverse()?.slice(0,3)"
+                     class="notification">
                   {{message}}
                 </div>
                 <a class="notification_link" routerLink="notification">Read all notifications</a>
