@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HeaderComponent, NotificationPopupDialog} from './components/header/header.component';
+import {HeaderComponent} from './components/header/header.component';
 import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {HomeComponent} from './components/home/home.component';
@@ -37,7 +37,9 @@ import {
 } from "./components/dashboard/pop-up/pop-up.component";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
-import { NotificationComponent } from './components/notification/notification.component';
+import {NotificationComponent} from './components/notification/notification.component';
+import {MatMenuModule} from "@angular/material/menu";
+import {MatBadgeModule} from "@angular/material/badge";
 
 @NgModule({
   declarations: [
@@ -54,8 +56,7 @@ import { NotificationComponent } from './components/notification/notification.co
     AddMemberPopupDialog,
     ProfileComponent,
     NotfoundComponent,
-    NotificationComponent,
-    NotificationPopupDialog
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -82,6 +83,8 @@ import { NotificationComponent } from './components/notification/notification.co
     FontAwesomeModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatMenuModule,
+    MatBadgeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
