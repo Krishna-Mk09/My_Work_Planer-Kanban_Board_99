@@ -144,6 +144,7 @@ export class DashboardComponent implements OnInit {
           this.kanbanService.addMemberToBoard(this.currentUserKanban!, result).subscribe({
             next: (result) => console.log(result)
           })
+          this.kanbanService.sendMessageToMember(`You have been added to the board ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}`, result);
         }
       }
     })
