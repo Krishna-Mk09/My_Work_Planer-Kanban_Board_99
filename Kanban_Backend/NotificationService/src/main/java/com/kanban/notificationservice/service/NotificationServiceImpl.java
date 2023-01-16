@@ -59,4 +59,8 @@ public class NotificationServiceImpl implements NotificationService {
         }
     }
 
+    @Override
+    public void deleteNotification(String email) {
+        NOTIFICATION_REPOSITORY.deleteById(email);
+    }
 }

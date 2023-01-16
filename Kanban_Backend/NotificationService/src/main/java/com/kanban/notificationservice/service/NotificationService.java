@@ -9,4 +9,5 @@ public interface NotificationService {
 
 	Notification updateNotification(Notification notification);
 
+	void deleteNotification(String email);
 }
