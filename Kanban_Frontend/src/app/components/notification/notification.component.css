@@ -1,34 +1,38 @@
 .container {
-  margin-top: 100px;
-  min-height: 1000px;
-
+  width: 80%;
+  margin: 100px auto;
 }
 
 .notification-heading {
-  display: flex;
-  justify-content: center;
-  font-size: 35px;
-  padding-top: 10px;
-  font-family: Arial;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
+.notification-heading h3 {
+  font-size: 2em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.notification-container {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
 }
 
 .message {
-  display: block;
-  justify-content: start;
-  margin-top: 50px;
-  margin-left: 10px;
-  font-size: 25px;
-
-  padding-top: 10px ;
-  padding-bottom: 15px;
-  padding-left: 10px;
-  margin-right: 10px;
-  font-family: Calibri;
-  background-color: #dad7d7;
-  box-shadow: 2px 2px 10px 3px rgba(0, 0, 0, 0.34);
+  display: grid;
+  grid-template-columns: 80% 20%;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
 }
 
-.message mat-icon {
-  margin-left: 20px;
+.message p {
+  font-size: 18px;
+}
+
+.delete-icon {
+  cursor: pointer;
+  color: #f44336;
 }
