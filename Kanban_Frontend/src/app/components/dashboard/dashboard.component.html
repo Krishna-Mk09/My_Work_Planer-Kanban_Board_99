@@ -32,25 +32,30 @@
         </div>
       </div>
 
-      <!--    Members -->
-      <div >
-        <div *ngIf="boardToDisplay?.members?.length != 0">
-          <h2 *ngFor="let member of boardToDisplay?.members">{{member}}</h2>
-        </div>
+<!--        Add Members -->
+      <div class="board_members_main">
+      <div *ngIf="boardToDisplay != null" class="board_members">
+        <h2>Contributors : </h2>
+      </div>
+      <div *ngFor="let member of boardMembers" class="board_members">
+        <img [src]="member.imageURL" alt="member image">
+      </div>
+      <div (click)="addMembersToBoard()" *ngIf="boardToDisplay != null" class="board_members">
+        <img src="https://res.cloudinary.com/dduwkdctl/image/upload/v1673872688/Kanban%20Project/Add_Member_a9af5n.png" alt="add_member">
       </div>
 
-      <div class="styleBoard1">
-        <a (click)="addMembersToBoard()" *ngIf="boardToDisplay != null">
-          <i aria-hidden="true" class="fa fa-user-plus fa-1x"></i> Add-member</a>
-        <a (click)="addColumnToBoard()" *ngIf="boardToDisplay != null" class="girds">
-          <h2><i aria-hidden="true" class="fa fa-columns fa-1x"></i> Add-Column </h2>
-        </a>
+<!--        Add Column    -->
+      <div class="board_add_column" (click)="addColumnToBoard()" *ngIf="boardToDisplay != null">
+        <img src="https://res.cloudinary.com/dduwkdctl/image/upload/v1673873692/Kanban%20Project/Add_Column_fq0aht.png" alt="add_column">
+          <h2>Add Column</h2>
+      </div>
       </div>
 
     </div>
 
+
     <div cdkDropListGroup>
-      <!--      Columns     -->
+<!--            Columns     -->
       <div *ngFor="let column of boardToDisplay?.columns" class="column_container">
         <div class="column_header">
           <div class="column_header_name">
@@ -71,7 +76,7 @@
           (cdkDropListDropped)="drop($event)"
           [cdkDropListData]="column.tasks"
           cdkDropList class="task_list">
-          <!--          Tasks     -->
+<!--                    Tasks     -->
           <div *ngFor="let task of column.tasks" cdkDrag class="task_container">
 
             <div class="grid_one">

@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
 
   currentUserKanban?: Kanban;
   boardToDisplay?: Board;
+  boardMembers: User[] = [];
 
   constructor(
     private kanbanService: KanbanService,
@@ -31,8 +32,20 @@ export class DashboardComponent implements OnInit {
     private authentication: AuthenticationService) {
   }
 
+  fetchDetailsOfBoardMembers() {
+    this.boardMembers = [];
+    this.boardToDisplay?.members?.forEach((memberEmail: string) => {
+      this.authentication.getUserByEmail(memberEmail).subscribe({
+        next: (response: User) => {
+          this.boardMembers.push(response);
+        }
+      })
+    })
+  }
+
   displayBoard(board: Board) {
     this.boardToDisplay = board;
+    this.fetchDetailsOfBoardMembers();
   }
 
   addBoardToKanban() {
@@ -145,6 +158,7 @@ export class DashboardComponent implements OnInit {
           this.kanbanService.addMemberToBoard(this.currentUserKanban!, result).subscribe({
             next: (result) => console.log(result)
           })
+          this.fetchDetailsOfBoardMembers();
           this.kanbanService.sendMessageToMember(`You have been added to the board ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}`, result);
         }
       }
