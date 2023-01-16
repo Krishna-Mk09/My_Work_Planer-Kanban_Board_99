@@ -90,7 +90,7 @@
             </mat-form-field>
             <div *ngIf="userForm.controls['confirmPassword'].touched || userForm.controls['confirmPassword'].dirty">
               <mat-error *ngIf="userForm.controls['confirmPassword'].hasError('required')">
-                confirmPassword is <strong>required</strong>
+                Confirm Password is <strong>required</strong>
               </mat-error>
               <mat-error *ngIf="userForm.errors?.['mustMatch']==false">
                 Password and Confirm Password should match.
@@ -101,7 +101,7 @@
         <div class="row">
           <div class="col">
             <mat-form-field appearance="fill" class="full-width">
-              <input formControlName="mobileNumber" matInput placeholder="Mobile Number">
+              <input formControlName="mobileNumber" type="number" matInput placeholder="Mobile Number">
             </mat-form-field>
             <div *ngIf="userForm.controls['mobileNumber'].touched || userForm.controls['mobileNumber'].dirty">
               <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('required')">
