@@ -10,7 +10,7 @@ import {AuthenticationService} from "../../services/authentication.service";
 export class LoginComponent implements OnInit {
 
   logInForm = this.fb.group({
-    email: [null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)]],
+    email: [null, [Validators.required, Validators.pattern(/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i)]],
     password: [null, [Validators.required, Validators.minLength(8)]]
   });
 
