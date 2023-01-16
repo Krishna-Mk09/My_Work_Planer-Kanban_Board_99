@@ -9,6 +9,7 @@
 
 .sidenav {
   width: 200px;
+
 }
 
 .container {
@@ -36,7 +37,7 @@
 }
 
 .styleBoard {
-  background-color: rgb(222, 135, 22);
+
   padding-top: 15px;
   padding-left: 5px;
   text-align: center;
@@ -60,7 +61,7 @@
 
 
 .sidenav {
-  background-color: rgb(235, 235, 192)
+  background-color: #e0dddd;
 }
 
 /*.list {*/
@@ -81,7 +82,7 @@
 .b1 {
   font-size: 35px;
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
 }
 
 .task_container {
