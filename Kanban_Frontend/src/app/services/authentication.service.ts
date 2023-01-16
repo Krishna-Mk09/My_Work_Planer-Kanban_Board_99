@@ -87,6 +87,15 @@ export class AuthenticationService {
     })
   }
 
+  deleteUserAccount() {
+    return this.httpClient.delete(
+      `${this.endPointURL}/guard/delete/${localStorage.getItem('user_email')}`,
+      {headers: new HttpHeaders({Authorization: `Bearer ${localStorage.getItem('token')}`})}).subscribe({
+      next: () => {
+        console.log("Account Deleted Successfully !!!")},
+    })
+  }
+
   getAllEmails() {
     return this.httpClient.get<string[]>(
       `${this.endPointURL}/guard/all-emails`,
