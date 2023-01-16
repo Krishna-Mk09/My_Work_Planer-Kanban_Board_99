@@ -32,12 +32,14 @@ export class AuthenticationService {
         localStorage.setItem('token', response.token);
         localStorage.setItem('user_email', user.email!);
         this.getUserProfile();
+        this.snackBar.open("Login Successfully !!!", "Done", {duration: 3000});
         this.router.navigateByUrl("dashboard").then(() => {
           setTimeout(() => {
             window.location.reload()
           }, 100);
         });
-      }
+      },
+      error: () => this.snackBar.open("Login Failed !!  Email or password is Incorrect", "Okay", {duration: 3000})
     });
   }
 
@@ -90,6 +92,5 @@ export class AuthenticationService {
       `${this.endPointURL}/guard/all-emails`,
       {headers: new HttpHeaders({Authorization: `Bearer ${localStorage.getItem('token')}`})}
     )
-
   }
 }
