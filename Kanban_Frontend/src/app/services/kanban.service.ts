@@ -58,7 +58,9 @@ export class KanbanService {
 
   deleteKanban() {
     return this.httpClient.delete(
-      `${this.endPointURL}/delete-kanban/${localStorage.getItem('user_email')}`);
+      `${this.endPointURL}/delete-kanban/${localStorage.getItem('user_email')}`).subscribe({
+      next: () => console.log("Kanban deleted")
+    })
   }
 
   addMemberToBoard(kanban: Kanban, email: string) {
