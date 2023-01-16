@@ -9,15 +9,12 @@ import {AuthenticationService} from "../../services/authentication.service";
 })
 export class LoginComponent implements OnInit {
 
- constructor(private authentication: AuthenticationService , private fb: FormBuilder) {
-  }
-
   logInForm = this.fb.group({
-   email: [null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)]],
-   password: [null, [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/)]]
-   });
+    email: [null, [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)]],
+    password: [null, [Validators.required, Validators.minLength(8)]]
+  });
 
-  ngOnInit(): void {
+  constructor(private authentication: AuthenticationService, private fb: FormBuilder) {
   }
 
   onSubmit(): void {
@@ -25,5 +22,7 @@ export class LoginComponent implements OnInit {
       this.authentication.loginUser(this.logInForm.value);
     }
   }
-}
 
+  ngOnInit(): void {
+  }
+}
