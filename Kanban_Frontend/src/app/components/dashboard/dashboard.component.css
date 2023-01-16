@@ -85,72 +85,120 @@
   padding-bottom: 30px;
 }
 
+
+/*Task*/
 .task_container {
-  display: grid;
-  grid-template-columns: 70% 30%;
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F5F5F5;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  padding: 16px;
+  border-radius: 8px;
+  width: auto;
+  margin: 16px;
 }
 
-.task_container .low {
-  color: green;
+.task_container .grid_one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.task_container .medium {
-  color: orange;
+.task_container .task_name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #3F51B5;
 }
 
-.task_container .high {
-  color: red;
+.task_container .task_desc {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #333;
 }
 
-.priority {
-  display: grid;
-  align-content: center;
-  justify-content: end;
-  font-size: 25px;
-  margin-right: 10px;
+.task_container .priority {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
-.priority p {
-  margin: 0 auto;
+.task_container .priority i {
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.task_container .priority i.low {
+  color: #28A745;
+}
+
+.task_container .priority i.medium {
+  color: #FFC107;
+}
+
+.task_container .priority i.high {
+  color: #DC3545;
+}
+
+.task_container .date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.task_container .date span {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #333;
 }
 
 .task_container img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  /*margin-right: 8px;*/
 }
 
-.grid_one {
-  display: grid;
-  border: 2px solid black;
-  justify-content: start;
+.task_container .edit {
+  display: flex;
+  align-items: center;
 }
 
-.task_name {
-  display: grid;
-  justify-content: start;
-  font-size: 25px;
+.task_container .edit button {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  margin-right: 8px;
+  color: #333;
 }
 
-.task_desc {
-  display: grid;
+.task_container .assignee-details {
+  /*display: flex;*/
+  align-items: center;
+}
+
+.assignee-details div{
+  margin-bottom: 10px;
+}
+
+.assignee{
+  margin-left: 70px;
+}
+
+.task_container .edit-icons {
+  margin-left: -50px;
   margin-top: 10px;
-  justify-content: start;
-  border: 2px solid black;
 }
 
-.date {
-  margin-top: 20px;
-  border: 2px solid red;
-  display: grid;
-  justify-content: start;
+.task_container .edit-icons button {
+  margin-right: 10px;
 }
 
-.date div {
-  display: grid;
-  justify-content: start;
-}
+
+
+
+
+
 

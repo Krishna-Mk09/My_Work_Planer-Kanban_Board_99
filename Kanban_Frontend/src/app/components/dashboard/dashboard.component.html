@@ -40,6 +40,7 @@
     </div>
 
     <div cdkDropListGroup>
+<!--      Columns     -->
       <div *ngFor="let column of boardToDisplay?.columns" class="container">
         <div>
           <h3 class="col"> Column : {{column.columnName}}</h3>
@@ -55,7 +56,9 @@
           (cdkDropListDropped)="drop($event)"
           [cdkDropListData]="column.tasks"
           cdkDropList class="list">
+<!--          Tasks     -->
           <div *ngFor="let task of column.tasks" cdkDrag class="task_container">
+
             <div class="grid_one">
               <div class="task_name">{{task?.name}}</div>
               <div class="task_desc">{{task?.description}}</div>
@@ -69,19 +72,24 @@
               <div><span><b>Started On</b> - {{task?.startDate?.toDateString()}}</span></div>
               <div><span><b>Due Date</b> - {{task?.dueDate?.toDateString()}}</span></div>
             </div>
-            <div>
-              <div *ngIf="this.boardToDisplay?.members?.length !== 0">
-                {{task?.assigneeName}}
-                <img *ngIf="task?.assigneeImageURL !== ''" [src]="task?.assigneeImageURL" alt="Profile Image"></div>
-            </div>
+
             <div class="edit">
-              <button (click)="editTask(task, column?.columnName!)">
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button (click)="deleteTask(task)">
-                <mat-icon>delete</mat-icon>
-              </button>
+              <div class="edit-icons">
+                <button (click)="editTask(task, column?.columnName!)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button (click)="deleteTask(task)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+              <div class="assignee">
+                <div *ngIf="this.boardToDisplay?.members?.length !== 0" class="assignee-details">
+                  <img *ngIf="task?.assigneeImageURL !== ''" [src]="task?.assigneeImageURL" alt="Profile Image">
+                  <div><b>Assigned To</b></div>
+                </div>
+              </div>
             </div>
+
           </div>
           <a (click)="addTaskToColumn(column)" class="task1">
             <i aria-hidden="true" class="fa fa-tasks fs-2x"></i>&nbsp;Add Task </a>
