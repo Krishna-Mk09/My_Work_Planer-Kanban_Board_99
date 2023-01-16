@@ -6,8 +6,8 @@
       <input (change)="updateImage($event)" type="file"><br>
       <button (click)="uploadProfilePicture()" color="warn" mat-raised-button>Upload</button>
     </div>
-    <div>
-      <button (click)="deleteAccount()">Delete Account</button>
+    <div class="delete_account_button">
+      <button mat-raised-button (click)="openDialog('500ms','500ms')">Delete Account</button>
     </div>
   </div>
   <div class="update_form">

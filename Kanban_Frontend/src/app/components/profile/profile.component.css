@@ -36,3 +36,7 @@ input:disabled {
 .submit_button {
   margin-bottom: 25px;
 }
+
+.delete_account_button{
+  margin-top: 100px;
+}
