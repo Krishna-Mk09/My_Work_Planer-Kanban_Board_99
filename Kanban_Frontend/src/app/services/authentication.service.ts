@@ -39,7 +39,13 @@ export class AuthenticationService {
           }, 100);
         });
       },
-      error: () => this.snackBar.open("Login Failed !!  Email or password is Incorrect", "Okay", {duration: 3000})
+      error: (err) => {
+        if (err.status === 404) {
+          this.snackBar.open("Login Failed !!  Email or password is Incorrect", "Okay", {duration: 3000})
+        } else {
+          this.snackBar.open("Login Failed !!  Internal server Error Please try again after some time", "Okay", {duration: 3000})
+        }
+      }
     });
   }
 
@@ -92,7 +98,8 @@ export class AuthenticationService {
       `${this.endPointURL}/guard/delete/${localStorage.getItem('user_email')}`,
       {headers: new HttpHeaders({Authorization: `Bearer ${localStorage.getItem('token')}`})}).subscribe({
       next: () => {
-        this.snackBar.open("Your Account has been deleted Permanently", "Okay", {duration: 3000})},
+        this.snackBar.open("Your Account has been deleted Permanently", "Okay", {duration: 3000})
+      },
     })
   }
 
