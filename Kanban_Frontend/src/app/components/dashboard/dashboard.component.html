@@ -2,8 +2,11 @@
 
   <mat-sidenav class="sidenav" mode="side"
                opened>
-    <mat-toolbar class="b1">Boards</mat-toolbar>
     <mat-nav-list>
+      <div class="sidenav_heading">
+        <h1>Boards</h1>
+      </div>
+      <hr>
       <div *ngFor="let board of currentUserKanban?.boards">
         <a (click)="displayBoard(board)" class="board_name" mat-list-item>{{board.boardName}}</a>
       </div>
@@ -57,6 +60,8 @@
         </div>
       </div>
     </div>
+
+    <hr *ngIf="boardToDisplay != null" class="divider">
 
     <div cdkDropListGroup>
       <!--            Columns     -->
