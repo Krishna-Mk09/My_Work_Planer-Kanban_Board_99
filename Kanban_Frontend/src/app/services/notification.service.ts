@@ -44,4 +44,12 @@ export class NotificationService {
       })
   }
 
+  deleteNotification() {
+    this.httpClient.delete(`${this.endPointURL}/delete/${localStorage.getItem('user_email')}`)
+      .subscribe({
+        next: () => console.log("Notification deleted"),
+        error: (err) => console.log(err)
+      })
+  }
+
 }

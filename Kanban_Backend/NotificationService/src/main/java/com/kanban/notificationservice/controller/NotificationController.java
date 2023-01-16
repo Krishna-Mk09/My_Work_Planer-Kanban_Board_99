@@ -40,10 +40,9 @@ public class NotificationController {
 		return new ResponseEntity<>(NOTIFICATION_SERVICE.updateNotification(notification), HttpStatus.ACCEPTED);
 	}
 
-	@DeleteMapping("/delete/notification/{email}")
+	@DeleteMapping("/delete/{email}")
 	public ResponseEntity<?> deleteNotification(@PathVariable String email){
 		this.NOTIFICATION_SERVICE.deleteNotification(email);
 		return new ResponseEntity<>("User Notification Successfully", HttpStatus.OK);
 	}
-
 }

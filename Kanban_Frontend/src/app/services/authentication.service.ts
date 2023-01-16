@@ -92,7 +92,7 @@ export class AuthenticationService {
       `${this.endPointURL}/guard/delete/${localStorage.getItem('user_email')}`,
       {headers: new HttpHeaders({Authorization: `Bearer ${localStorage.getItem('token')}`})}).subscribe({
       next: () => {
-        console.log("Account Deleted Successfully !!!")},
+        this.snackBar.open("Your Account has been deleted Permanently", "Okay", {duration: 3000})},
     })
   }
 
