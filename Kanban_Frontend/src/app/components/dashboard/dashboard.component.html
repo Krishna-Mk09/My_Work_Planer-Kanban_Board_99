@@ -23,39 +23,43 @@
           <h1> Board Name : {{boardToDisplay.boardName}}</h1>
         </div>
         <div class="board_buttons">
-          <div (click)="editBoardName()">
+          <div (click)="editBoardName()" matTooltip="Edit Board Name">
             <span class="material-symbols-outlined">edit</span>
           </div>
-          <div (click)="deleteBoard(boardToDisplay.boardName)">
+          <div (click)="deleteBoard(boardToDisplay.boardName)" matTooltip="Delete Board">
             <span class="material-symbols-outlined">delete</span>
           </div>
         </div>
       </div>
 
-<!--        Add Members -->
+      <!--        Add Members -->
       <div class="board_members_main">
-      <div *ngIf="boardToDisplay != null" class="board_members">
-        <h2>Contributors : </h2>
-      </div>
-      <div *ngFor="let member of boardMembers" class="board_members">
-        <img [src]="member.imageURL" alt="member image">
-      </div>
-      <div (click)="addMembersToBoard()" *ngIf="boardToDisplay != null" class="board_members">
-        <img src="https://res.cloudinary.com/dduwkdctl/image/upload/v1673872688/Kanban%20Project/Add_Member_a9af5n.png" alt="add_member">
-      </div>
+        <div *ngIf="boardToDisplay != null" class="board_members">
+          <h2>Contributors : </h2>
+        </div>
+        <div *ngFor="let member of boardMembers" class="board_members">
+          <img [matTooltip]="member.firstName!" [src]="member.imageURL" alt="member image">
+        </div>
+        <div (click)="addMembersToBoard()" *ngIf="boardToDisplay != null" class="board_members"
+             matTooltip="Add contributor to board">
+          <img
+            alt="add_member"
+            src="https://res.cloudinary.com/dduwkdctl/image/upload/v1673872688/Kanban%20Project/Add_Member_a9af5n.png">
+        </div>
 
-<!--        Add Column    -->
-      <div class="board_add_column" (click)="addColumnToBoard()" *ngIf="boardToDisplay != null">
-        <img src="https://res.cloudinary.com/dduwkdctl/image/upload/v1673873692/Kanban%20Project/Add_Column_fq0aht.png" alt="add_column">
+        <!--        Add Column    -->
+        <div (click)="addColumnToBoard()" *ngIf="boardToDisplay != null" class="board_add_column"
+             matTooltip="Add Column">
+          <img
+            alt="add_column"
+            src="https://res.cloudinary.com/dduwkdctl/image/upload/v1673873692/Kanban%20Project/Add_Column_fq0aht.png">
           <h2>Add Column</h2>
+        </div>
       </div>
-      </div>
-
     </div>
 
-
     <div cdkDropListGroup>
-<!--            Columns     -->
+      <!--            Columns     -->
       <div *ngFor="let column of boardToDisplay?.columns" class="column_container">
         <div class="column_header">
           <div class="column_header_name">
@@ -76,7 +80,7 @@
           (cdkDropListDropped)="drop($event)"
           [cdkDropListData]="column.tasks"
           cdkDropList class="task_list">
-<!--                    Tasks     -->
+          <!--                    Tasks     -->
           <div *ngFor="let task of column.tasks" cdkDrag class="task_container">
 
             <div class="grid_one">
@@ -104,7 +108,8 @@
               </div>
               <div class="assignee">
                 <div *ngIf="this.boardToDisplay?.members?.length !== 0" class="assignee-details">
-                  <img *ngIf="task?.assigneeImageURL !== ''" [src]="task?.assigneeImageURL" alt="Profile Image">
+                  <img *ngIf="task?.assigneeImageURL !== ''" [matTooltip]="task?.assigneeName!"
+                       [src]="task?.assigneeImageURL" alt="Profile Image">
                   <div><b>Assigned To</b></div>
                 </div>
               </div>

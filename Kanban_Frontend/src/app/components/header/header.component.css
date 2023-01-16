@@ -35,11 +35,10 @@
 
 .header__links {
   display: flex;
-
-
 }
 
 .header__link {
+  cursor: pointer;
   padding: 2.2rem 3rem;
   display: inline-block;
   font-size: 1.6rem;
@@ -161,6 +160,7 @@ li {
 }
 
 .thumbnail_image {
+  cursor: pointer;
   height: 30px;
   width: 30px;
   margin-top: 15px;
