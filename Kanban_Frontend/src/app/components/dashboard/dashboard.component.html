@@ -8,55 +8,70 @@
         <a (click)="displayBoard(board)" class="board_name" mat-list-item>{{board.boardName}}</a>
       </div>
       <a (click)="addBoardToKanban()" mat-list-item>
-        <button><i aria-hidden="true" class="fa fa-window-maximize"></i> &nbsp; Add Board</button>
+        <button><i aria-hidden="true" class="fa fa-window-maximize"></i>Add Board</button>
       </a>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content class="sidebar-content">
-
     <!-- Add content here -->
-    <div class="styleBoard">
-      <div *ngIf="boardToDisplay != null">
-        <div>
-          <h2>{{boardToDisplay.boardName}}</h2>
-          <button (click)="editBoardName()">
-            <mat-icon>edit</mat-icon>
-          </button>
+
+    <!--    Board Header-->
+    <div class="board_container">
+      <div *ngIf="boardToDisplay != null" class="board_heading">
+        <div class="board_heading_name">
+          <h1> Board Name : {{boardToDisplay.boardName}}</h1>
         </div>
-        <button (click)="deleteBoard(boardToDisplay.boardName)" mat-raised-button>
-          <mat-icon>delete</mat-icon>
-        </button>
+        <div class="board_buttons">
+          <div (click)="editBoardName()">
+            <span class="material-symbols-outlined">edit</span>
+          </div>
+          <div (click)="deleteBoard(boardToDisplay.boardName)">
+            <span class="material-symbols-outlined">delete</span>
+          </div>
+        </div>
       </div>
-      <h2 class="styleBoard1"><a (click)="addMembersToBoard()" *ngIf="boardToDisplay != null">
-        <i aria-hidden="true" class="fa fa-user-plus fa-1x"></i> Add-member</a> &nbsp; &nbsp;&nbsp;<a
-        (click)="addColumnToBoard()" *ngIf="boardToDisplay != null" class="girds"><h2><i
-        aria-hidden="true" class="fa fa-columns fa-1x"></i> Add-Column </h2>
-      </a></h2>
-      <!-- Members -->
-      <div *ngIf="boardToDisplay?.members?.length != 0">
-        <h2 *ngFor="let member of boardToDisplay?.members">{{member}}</h2>
+
+      <!--    Members -->
+      <div >
+        <div *ngIf="boardToDisplay?.members?.length != 0">
+          <h2 *ngFor="let member of boardToDisplay?.members">{{member}}</h2>
+        </div>
       </div>
+
+      <div class="styleBoard1">
+        <a (click)="addMembersToBoard()" *ngIf="boardToDisplay != null">
+          <i aria-hidden="true" class="fa fa-user-plus fa-1x"></i> Add-member</a>
+        <a (click)="addColumnToBoard()" *ngIf="boardToDisplay != null" class="girds">
+          <h2><i aria-hidden="true" class="fa fa-columns fa-1x"></i> Add-Column </h2>
+        </a>
+      </div>
+
     </div>
 
     <div cdkDropListGroup>
-<!--      Columns     -->
-      <div *ngFor="let column of boardToDisplay?.columns" class="container">
-        <div>
-          <h3 class="col"> Column : {{column.columnName}}</h3>
-          <button (click)="editColumnName(column)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <br>
+      <!--      Columns     -->
+      <div *ngFor="let column of boardToDisplay?.columns" class="column_container">
+        <div class="column_header">
+          <div class="column_header_name">
+            <h3>{{column.columnName}}</h3>
+          </div>
+          <div class="column_button">
+            <button (click)="editColumnName(column)" mat-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button (click)="deleteColumn(column)" mat-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
         </div>
-        <button (click)="deleteColumn(column)" mat-raised-button>
-          <mat-icon>delete</mat-icon>
-        </button>
+
+        <hr>
         <div
           (cdkDropListDropped)="drop($event)"
           [cdkDropListData]="column.tasks"
-          cdkDropList class="list">
-<!--          Tasks     -->
+          cdkDropList class="task_list">
+          <!--          Tasks     -->
           <div *ngFor="let task of column.tasks" cdkDrag class="task_container">
 
             <div class="grid_one">
@@ -91,8 +106,9 @@
             </div>
 
           </div>
-          <a (click)="addTaskToColumn(column)" class="task1">
-            <i aria-hidden="true" class="fa fa-tasks fs-2x"></i>&nbsp;Add Task </a>
+          <div (click)="addTaskToColumn(column)" class="add_task">
+            <i class="fa fa-add"></i>Add Task
+          </div>
         </div>
       </div>
     </div>
