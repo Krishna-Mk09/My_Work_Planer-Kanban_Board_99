@@ -70,7 +70,7 @@
 .hero_background {
   margin-top: 80px;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   background-image: url("https://res.cloudinary.com/dduwkdctl/image/upload/v1673931218/Kanban%20Project/blob_2_bchup7.svg");
   background-repeat: no-repeat;
