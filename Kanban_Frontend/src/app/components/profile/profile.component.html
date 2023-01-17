@@ -4,11 +4,11 @@
     <img [src]="currentUser?.imageURL" alt="profile picture" class="image">
     <div class="upload">
       <input (change)="updateImage($event)" accept="image/*" type="file"><br>
-      <button (click)="uploadProfilePicture()" *ngIf="isFileValid" [disabled]="!isFileValid" color="warn"
-              mat-raised-button>Upload
+      <button (click)="uploadProfilePicture()" *ngIf="isFileValid" color="warn" mat-raised-button>
+        Upload
       </button>
+      <mat-error *ngIf="this.image?.size! > 1024">Image should not be greater than 1mb</mat-error>
     </div>
-    <mat-error *ngIf="this.image?.size! > 1024">Image should not be greater than 1mb</mat-error>
     <div class="delete_account_button">
       <button (click)="openDialog('500ms','500ms')" color="warn" mat-raised-button>Delete Account</button>
     </div>
