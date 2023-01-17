@@ -9,7 +9,7 @@
       <div *ngFor="let board of currentUserKanban?.boards">
         <a (click)="displayBoard(board)" class="board_name" mat-list-item>{{board.boardName}}</a>
       </div>
-      <hr class="divider" >
+      <hr *ngIf="currentUserKanban?.boards?.length != 0" class="divider">
       <div (click)="addBoardToKanban()" class="add_board_button">
         <button mat-button><span class="material-symbols-outlined">add_card</span>Add New Board</button>
       </div>
