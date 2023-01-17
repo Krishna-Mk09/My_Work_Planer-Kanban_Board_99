@@ -5,11 +5,8 @@
 }
 
 .login_form {
-  /*margin: 120px auto;*/
-  position: relative;
-  margin: 0 auto;
-  top: 120px;
-  max-width: 600px;
+  margin-top: 150px;
+  max-width: 400px;
   box-shadow: 2px 2px 10px 5px rgba(0, 0, 0, 0.34);
   text-align: center;
   background-color: azure;
@@ -27,9 +24,9 @@
   }
 }
 
-
 .full-width {
-  width: 60%;
+  width: 80%;
+  /*padding: 0px;*/
   padding-top: 30px;
 }
 
@@ -37,3 +34,49 @@
   padding-top: 20px;
 }
 
+/*home component*/
+
+.home-hero {
+  height: auto;
+  min-height: 80rem;
+  max-height: 120rem;
+  position: relative
+}
+
+@media only screen and (max-width: 37.5em) {
+  .home-hero {
+    height: unset;
+    min-height: unset
+  }
+}
+
+.hero_image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10rem
+}
+
+@media only screen and (max-width: 56.25em) {
+  .about__content {
+    grid-template-columns: 1fr;
+    grid-gap: 8rem
+  }
+}
+
+.hero_background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://res.cloudinary.com/dduwkdctl/image/upload/v1673931218/Kanban%20Project/blob_2_bchup7.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 600px;
+  animation: float 6s ease-in-out infinite;
+}

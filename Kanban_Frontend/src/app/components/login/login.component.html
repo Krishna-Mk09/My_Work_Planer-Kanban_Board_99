@@ -1,28 +1,46 @@
 <div class="login">
-  <form (ngSubmit)="onSubmit()" [formGroup]="logInForm" class="login_form">
-    <h2>Enter your login credentials</h2>
-    <!--        Email       -->
-    <mat-form-field appearance="fill" class="full-width">
-      <input formControlName="email" id="email" matInput name="email" placeholder="email" type="email"/>
-      <mat-error *ngIf="logInForm.controls['email'].hasError('required')">
-        Email is <strong>required</strong>
-      </mat-error>
-      <mat-error *ngIf="logInForm.controls['email'].hasError('pattern')">
-        Please provide proper email
-      </mat-error>
-    </mat-form-field>
 
-    <!--        Password    -->
-    <mat-form-field appearance="fill" class="full-width">
-      <input formControlName="password" id="password" matInput name="password" placeholder="Password"
-             type="password"/>
-      <mat-error *ngIf="logInForm.controls['password'].hasError('required')">
-        Password is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-    <br><br>
-    <button color="primary" mat-button mat-raised-button type="submit">Submit</button>
-    <br>
-    <div style="padding: 20px">Not a member? <a href="#">SignUp</a></div>
-  </form>
+  <section class="home-hero">
+    <div class="about__content">
+
+      <!--        Left -->
+      <div class="hero_image">
+        <div class="hero_background">
+          <img
+            alt="hero image"
+            src="https://images.ctfassets.net/rz1oowkt5gyp/75rDABL8fyMtNLlUAtBxrg/c5e145977a86c41c47e17c69410c64f7/TrelloUICollage_4x.png"
+            style="width: 50%">
+        </div>
+      </div>
+      <!--        Right-->
+      <div>
+        <form (ngSubmit)="onSubmit()" [formGroup]="logInForm" class="login_form">
+          <h2>Enter your login credentials</h2>
+          <!--        Email       -->
+          <mat-form-field appearance="fill" class="full-width">
+            <input formControlName="email" id="email" matInput name="email" placeholder="Email" type="email"/>
+            <mat-error *ngIf="logInForm.controls['email'].hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="logInForm.controls['email'].hasError('pattern')">
+              Please provide proper email
+            </mat-error>
+          </mat-form-field>
+
+          <!--        Password    -->
+          <mat-form-field appearance="fill" class="full-width">
+            <input formControlName="password" id="password" matInput name="password" placeholder="Password"
+                   type="password"/>
+            <mat-error *ngIf="logInForm.controls['password'].hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <br><br>
+          <button color="primary" mat-button mat-raised-button type="submit">Submit</button>
+          <br>
+          <div style="padding: 20px">Not a member? <a routerLink="/register">SignUp</a></div>
+        </form>
+      </div>
+    </div>
+  </section>
 </div>
