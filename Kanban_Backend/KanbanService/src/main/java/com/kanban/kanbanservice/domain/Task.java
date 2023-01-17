@@ -13,7 +13,6 @@ public class Task {
     private String name;
     private String description;
     private String priority;
-    private String status;
     private LocalDate startDate;
     private LocalDate dueDate;
     private String assigneeEmail;
