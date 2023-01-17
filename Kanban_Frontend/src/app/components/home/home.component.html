@@ -7,19 +7,33 @@
 
       <!--        Left -->
       <div class="hero_image">
-<!--        <div class="hero_background">-->
+        <div *ngIf="!isLoggedIn; else elseBlock">
           <h1>My Work Planner brings all your tasks, teammates, and tools together</h1>
           <p>Collaborate, manage projects, and reach new productivity peaks.
             <br>
             Keep everything in the same place—even if your team isn’t.
-
           </p>
-<!--          <p>Keep everything in the same place—even if your team isn’t.</p>-->
           <div class="hero_buttons">
-            <button color="primary" mat-raised-button routerLink="register" class="button button--primary">Sign up - it's free!</button>
-            <button color="accent" mat-raised-button routerLink="login" class="button button--secondary">Log in</button>
-<!--          </div>-->
+            <button class="button button--primary" color="primary" mat-raised-button routerLink="register">Sign up -
+              it's free!
+            </button>
+            <button class="button button--secondary" color="accent" mat-raised-button routerLink="login">Log in</button>
+          </div>
         </div>
+        <ng-template #elseBlock class="hero_image">
+          <h1>
+            Hello {{firstName}} !
+          </h1>
+          <p>
+            Welcome to My Work Planner
+            <br>
+            Go to your Boards to start planning your tasks
+          </p>
+          <div class="hero_buttons">
+            <button class="button button--primary" color="primary" mat-raised-button routerLink="/dashboard">Boards
+            </button>
+          </div>
+        </ng-template>
 
       </div>
       <!--        Right-->
