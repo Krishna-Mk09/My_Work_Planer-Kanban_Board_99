@@ -3,6 +3,7 @@ import {AuthenticationService} from "../../services/authentication.service";
 import {User} from "../../model/user/User";
 import {NotificationService} from "../../services/notification.service";
 import {Notification} from "../../model/notification/Notification";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -14,11 +15,12 @@ export class HeaderComponent implements OnInit {
   currentUser?: User;
   isLoggedIn: boolean = false;
   currentUserNotification?: Notification;
-  isHidden: boolean = false;
+  noOfUnreadNotifications?: number;
 
   constructor(
     private authentication: AuthenticationService,
-    private notification: NotificationService) {
+    private notification: NotificationService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -27,6 +29,9 @@ export class HeaderComponent implements OnInit {
       setTimeout(() => {
         this.currentUser = this.authentication.currentUser;
         this.currentUserNotification = this.notification?.currentUserNotifications;
+        this.noOfUnreadNotifications = this.currentUserNotification?.messages?.filter(message => message.messageRead === false).length;
+        console.log(this.currentUserNotification);
+        console.log(this.noOfUnreadNotifications);
       }, 1000)
     }
     window.addEventListener('scroll', () => {
@@ -41,5 +46,11 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authentication.logoutUser();
+  }
+
+  goToNotification() {
+    this.router.navigateByUrl('/notification').then(() => {
+      window.location.reload();
+    });
   }
 }
