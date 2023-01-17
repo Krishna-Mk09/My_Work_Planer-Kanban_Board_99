@@ -22,10 +22,37 @@
 }
 
 .hero_image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 50px;
+  margin-left: 70px;
+  margin-top: 160px;
+  color: black;
 }
+
+.hero_image h1 {
+  line-height: 1.5;
+  font-size: 4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.hero_image p {
+  margin-top: 30px;
+  font-size: 2.1rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.hero_buttons {
+  margin-top: 40px;
+}
+
+.hero_buttons button {
+  font-size: 2rem;
+  margin-right: 20px;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
 
 .about__content {
   display: grid;
@@ -41,6 +68,7 @@
 }
 
 .hero_background {
+  margin-top: 80px;
   display: flex;
   justify-content: center;
   align-items: center;

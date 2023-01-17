@@ -7,19 +7,27 @@
 
       <!--        Left -->
       <div class="hero_image">
-        <div class="hero_background">
-          <img
-            alt="hero image"
-            src="https://images.ctfassets.net/rz1oowkt5gyp/75rDABL8fyMtNLlUAtBxrg/c5e145977a86c41c47e17c69410c64f7/TrelloUICollage_4x.png"
-            style="width: 50%">
+<!--        <div class="hero_background">-->
+          <h1>My Work Planner brings all your tasks, teammates, and tools together</h1>
+          <p>Collaborate, manage projects, and reach new productivity peaks.
+            <br>
+            Keep everything in the same place—even if your team isn’t.
+
+          </p>
+<!--          <p>Keep everything in the same place—even if your team isn’t.</p>-->
+          <div class="hero_buttons">
+            <button color="primary" mat-raised-button routerLink="register" class="button button--primary">Sign up - it's free!</button>
+            <button color="accent" mat-raised-button routerLink="login" class="button button--secondary">Log in</button>
+<!--          </div>-->
         </div>
+
       </div>
       <!--        Right-->
-      <div *ngIf="!isLoggedIn" style="width: 500px; margin-top: 0 !important;">
-        <app-register></app-register>
-      </div>
-      <div *ngIf="isLoggedIn">
-        <img src="favicon.ico">
+      <div class="hero_background">
+        <img
+          alt="hero image"
+          src="https://images.ctfassets.net/rz1oowkt5gyp/75rDABL8fyMtNLlUAtBxrg/c5e145977a86c41c47e17c69410c64f7/TrelloUICollage_4x.png"
+          style="width: 50%">
       </div>
     </div>
   </section>
