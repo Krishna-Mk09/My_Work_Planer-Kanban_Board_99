@@ -8,9 +8,7 @@ import {NotificationService} from "../../services/notification.service";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-profile', templateUrl: './profile.component.html', styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
 
@@ -18,12 +16,9 @@ export class ProfileComponent implements OnInit {
   wantToUpdate: boolean = false;
   currentUser?: User;
   imageURL?: string;
+  isFileValid?: boolean;
 
-  constructor(
-    public authentication: AuthenticationService,
-    private profileService: ProfileimageService,
-    private snackbar: MatSnackBar,
-    public dialog: MatDialog) {
+  constructor(public authentication: AuthenticationService, private profileService: ProfileimageService, private snackbar: MatSnackBar, public dialog: MatDialog) {
   }
 
   updateUser(): void {
@@ -32,21 +27,24 @@ export class ProfileComponent implements OnInit {
   }
 
   uploadProfilePicture() {
-    this.profileService.uploadProfilePicture(this.image!).subscribe({
-      next: (response: any) => {
-        this.imageURL = response['secure_url'];
-        this.snackbar.open("Profile Image updated successfully!", "Close", {duration: 3000});
-      },
-      error: (err) => console.log(err)
-    });
-    setTimeout(() => {
-      this.currentUser!.imageURL = this.imageURL!;
-      this.updateUser();
-    }, 3000);
+    if (this.isFileValid) {
+      this.profileService.uploadProfilePicture(this.image!).subscribe({
+        next: (response: any) => {
+          this.imageURL = response['secure_url'];
+          this.snackbar.open("Profile Image updated successfully!", "Close", {duration: 3000});
+        }, error: (err) => console.log(err)
+      });
+      setTimeout(() => {
+        this.currentUser!.imageURL = this.imageURL!;
+        this.updateUser();
+      }, 3000);
+    }
   }
 
   updateImage(event: any) {
     this.image = event.target.files![0];
+    this.isFileValid = this.image?.size! <= 1024;
+    if (!this.isFileValid) this.snackbar.open("File is too big!", "Close", {duration: 3000});
   }
 
   ngOnInit(): void {
@@ -57,24 +55,17 @@ export class ProfileComponent implements OnInit {
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(DeleteAccountPopupDialog, {
-      width: '300px',
-      enterAnimationDuration,
-      exitAnimationDuration,
+      width: '300px', enterAnimationDuration, exitAnimationDuration,
     });
   }
 }
 
 
 @Component({
-  selector: 'delete-account-popup',
-  templateUrl: './delete-account-popup.html',
+  selector: 'delete-account-popup', templateUrl: './delete-account-popup.html',
 })
 export class DeleteAccountPopupDialog {
-  constructor(
-    public dialogRef: MatDialogRef<DeleteAccountPopupDialog>,
-    private kanbanService: KanbanService,
-    private notificationService: NotificationService,
-    public authentication: AuthenticationService) {
+  constructor(public dialogRef: MatDialogRef<DeleteAccountPopupDialog>, private kanbanService: KanbanService, private notificationService: NotificationService, public authentication: AuthenticationService) {
   }
 
   onNoClick() {
