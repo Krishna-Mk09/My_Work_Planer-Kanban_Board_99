@@ -1,4 +1,6 @@
+import {Message} from "./Message";
+
 export type Notification = {
-  email?:string;
-  message?: string[];
+  email?: string;
+  messages?: Message[];
 }
