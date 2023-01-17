@@ -5,7 +5,7 @@
       <div class="sidenav_heading">
         <h1>Boards</h1>
       </div>
-      <hr class="divider" >
+      <hr class="divider">
       <div *ngFor="let board of currentUserKanban?.boards">
         <a (click)="displayBoard(board)" class="board_name" mat-list-item>{{board.boardName}}</a>
       </div>
