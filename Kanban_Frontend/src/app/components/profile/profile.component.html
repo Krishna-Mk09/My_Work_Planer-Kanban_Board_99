@@ -7,7 +7,7 @@
       <button (click)="uploadProfilePicture()" color="warn" mat-raised-button>Upload</button>
     </div>
     <div class="delete_account_button">
-      <button mat-raised-button (click)="openDialog('500ms','500ms')">Delete Account</button>
+      <button (click)="openDialog('500ms','500ms')" color="warn" mat-raised-button>Delete Account</button>
     </div>
   </div>
   <div class="update_form">
@@ -52,11 +52,11 @@
         </mat-form-field>
       </div>
       <br>
-      <button (click)="updateUser()" *ngIf="wantToUpdate" class="submit_button" color="warn" mat-raised-button
-              type="submit">Submit
-      </button>
       <button (click)="wantToUpdate = !wantToUpdate" *ngIf="!wantToUpdate" class="submit_button" color="primary"
               mat-raised-button>Edit Profile
+      </button>
+      <button (click)="updateUser()" *ngIf="wantToUpdate" class="submit_button" color="warn" mat-raised-button
+              type="submit">Submit
       </button>
       <button (click)="wantToUpdate = !wantToUpdate" *ngIf="wantToUpdate" class="submit_button" color="accent"
               mat-raised-button>Cancel
