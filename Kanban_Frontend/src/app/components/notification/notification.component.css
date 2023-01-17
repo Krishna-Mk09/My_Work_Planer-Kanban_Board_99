@@ -1,6 +1,14 @@
-.container {
-  width: 80%;
-  margin: 100px auto;
+.main-container {
+  background-image: url("https://res.cloudinary.com/dduwkdctl/image/upload/v1673931280/Kanban%20Project/wave_oawig5.svg");
+  background-repeat: no-repeat;
+  min-height: 70rem;
+}
+
+.inner-container {
+  position: relative;
+  margin: 0 auto;
+  top: 150px;
+  max-width: 80%;
 }
 
 .notification-heading {
