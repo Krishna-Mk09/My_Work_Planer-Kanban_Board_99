@@ -1,53 +1,17 @@
 .home {
-  /*top: 80px;*/
-  /*position: relative;*/
   height: 100%;
   width: 100%;
 }
 
 /*Dash Board */
-
 .home-hero {
   color: #fff;
-  /*background: linear-gradient(to right, rgba(245, 245, 245, .7), rgba(245, 245, 245, .7)), url("https://res.cloudinary.com/dduwkdctl/image/upload/v1669708933/Chaurasiaaditya.in/images/background2_osubfe.svg");*/
-  /*background-position: center;*/
   background-image: url("https://res.cloudinary.com/dduwkdctl/image/upload/v1673931280/Kanban%20Project/wave_oawig5.svg");
   background-repeat: no-repeat;
-  /*background-size: cover;*/
   height: auto;
   min-height: 80rem;
   max-height: 120rem;
   position: relative
-}
-
-.hero_image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero_background {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url("https://res.cloudinary.com/dduwkdctl/image/upload/v1673931218/Kanban%20Project/blob_2_bchup7.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  height: 600px;
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(-0px);
-  }
 }
 
 @media only screen and (max-width: 37.5em) {
@@ -57,10 +21,10 @@
   }
 }
 
-
-/* About */
-.about {
-  background: #fafafa
+.hero_image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .about__content {
@@ -75,6 +39,44 @@
     grid-gap: 8rem
   }
 }
+
+.hero_background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://res.cloudinary.com/dduwkdctl/image/upload/v1673931218/Kanban%20Project/blob_2_bchup7.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 600px;
+  animation: float 6s ease-in-out infinite;
+}
+
+
+
+
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-0px);
+  }
+}
+
+
+
+
+/* About */
+.about {
+  background: #fafafa
+}
+
+
 
 .about__content-title {
   font-weight: 700;

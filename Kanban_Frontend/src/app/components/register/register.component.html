@@ -1,129 +1,153 @@
 <div class="register">
-  <form (ngSubmit)="onSubmit()" [formGroup]="userForm" novalidate>
-    <mat-card class="container">
-      <mat-card-header>
-        <mat-card-title>
-          <h1> Registration Form </h1>
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="h2">
-        <div class="row">
-          <div class="col">
-            <mat-form-field appearance="fill" class="full-width">
-              <input formControlName="firstName" matInput placeholder="First name">
-            </mat-form-field>
-            <div *ngIf="userForm.controls['firstName'].touched || userForm.controls['firstName'].dirty">
-              <mat-error *ngIf="userForm.controls['firstName'].hasError('required')">
-                First name is <strong>required</strong>
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['firstName'].hasError('minlength')">
-                First cannot be less than 2 char
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['firstName'].hasError('maxlength')">
-                First cannot be greater than 20 char
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['firstName'].hasError('pattern')">
-                First cannot be numbers
-              </mat-error>
-            </div>
-          </div>
-          <div class="col">
-            <mat-form-field appearance="fill" class="full-width">
-              <input formControlName="lastName" matInput placeholder="Last name">
-            </mat-form-field>
-            <div *ngIf="userForm.controls['lastName'].touched || userForm.controls['lastName'].dirty">
-              <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">
-                Last name is <strong>required</strong>
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['lastName'].hasError('minlength')">
-                Last name is cannot be less than 2 char
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['lastName'].hasError('maxlength')">
-                Last name is cannot be greater than 20char
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['lastName'].hasError('pattern')">
-                Last name cannot be numbers
-              </mat-error>
-            </div>
-          </div>
+
+
+  <section class="home-hero">
+    <div class="about__content">
+
+      <!--        Left -->
+      <div class="hero_image">
+        <div class="hero_background">
+          <img
+            alt="hero image"
+            src="https://images.ctfassets.net/rz1oowkt5gyp/75rDABL8fyMtNLlUAtBxrg/c5e145977a86c41c47e17c69410c64f7/TrelloUICollage_4x.png"
+            style="width: 50%">
         </div>
-        <div class="row">
-          <div class="col">
-            <mat-form-field appearance="fill" class="full-width">
-              <input formControlName="email" matInput placeholder="Email">
-            </mat-form-field>
-            <div *ngIf="userForm.controls['email'].touched || userForm.controls['email'].dirty">
-              <mat-error *ngIf="userForm.controls['email'].hasError('required')">
-                email is <strong>required</strong>
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['email'].hasError('pattern')">
-                Please provide proper email
-              </mat-error>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <mat-form-field appearance="fill" class="full-width">
-              <input formControlName="password" matInput placeholder="Password" type="password">
-            </mat-form-field>
-            <div *ngIf="userForm.controls['password'].touched || userForm.controls['password'].dirty">
-              <mat-error *ngIf="userForm.controls['password'].hasError('required')">
-                password is <strong>required</strong>
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['password'].hasError('minlength')">
-                Password should be minimum of 6 char
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['confirmPassword'].hasError('maxlength')">
-                Password should have max of 12 characters
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['password'].hasError('pattern')">
-                Password should be combination of numbers alphabets and symbols
-              </mat-error>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <mat-form-field appearance="fill" class="full-width">
-              <input formControlName="confirmPassword" matInput placeholder="Confirm Password" type="password">
-            </mat-form-field>
-            <div *ngIf="userForm.controls['confirmPassword'].touched || userForm.controls['confirmPassword'].dirty">
-              <mat-error *ngIf="userForm.controls['confirmPassword'].hasError('required')">
-                Confirm Password is <strong>required</strong>
-              </mat-error>
-              <mat-error *ngIf="userForm.errors?.['mustMatch']==false">
-                Password and Confirm Password should match.
-              </mat-error>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <mat-form-field appearance="fill" class="full-width">
-              <input formControlName="mobileNumber" type="number" matInput placeholder="Mobile Number">
-            </mat-form-field>
-            <div *ngIf="userForm.controls['mobileNumber'].touched || userForm.controls['mobileNumber'].dirty">
-              <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('required')">
-                Mobile Number is <strong>required</strong>
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('minlength')">
-                Mobile Number cannot be lessThan 10 digits
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('maxlength')">
-                Mobile Number cannot be more than 10
-              </mat-error>
-              <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('pattern')">
-                provide proper mobile number!
-              </mat-error>
-            </div>
-          </div>
-        </div>
-      </mat-card-content>
-      <mat-card-actions class="buttons">
-        <button [disabled]="userForm.invalid" color="primary" mat-raised-button type="submit">Submit</button>
-        <button color="primary" mat-raised-button routerLink="/login">Login</button>
-      </mat-card-actions>
-    </mat-card>
-  </form>
+      </div>
+      <!--        Right-->
+      <div class="register_form">
+        <form (ngSubmit)="onSubmit()" [formGroup]="userForm" novalidate>
+          <mat-card class="container">
+            <mat-card-header>
+              <mat-card-title>
+                <h1> Registration Form </h1>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="h2">
+              <div class="row">
+                <div class="col">
+                  <mat-form-field appearance="fill" class="full-width">
+                    <input formControlName="firstName" matInput placeholder="First name">
+                  </mat-form-field>
+                  <div *ngIf="userForm.controls['firstName'].touched || userForm.controls['firstName'].dirty">
+                    <mat-error *ngIf="userForm.controls['firstName'].hasError('required')">
+                      First name is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['firstName'].hasError('minlength')">
+                      First cannot be less than 2 char
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['firstName'].hasError('maxlength')">
+                      First cannot be greater than 20 char
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['firstName'].hasError('pattern')">
+                      First cannot be numbers
+                    </mat-error>
+                  </div>
+                </div>
+                <div class="col">
+                  <mat-form-field appearance="fill" class="full-width">
+                    <input formControlName="lastName" matInput placeholder="Last name">
+                  </mat-form-field>
+                  <div *ngIf="userForm.controls['lastName'].touched || userForm.controls['lastName'].dirty">
+                    <mat-error *ngIf="userForm.controls['lastName'].hasError('required')">
+                      Last name is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['lastName'].hasError('minlength')">
+                      Last name is cannot be less than 2 char
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['lastName'].hasError('maxlength')">
+                      Last name is cannot be greater than 20char
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['lastName'].hasError('pattern')">
+                      Last name cannot be numbers
+                    </mat-error>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field appearance="fill" class="full-width">
+                    <input formControlName="email" matInput placeholder="Email">
+                  </mat-form-field>
+                  <div *ngIf="userForm.controls['email'].touched || userForm.controls['email'].dirty">
+                    <mat-error *ngIf="userForm.controls['email'].hasError('required')">
+                      email is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['email'].hasError('pattern')">
+                      Please provide proper email
+                    </mat-error>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field appearance="fill" class="full-width">
+                    <input formControlName="password" matInput placeholder="Password" type="password">
+                  </mat-form-field>
+                  <div *ngIf="userForm.controls['password'].touched || userForm.controls['password'].dirty">
+                    <mat-error *ngIf="userForm.controls['password'].hasError('required')">
+                      password is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['password'].hasError('minlength')">
+                      Password should be minimum of 6 char
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['confirmPassword'].hasError('maxlength')">
+                      Password should have max of 12 characters
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['password'].hasError('pattern')">
+                      Password should be combination of numbers alphabets and symbols
+                    </mat-error>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field appearance="fill" class="full-width">
+                    <input formControlName="confirmPassword" matInput placeholder="Confirm Password" type="password">
+                  </mat-form-field>
+                  <div
+                    *ngIf="userForm.controls['confirmPassword'].touched || userForm.controls['confirmPassword'].dirty">
+                    <mat-error *ngIf="userForm.controls['confirmPassword'].hasError('required')">
+                      Confirm Password is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="userForm.errors?.['mustMatch']==false">
+                      Password and Confirm Password should match.
+                    </mat-error>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field appearance="fill" class="full-width">
+                    <input formControlName="mobileNumber" matInput placeholder="Mobile Number" type="number">
+                  </mat-form-field>
+                  <div *ngIf="userForm.controls['mobileNumber'].touched || userForm.controls['mobileNumber'].dirty">
+                    <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('required')">
+                      Mobile Number is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('minlength')">
+                      Mobile Number cannot be lessThan 10 digits
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('maxlength')">
+                      Mobile Number cannot be more than 10
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['mobileNumber'].hasError('pattern')">
+                      provide proper mobile number!
+                    </mat-error>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+            <mat-card-actions class="buttons">
+              <button [disabled]="userForm.invalid" color="primary" mat-raised-button type="submit">Submit</button>
+              <button color="primary" mat-raised-button routerLink="/login">Login</button>
+            </mat-card-actions>
+          </mat-card>
+        </form>
+
+      </div>
+      <!--      <div *ngIf="isLoggedIn">-->
+      <!--        <img src="favicon.ico">-->
+      <!--      </div>-->
+    </div>
+  </section>
 </div>

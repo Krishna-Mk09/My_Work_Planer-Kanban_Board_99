@@ -1,8 +1,13 @@
 .register {
-  display: flex;
-  justify-content: center;
-  margin: 100px 0 20px 0;
-  padding: 30px;
+  height: 100%;
+  width: 100%;
+  background-image: url("https://res.cloudinary.com/dduwkdctl/image/upload/v1673931280/Kanban%20Project/wave_oawig5.svg");
+  background-repeat: no-repeat;
+}
+
+.register_form{
+  width: 500px;
+  margin-top: 150px;
 }
 
 .h2 {
@@ -43,5 +48,60 @@ input[type=number]::-webkit-outer-spin-button {
   -moz-appearance: none;
   appearance: none;
   margin: 0;
+}
+
+
+
+
+
+/*Home Component*/
+.home-hero {
+  color: #fff;
+  /*background: linear-gradient(to right, rgba(245, 245, 245, .7), rgba(245, 245, 245, .7)), url("https://res.cloudinary.com/dduwkdctl/image/upload/v1669708933/Chaurasiaaditya.in/images/background2_osubfe.svg");*/
+  /*background-position: center;*/
+
+  /*background-size: cover;*/
+  height: auto;
+  min-height: 80rem;
+  max-height: 120rem;
+  position: relative
+}
+
+@media only screen and (max-width: 37.5em) {
+  .home-hero {
+    height: unset;
+    min-height: unset
+  }
+}
+
+.hero_image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10rem
+}
+
+@media only screen and (max-width: 56.25em) {
+  .about__content {
+    grid-template-columns: 1fr;
+    grid-gap: 8rem
+  }
+}
+
+.hero_background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://res.cloudinary.com/dduwkdctl/image/upload/v1673931218/Kanban%20Project/blob_2_bchup7.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 600px;
+  animation: float 6s ease-in-out infinite;
 }
 
