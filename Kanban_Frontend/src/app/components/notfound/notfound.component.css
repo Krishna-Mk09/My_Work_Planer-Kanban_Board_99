@@ -1,27 +1,29 @@
-#main{
+#main_container {
   display: table;
+  background-image: url("https://res.cloudinary.com/dduwkdctl/image/upload/v1673931280/Kanban%20Project/wave_oawig5.svg");
+  background-repeat: no-repeat;
   width: 100%;
   height: 100vh;
   text-align: center;
 }
 
-.fof{
+.inner_container {
   display: table-cell;
   vertical-align: middle;
 }
 
-.fof h1{
+.inner_container h1 {
   font-size: 70px;
   display: inline-block;
   padding-right: 12px;
   animation: type .5s alternate infinite;
 }
 
-.fof h2{
+.inner_container h2 {
   font-size: 30px;
 }
 
-.fof button{
+.inner_container button {
   margin-top: 10px;
   border-radius: 10px;
   font-size: 25px;
