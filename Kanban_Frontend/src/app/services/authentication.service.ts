@@ -33,7 +33,7 @@ export class AuthenticationService {
         localStorage.setItem('user_email', user.email!);
         this.getUserProfile();
         this.snackBar.open("Login Successfully !!!", "Done", {duration: 3000});
-        this.router.navigateByUrl("dashboard").then(() => {
+        this.router.navigateByUrl("").then(() => {
           setTimeout(() => {
             window.location.reload()
           }, 100);
