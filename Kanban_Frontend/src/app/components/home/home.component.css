@@ -1,6 +1,6 @@
 .home {
-  top: 80px;
-  position: relative;
+  /*top: 80px;*/
+  /*position: relative;*/
   height: 100%;
   width: 100%;
 }
@@ -9,8 +9,11 @@
 
 .home-hero {
   color: #fff;
-  background: linear-gradient(to right, rgba(245, 245, 245, .7), rgba(245, 245, 245, .7)), url("https://res.cloudinary.com/dduwkdctl/image/upload/v1669708933/Chaurasiaaditya.in/images/background2_osubfe.svg");
-  background-position: center;
+  /*background: linear-gradient(to right, rgba(245, 245, 245, .7), rgba(245, 245, 245, .7)), url("https://res.cloudinary.com/dduwkdctl/image/upload/v1669708933/Chaurasiaaditya.in/images/background2_osubfe.svg");*/
+  /*background-position: center;*/
+  background-image: url("../../../assets/images/wave.svg");
+  background-repeat: no-repeat;
+  /*background-size: cover;*/
   height: auto;
   min-height: 80rem;
   max-height: 120rem;
@@ -18,7 +21,33 @@
 }
 
 .hero_image {
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero_background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../../assets/images/blob.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 600px;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-0px);
+  }
 }
 
 @media only screen and (max-width: 37.5em) {

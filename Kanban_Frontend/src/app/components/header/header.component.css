@@ -3,9 +3,11 @@
   position: fixed;
   width: 100%;
   z-index: 1000;
-  box-shadow: 0 10px 100px rgba(0, 0, 0, .1);
-  background-color: rgb(21, 69, 117);
+  /*box-shadow: 0 10px 100px rgba(0, 0, 0, .1);*/
+  /*background-color: rgb(21, 69, 117);*/
+  background-color: var(--header-background-color);
   color: white;
+  transition: all 0.3s ease;
 }
 
 .header__content {
