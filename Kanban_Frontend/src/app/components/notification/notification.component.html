@@ -4,13 +4,13 @@
       <h3>Notifications</h3>
     </div>
     <div class="notification-container">
-      <div *ngFor="let message of this.currentUserNotification?.message?.reverse()">
+      <div *ngFor="let messages of this.currentUserNotification?.messages?.reverse()">
         <div class="message">
           <div>
-            <p>{{message}}</p>
+            <p>{{messages.message}}</p>
           </div>
           <div>
-            <mat-icon (click)="deleteNotification(message)" class="delete-icon">delete</mat-icon>
+            <mat-icon (click)="deleteNotification(messages)" class="delete-icon">delete</mat-icon>
           </div>
         </div>
       </div>
