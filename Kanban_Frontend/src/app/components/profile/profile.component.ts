@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
 
   updateImage(event: any) {
     this.image = event.target.files![0];
-    this.isFileValid = this.image?.size! <= 1024;
+    this.isFileValid = this.image?.size! <= 1024000;
     if (!this.isFileValid) this.snackbar.open("File is too big!", "Close", {duration: 3000});
   }
 

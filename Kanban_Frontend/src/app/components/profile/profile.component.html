@@ -7,7 +7,7 @@
       <button (click)="uploadProfilePicture()" *ngIf="isFileValid" color="warn" mat-raised-button>
         Upload
       </button>
-      <mat-error *ngIf="this.image?.size! > 1024">Image should not be greater than 1mb</mat-error>
+      <mat-error *ngIf="this.image?.size! > 1024000">Image should not be greater than 1mb</mat-error>
     </div>
     <div class="delete_account_button">
       <button (click)="openDialog('500ms','500ms')" color="warn" mat-raised-button>Delete Account</button>
