@@ -11,7 +11,7 @@
   color: #fff;
   /*background: linear-gradient(to right, rgba(245, 245, 245, .7), rgba(245, 245, 245, .7)), url("https://res.cloudinary.com/dduwkdctl/image/upload/v1669708933/Chaurasiaaditya.in/images/background2_osubfe.svg");*/
   /*background-position: center;*/
-  background-image: url("../../../assets/images/wave.svg");
+  background-image: url("https://res.cloudinary.com/dduwkdctl/image/upload/v1673931280/Kanban%20Project/wave_oawig5.svg");
   background-repeat: no-repeat;
   /*background-size: cover;*/
   height: auto;
@@ -30,7 +30,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("../../../assets/images/blob.svg");
+  background-image: url("https://res.cloudinary.com/dduwkdctl/image/upload/v1673931218/Kanban%20Project/blob_2_bchup7.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
