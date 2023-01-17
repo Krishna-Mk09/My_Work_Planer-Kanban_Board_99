@@ -18,12 +18,20 @@ export class ProfileComponent implements OnInit {
   imageURL?: string;
   isFileValid?: boolean;
 
-  constructor(public authentication: AuthenticationService, private profileService: ProfileimageService, private snackbar: MatSnackBar, public dialog: MatDialog) {
+  constructor(
+    public authentication: AuthenticationService,
+    private profileService: ProfileimageService,
+    private snackbar: MatSnackBar,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) {
   }
 
   updateUser(): void {
     console.log(this.currentUser)
-    this.authentication.updateUserProfile(this.currentUser!);
+    this.authentication.updateUserProfile(this.currentUser!).subscribe({
+      next: () => this.snackBar.open("Profile Update Successfully !!!", "Done", {duration: 3000}),
+      error: (error) => console.log(error)
+    });
   }
 
   uploadProfilePicture() {

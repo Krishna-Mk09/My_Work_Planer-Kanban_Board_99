@@ -133,7 +133,9 @@ export class DashboardComponent implements OnInit {
               next: (response: User) => {
                 response.numberOfTaskAssigned! += 1;
                 if (response.numberOfTaskAssigned! < 4) {
-                  this.authentication.updateUserProfile(response);
+                  this.authentication.updateUserProfile(response).subscribe({
+                    error: (err) => console.log(err)
+                  });
                 }
               }
             });

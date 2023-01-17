@@ -87,10 +87,7 @@ export class AuthenticationService {
       `${this.endPointURL}/guard/update/${localStorage.getItem('user_email')}`,
       user,
       {headers: new HttpHeaders({Authorization: `Bearer ${localStorage.getItem('token')}`})}
-    ).subscribe({
-      next: () => this.snackBar.open("Profile Update Successfully !!!", "Done", {duration: 3000}),
-      error: (error) => console.log(error)
-    })
+    );
   }
 
   deleteUserAccount() {
