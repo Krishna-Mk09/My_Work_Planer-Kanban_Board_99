@@ -7,7 +7,6 @@ export interface DialogData {
   taskName: string;
   taskDescription: string;
   taskPriority: string;
-  taskStatus: string;
   taskStartDate: Date;
   taskDueDate: Date;
   taskAssignee: string;

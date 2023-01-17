@@ -118,8 +118,7 @@ export class DashboardComponent implements OnInit {
                     assigneeEmail: result.taskAssignee,
                     startDate: result.taskStartDate,
                     dueDate: result.taskDueDate,
-                    priority: result.taskPriority,
-                    status: result.taskStatus
+                    priority: result.taskPriority
                   });
                 }
               });
@@ -301,7 +300,6 @@ export class DashboardComponent implements OnInit {
         taskStartDate: task.startDate,
         taskDueDate: task.dueDate,
         taskPriority: task.priority,
-        taskStatus: task.status,
         boardToDisplay: this.boardToDisplay,
         messageToDisplay: "Edit"
       },
@@ -322,7 +320,6 @@ export class DashboardComponent implements OnInit {
                       t.startDate = result.startDate;
                       t.dueDate = result.dueDate;
                       t.priority = result.priority;
-                      t.status = result.status;
                     }
                   })
                 }

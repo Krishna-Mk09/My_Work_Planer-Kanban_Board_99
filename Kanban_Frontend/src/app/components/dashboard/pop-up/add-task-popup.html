@@ -55,11 +55,6 @@
       </div>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Task status</mat-label>
-      <input [(ngModel)]="data.taskStatus" matInput name="taskstatus">
-    </mat-form-field>
-
     <mat-form-field appearance="fill" *ngIf="this.boardMembers?.length! !== 0">
       <mat-label>Task Assignee</mat-label>
       <mat-select [(ngModel)]="data.taskAssignee" name="taskassignee">
