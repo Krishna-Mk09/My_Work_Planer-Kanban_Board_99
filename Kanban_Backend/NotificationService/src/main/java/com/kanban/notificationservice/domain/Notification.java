@@ -22,9 +22,9 @@ import java.util.List;
 public class Notification {
     @Id
     private String email;
-    private List<String> message;
+    private List<Message> messages;
 
     public Notification() {
-        this.message = new ArrayList<>();
+        this.messages = new ArrayList<>();
     }
 }
