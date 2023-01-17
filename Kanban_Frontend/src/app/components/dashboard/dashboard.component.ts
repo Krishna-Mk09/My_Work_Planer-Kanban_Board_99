@@ -15,6 +15,7 @@ import {
 } from "./pop-up/pop-up.component";
 import {DialogData} from "./dialog.data";
 import {User} from "../../model/user/User";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -29,7 +30,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private kanbanService: KanbanService,
     public dialog: MatDialog,
-    private authentication: AuthenticationService) {
+    private authentication: AuthenticationService,
+    private snackBar: MatSnackBar) {
   }
 
   fetchDetailsOfBoardMembers() {
@@ -151,14 +153,19 @@ export class DashboardComponent implements OnInit {
         if (result !== null) {
           this.currentUserKanban?.boards?.forEach((b: Board) => {
             if (b.boardName === this.boardToDisplay?.boardName) {
-              b.members?.push(result)
+              if (b.members?.includes(result)) {
+                this.snackBar.open("Member already exists in this board", "Close", {duration: 3000});
+              } else {
+                b.members?.push(result);
+                this.snackBar.open("Member added successfully", "Close", {duration: 3000});
+                this.kanbanService.sendMessageToMember(`You have been added to the board ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}`, result);
+              }
             }
-          })
+          });
           this.kanbanService.addMemberToBoard(this.currentUserKanban!, result).subscribe({
             next: (result) => console.log(result)
           })
           this.fetchDetailsOfBoardMembers();
-          this.kanbanService.sendMessageToMember(`You have been added to the board ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}`, result);
         }
       }
     })
