@@ -49,6 +49,16 @@
   font-size: 30px;
 }
 
+.add_board_button {
+  margin-top: 5px;
+}
+
+.add_board_button  button span{
+  margin-right: 15px;
+  margin-left: 10px;
+}
+
+
 /*----------------*/
 
 .material-symbols-outlined {
