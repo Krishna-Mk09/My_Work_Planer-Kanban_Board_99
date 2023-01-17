@@ -5,7 +5,7 @@
   background-repeat: no-repeat;
 }
 
-.register_form{
+.register_form {
   width: 500px;
   margin-top: 150px;
 }
@@ -51,16 +51,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-
-
-
 /*Home Component*/
 .home-hero {
   color: #fff;
-  /*background: linear-gradient(to right, rgba(245, 245, 245, .7), rgba(245, 245, 245, .7)), url("https://res.cloudinary.com/dduwkdctl/image/upload/v1669708933/Chaurasiaaditya.in/images/background2_osubfe.svg");*/
-  /*background-position: center;*/
-
-  /*background-size: cover;*/
   height: auto;
   min-height: 80rem;
   max-height: 120rem;
@@ -104,4 +97,3 @@ input[type=number]::-webkit-outer-spin-button {
   height: 600px;
   animation: float 6s ease-in-out infinite;
 }
-
