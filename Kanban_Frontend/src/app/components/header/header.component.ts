@@ -29,14 +29,14 @@ export class HeaderComponent implements OnInit {
         this.currentUserNotification = this.notification?.currentUserNotifications;
       }, 1000)
     }
-    // window.addEventListener('scroll', () => {
-    //   if (window.scrollY >= 5) {
-    //     document.body.style.setProperty('--header-background-color', 'rgba(243, 106, 62, 1)');
-    //     document.body.style
-    //   } else {
-    //     document.body.style.setProperty('--header-background-color', 'rgba(0, 0, 0, 0)');
-    //   }
-    // })
+    window.addEventListener('scroll', () => {
+      if (window.scrollY >= 5) {
+        document.body.style.setProperty('--header-background-color', 'rgba(243, 106, 62, 1)');
+        document.body.style
+      } else {
+        document.body.style.setProperty('--header-background-color', 'rgba(0, 0, 0, 0)');
+      }
+    })
   }
 
   logout() {
