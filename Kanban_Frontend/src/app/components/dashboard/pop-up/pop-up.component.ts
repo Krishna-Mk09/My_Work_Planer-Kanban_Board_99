@@ -90,9 +90,9 @@ export class AddTaskPopupDialog implements OnInit {
   taskNames: String[] = [];
   messageToDisplay?: string;
   currentDate: Date = new Date();
-  isTaskAssigneeValid?: boolean;
+  isTaskAssigneeValid?: boolean = true;
   minimumDate: Date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate());
-
+  numberOfTasksAssignedToUsers: Map<string, number> = new Map<string, number>();
 
   constructor(
     public dialogRef: MatDialogRef<AddTaskPopupDialog>,
@@ -104,20 +104,17 @@ export class AddTaskPopupDialog implements OnInit {
     this.isTaskNameValid = !this.taskNames.includes(this.data.taskName, 0);
   }
 
-  checkTaskAssignee(user: User) {
-    this.isTaskAssigneeValid = user.numberOfTaskAssigned! !== 3;
-    console.log(this.isTaskAssigneeValid);
-    console.log(user.numberOfTaskAssigned);
-  }
-
   onNoClick() {
     this.dialogRef.close(null);
   }
 
 
   ngOnInit(): void {
+    console.log(this.isTaskAssigneeValid);
     this.boardToDisplay = this.data.boardToDisplay;
     this.boardMembers = this.data.boardToDisplay?.members;
+    this.numberOfTasksAssignedToUsers = this.data.numberOfTasksAssignedToUsers;
+    console.log(this.numberOfTasksAssignedToUsers);
     this.boardMembers?.forEach((m: string) => {
       this.authenticationService.getUserByEmail(m).subscribe((user: User) => {
         this.users?.push(user);
@@ -134,6 +131,15 @@ export class AddTaskPopupDialog implements OnInit {
       });
     });
     this.isTaskNameValid = !this.taskNames.includes(this.data.taskName, 0);
+  }
+
+  checkTaskAssignee() {
+    if (this.numberOfTasksAssignedToUsers.get(this.data.taskAssignee!)! >= 3) {
+      this.isTaskAssigneeValid = false;
+    } else {
+      this.isTaskAssigneeValid = true;
+    }
+    console.log("Is valid - " + this.isTaskAssigneeValid);
   }
 }
 

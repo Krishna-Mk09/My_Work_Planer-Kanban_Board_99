@@ -26,6 +26,8 @@ export class DashboardComponent implements OnInit {
   currentUserKanban?: Kanban;
   boardToDisplay?: Board;
   boardMembers: User[] = [];
+  numberOfTasksAssignedToUser: Map<string, number> = new Map<string, number>();
+
 
   constructor(
     private kanbanService: KanbanService,
@@ -48,6 +50,7 @@ export class DashboardComponent implements OnInit {
   displayBoard(board: Board) {
     this.boardToDisplay = board;
     this.fetchDetailsOfBoardMembers();
+    this.getNumberOfTasksAssignedToUser();
   }
 
   addBoardToKanban() {
@@ -104,7 +107,8 @@ export class DashboardComponent implements OnInit {
         taskPriority: '',
         taskStatus: '',
         boardToDisplay: this.boardToDisplay,
-        messageToDisplay: "Add"
+        messageToDisplay: "Add",
+        numberOfTasksAssignedToUsers: this.numberOfTasksAssignedToUser
       }, disableClose: true
     });
     dialogRef.afterClosed().subscribe({
@@ -122,25 +126,26 @@ export class DashboardComponent implements OnInit {
                     dueDate: result.taskDueDate,
                     priority: result.taskPriority
                   });
+                  this.getNumberOfTasksAssignedToUser();
                 }
               });
             }
           });
           this.kanbanService.updateKanban(this.currentUserKanban!);
           this.fetchDetailsOfTaskAssignee();
-          if (result.taskAssignee !== null) {
-            this.authentication.getUserByEmail(result.taskAssignee).subscribe({
-              next: (response: User) => {
-                response.numberOfTaskAssigned! += 1;
-                if (response.numberOfTaskAssigned! < 4) {
-                  this.authentication.updateUserProfile(response).subscribe({
-                    error: (err) => console.log(err)
-                  });
-                }
-              }
-            });
-            this.kanbanService.sendMessageToMember(`You have been assigned a task of ${result.taskName} in the board ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}`, result.taskAssignee);
-          }
+          // if (result.taskAssignee !== null) {
+          //   this.authentication.getUserByEmail(result.taskAssignee).subscribe({
+          //     next: (response: User) => {
+          //       response.numberOfTaskAssigned! += 1;
+          //       if (response.numberOfTaskAssigned! < 4) {
+          //         this.authentication.updateUserProfile(response).subscribe({
+          //           error: (err) => console.log(err)
+          //         });
+          //       }
+          //     }
+          //   });
+          //   this.kanbanService.sendMessageToMember(`You have been assigned a task of ${result.taskName} in the board ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}`, result.taskAssignee);
+          // }
         }
       }
     })
@@ -312,7 +317,8 @@ export class DashboardComponent implements OnInit {
         taskDueDate: task.dueDate,
         taskPriority: task.priority,
         boardToDisplay: this.boardToDisplay,
-        messageToDisplay: "Edit"
+        messageToDisplay: "Edit",
+        numberOfTasksAssignedToUsers: this.numberOfTasksAssignedToUser
       },
       disableClose: true
     });
@@ -327,10 +333,11 @@ export class DashboardComponent implements OnInit {
                     if (t.name === task.name) {
                       t.name = result.taskName;
                       t.description = result.taskDescription;
-                      t.assigneeEmail = result.email;
+                      t.assigneeEmail = result.taskAssignee;
                       t.startDate = result.taskStartDate;
                       t.dueDate = result.taskDueDate;
                       t.priority = result.taskPriority;
+                      this.getNumberOfTasksAssignedToUser();
                     }
                   })
                 }
@@ -361,6 +368,23 @@ export class DashboardComponent implements OnInit {
           })
           this.kanbanService.updateKanban(this.currentUserKanban!);
         }
+      }
+    });
+  }
+
+  getNumberOfTasksAssignedToUser() {
+    this.numberOfTasksAssignedToUser = new Map<string, number>();
+    this.currentUserKanban?.boards?.forEach((b: Board) => {
+      if (b.boardName === this.boardToDisplay?.boardName) {
+        b.columns?.forEach((c: Column) => {
+          c.tasks?.forEach((t: Task) => {
+            if (this.numberOfTasksAssignedToUser.has(t.assigneeEmail!) && t.assigneeEmail != undefined && t.assigneeEmail != "") {
+              this.numberOfTasksAssignedToUser.set(t.assigneeEmail!, this.numberOfTasksAssignedToUser.get(t.assigneeEmail!)! + 1);
+            } else if (t.assigneeEmail != undefined && t.assigneeEmail != "") {
+              this.numberOfTasksAssignedToUser.set(t.assigneeEmail!, 1);
+            }
+          })
+        })
       }
     });
   }

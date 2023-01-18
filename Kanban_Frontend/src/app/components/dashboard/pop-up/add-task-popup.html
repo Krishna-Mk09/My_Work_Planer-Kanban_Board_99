@@ -35,11 +35,11 @@
              matInput name="startdate" required>
       <mat-datepicker-toggle [for]="start" matSuffix></mat-datepicker-toggle>
       <mat-datepicker #start></mat-datepicker>
-<!--      <div *ngIf="startDate?.invalid && (startDate?.dirty ||startDate.touched) ">-->
-        <mat-error *ngIf="startDate.errors?.['required']">
-          Date is required
-        </mat-error>
-<!--      </div>-->
+      <!--      <div *ngIf="startDate?.invalid && (startDate?.dirty ||startDate.touched) ">-->
+      <mat-error *ngIf="startDate.errors?.['required']">
+        Date is required
+      </mat-error>
+      <!--      </div>-->
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -48,29 +48,30 @@
              matInput name="duedate" required>
       <mat-datepicker-toggle [for]="due" matSuffix></mat-datepicker-toggle>
       <mat-datepicker #due></mat-datepicker>
-      <div *ngIf="dueDate?.invalid && (startDate?.dirty ||dueDate.touched) ">
+      <div *ngIf="dueDate?.invalid && (startDate?.dirty ||dueDate.touched)">
         <mat-error *ngIf="dueDate.errors?.['required']">
           Date is required
         </mat-error>
       </div>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" *ngIf="this.boardMembers?.length! !== 0">
+    <mat-form-field *ngIf="this.boardMembers?.length! !== 0" appearance="fill">
       <mat-label>Task Assignee</mat-label>
-      <mat-select [(ngModel)]="data.taskAssignee" name="taskassignee">
-        <mat-option *ngFor="let user of users" [value]="user.email" (onSelectionChange)="checkTaskAssignee(user)">
-          {{user.numberOfTaskAssigned}}
-          {{user.email}}
-        </mat-option>
+      <mat-select #taskAssignee="ngModel" (selectionChange)="checkTaskAssignee()" [(ngModel)]="data.taskAssignee"
+                  name="taskassignee">
+        <mat-option *ngFor="let user of users" [value]="user.email">{{user.email}}</mat-option>
+        <mat-option>None</mat-option>
       </mat-select>
-      <mat-error *ngIf="isTaskAssigneeValid">
-        This User is Already Assigned to 3 Task in this Board
-      </mat-error>
     </mat-form-field>
+    <mat-error *ngIf="!isTaskAssigneeValid">
+      This User is Already Assigned to 3 Task in this Board
+    </mat-error>
   </form>
 </div>
 
 <div mat-dialog-actions>
   <button (click)="onNoClick()" mat-button>No Thanks</button>
-  <button [disabled]="!isTaskNameValid || task.invalid" [mat-dialog-close]="data" mat-button>Ok</button>
+  <button [disabled]="!isTaskNameValid || task.invalid || !isTaskAssigneeValid" [mat-dialog-close]="data" mat-button>
+    Ok
+  </button>
 </div>
