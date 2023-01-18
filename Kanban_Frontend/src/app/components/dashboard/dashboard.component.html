@@ -84,9 +84,10 @@
         <div
           (cdkDropListDropped)="drop($event)"
           [cdkDropListData]="column.tasks"
+
           cdkDropList class="task_list">
           <!--                    Tasks     -->
-          <div *ngFor="let task of column.tasks" cdkDrag class="task_container">
+          <div *ngFor="let task of column.tasks" [cdkDragDisabled]="cannotDrag(task)" cdkDrag class="task_container">
 
             <div class="grid_one">
               <div class="task_name">{{task?.name}}</div>
