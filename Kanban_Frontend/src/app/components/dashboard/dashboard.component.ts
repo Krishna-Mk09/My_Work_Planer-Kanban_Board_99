@@ -133,19 +133,6 @@ export class DashboardComponent implements OnInit {
           });
           this.kanbanService.updateKanban(this.currentUserKanban!);
           this.fetchDetailsOfTaskAssignee();
-          // if (result.taskAssignee !== null) {
-          //   this.authentication.getUserByEmail(result.taskAssignee).subscribe({
-          //     next: (response: User) => {
-          //       response.numberOfTaskAssigned! += 1;
-          //       if (response.numberOfTaskAssigned! < 4) {
-          //         this.authentication.updateUserProfile(response).subscribe({
-          //           error: (err) => console.log(err)
-          //         });
-          //       }
-          //     }
-          //   });
-          //   this.kanbanService.sendMessageToMember(`You have been assigned a task of ${result.taskName} in the board ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}`, result.taskAssignee);
-          // }
         }
       }
     })
