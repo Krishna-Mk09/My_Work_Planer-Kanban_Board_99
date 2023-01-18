@@ -270,6 +270,10 @@ export class DashboardComponent implements OnInit {
     this.kanbanService.updateKanban(this.currentUserKanban!);
   }
 
+  cannotDrag(task: Task) {
+    return this.boardToDisplay?.columns![this.boardToDisplay.columns!.length - 1].tasks?.includes(task);
+  }
+
   ngOnInit(): void {
     this.kanbanService.getCurrentUserKanban();
     setTimeout(() => {
