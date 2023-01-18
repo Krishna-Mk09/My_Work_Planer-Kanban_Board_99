@@ -3,13 +3,27 @@
   color: #fff
 }
 
-.footer_upper{
+.footer_upper {
   padding: 40px 20px 15px 20px;
   display: grid;
   grid-template-columns: 30% 50% 20%;
 }
 
-.footer_logo img{
+@media all and (max-width: 1000px) {
+  .footer_upper {
+    grid-template-columns: 100%;
+  }
+
+  .footer_logo {
+    margin: 0 auto !important;
+  }
+
+  .footer_links {
+    margin: 20px !important;
+  }
+}
+
+.footer_logo img {
   height: 300px;
   width: 300px;
 }
