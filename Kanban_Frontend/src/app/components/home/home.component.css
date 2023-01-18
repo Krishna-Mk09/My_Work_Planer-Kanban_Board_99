@@ -9,16 +9,7 @@
   background-image: url("https://res.cloudinary.com/dduwkdctl/image/upload/v1673931280/Kanban%20Project/wave_oawig5.svg");
   background-repeat: no-repeat;
   height: auto;
-  min-height: 80rem;
-  max-height: 120rem;
   position: relative
-}
-
-@media only screen and (max-width: 37.5em) {
-  .home-hero {
-    height: unset;
-    min-height: unset
-  }
 }
 
 .hero_image {
@@ -57,13 +48,17 @@
 .about__content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 10rem
+  grid-gap: 8rem
 }
 
-@media only screen and (max-width: 56.25em) {
+@media only screen and (max-width: 1000px) {
   .about__content {
-    grid-template-columns: 1fr;
-    grid-gap: 8rem
+    grid-template-columns: auto;
+    grid-gap: unset;
+  }
+
+  .hero_background {
+    margin-top: unset !important;
   }
 }
 
