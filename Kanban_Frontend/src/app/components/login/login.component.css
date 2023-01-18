@@ -26,7 +26,6 @@
 
 .full-width {
   width: 80%;
-  /*padding: 0px;*/
   padding-top: 30px;
 }
 
@@ -35,19 +34,11 @@
 }
 
 /*home component*/
-
 .home-hero {
   height: auto;
   min-height: 80rem;
   max-height: 120rem;
   position: relative
-}
-
-@media only screen and (max-width: 37.5em) {
-  .home-hero {
-    height: unset;
-    min-height: unset
-  }
 }
 
 .hero_image {
@@ -58,14 +49,16 @@
 
 .about__content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10rem
+  grid-template-columns: auto auto;
 }
 
-@media only screen and (max-width: 56.25em) {
+@media only screen and (max-width: 900px) {
   .about__content {
-    grid-template-columns: 1fr;
-    grid-gap: 8rem
+    grid-template-columns: auto;
+  }
+
+  .login_form {
+    margin: 0 auto 40px auto;
   }
 }
 
@@ -78,5 +71,17 @@
   background-size: contain;
   background-position: center;
   height: 600px;
-  animation: float 6s ease-in-out infinite;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
