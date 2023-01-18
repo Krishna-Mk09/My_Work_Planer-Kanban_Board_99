@@ -1,13 +1,13 @@
 .home {
   height: 100%;
   width: 100%;
+  background-image: url("https://res.cloudinary.com/dduwkdctl/image/upload/v1673931280/Kanban%20Project/wave_oawig5.svg");
+  background-repeat: no-repeat;
 }
 
 /*Dash Board */
 .home-hero {
   color: #fff;
-  background-image: url("https://res.cloudinary.com/dduwkdctl/image/upload/v1673931280/Kanban%20Project/wave_oawig5.svg");
-  background-repeat: no-repeat;
   height: auto;
   position: relative
 }
