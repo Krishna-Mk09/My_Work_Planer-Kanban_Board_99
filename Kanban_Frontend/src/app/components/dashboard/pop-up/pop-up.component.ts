@@ -13,20 +13,20 @@ import {User} from "../../../model/user/User";
 @Component({
   selector: 'add-board-popup', templateUrl: './add-board-popup.html'
 })
-export class AddBoardPopupDialog implements OnInit{
+export class AddBoardPopupDialog implements OnInit {
+  currentUserKanban?: Kanban;
+  isBoardNameValid?: boolean;
+  boardNames: String[] = [];
+  messageToDisplay?: string;
+
   constructor(
     public dialogRef: MatDialogRef<AddBoardPopupDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private kanbanService: KanbanService) {
   }
 
-  currentUserKanban?: Kanban;
-  isBoardNameValid?: boolean;
-  boardNames: String[] = [];
-  messageToDisplay?: string;
-
   checkBoardName() {
-    this.isBoardNameValid = !this.boardNames.includes(this.data.boardName,0);
+    this.isBoardNameValid = !this.boardNames.includes(this.data.boardName, 0);
   }
 
   onNoClick() {
@@ -47,16 +47,17 @@ export class AddBoardPopupDialog implements OnInit{
 @Component({
   selector: 'add-column-popup', templateUrl: './add-column-popup.html'
 })
-export class AddColumnPopupDialog implements OnInit{
+export class AddColumnPopupDialog implements OnInit {
+  boardToDisplay?: Board;
+  isColumnValid?: boolean;
+  columnNames: String[] = [];
+  messageToDisplay?: string;
+
   constructor(
     public dialogRef: MatDialogRef<AddColumnPopupDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
 
   }
-  boardToDisplay?: Board;
-  isColumnValid?: boolean;
-  columnNames: String[] = [];
-  messageToDisplay?: string;
 
   checkColumnName() {
     this.isColumnValid = !this.columnNames.includes(this.data.columnName, 0);
@@ -90,7 +91,7 @@ export class AddTaskPopupDialog implements OnInit {
   messageToDisplay?: string;
   currentDate: Date = new Date();
   isTaskAssigneeValid?: boolean;
-  minimumDate:Date = new Date(this.currentDate.getFullYear(),this.currentDate.getMonth(),this.currentDate.getDate());
+  minimumDate: Date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), this.currentDate.getDate());
 
 
   constructor(
@@ -122,15 +123,17 @@ export class AddTaskPopupDialog implements OnInit {
         this.users?.push(user);
       });
     });
-
-
     this.messageToDisplay = this.data.messageToDisplay;
     this.boardToDisplay.columns?.forEach((c: Column) => {
       c.tasks?.forEach((t) => {
-        this.taskNames.push(t.name!);
+        if (t.name === this.data.taskName) {
+          this.taskNames.push("");
+        } else {
+          this.taskNames.push(t.name!);
+        }
       });
     });
-    this.taskNames.push("");
+    this.isTaskNameValid = !this.taskNames.includes(this.data.taskName, 0);
   }
 }
 

@@ -177,12 +177,14 @@ export class DashboardComponent implements OnInit {
     this.currentUserKanban?.boards?.forEach((b: Board) => {
       b.columns?.forEach((c: Column) => {
         c.tasks?.forEach((t: Task) => {
-          this.authentication.getUserByEmail(t.assigneeEmail!).subscribe({
-            next: (response) => {
-              t.assigneeName = response.firstName;
-              t.assigneeImageURL = response.imageURL;
-            }
-          })
+          if (t.assigneeEmail != null && t.assigneeEmail !== "") {
+            this.authentication.getUserByEmail(t.assigneeEmail!).subscribe({
+              next: (response) => {
+                t.assigneeName = response.firstName;
+                t.assigneeImageURL = response.imageURL;
+              }
+            })
+          }
         })
       })
     })
