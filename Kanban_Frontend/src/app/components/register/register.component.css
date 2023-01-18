@@ -8,6 +8,7 @@
 .register_form {
   width: 500px;
   margin-top: 150px;
+  padding: 5px;
 }
 
 .h2 {
@@ -55,17 +56,9 @@ input[type=number]::-webkit-outer-spin-button {
 .home-hero {
   color: #fff;
   height: auto;
-  min-height: 80rem;
-  max-height: 120rem;
   position: relative
 }
 
-@media only screen and (max-width: 37.5em) {
-  .home-hero {
-    height: unset;
-    min-height: unset
-  }
-}
 
 .hero_image {
   display: flex;
@@ -75,14 +68,18 @@ input[type=number]::-webkit-outer-spin-button {
 
 .about__content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10rem
+  grid-template-columns: auto auto;
+  padding-bottom: 120px;
 }
 
-@media only screen and (max-width: 56.25em) {
+@media only screen and (max-width: 900px) {
   .about__content {
-    grid-template-columns: 1fr;
-    grid-gap: 8rem
+    grid-template-columns: auto;
+    padding-bottom: 60px;
+  }
+
+  .register_form {
+    margin: 0 auto;
   }
 }
 
@@ -95,5 +92,17 @@ input[type=number]::-webkit-outer-spin-button {
   background-size: contain;
   background-position: center;
   height: 600px;
-  animation: float 6s ease-in-out infinite;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
