@@ -113,9 +113,9 @@
               </div>
               <div class="assignee">
                 <div *ngIf="this.boardToDisplay?.members?.length !== 0" class="assignee-details">
-                  <img *ngIf="task?.assigneeImageURL !== ''" [matTooltip]="task?.assigneeName!"
+                  <img *ngIf="task?.assigneeImageURL !== undefined" [matTooltip]="task?.assigneeName!"
                        [src]="task?.assigneeImageURL" alt="Profile Image">
-                  <div><b>Assigned To</b></div>
+                  <div *ngIf="task?.assigneeImageURL !== undefined"><b>Assigned To</b></div>
                 </div>
               </div>
             </div>
