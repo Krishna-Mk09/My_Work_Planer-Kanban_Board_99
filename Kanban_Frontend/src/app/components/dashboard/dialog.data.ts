@@ -12,4 +12,5 @@ export interface DialogData {
   taskAssignee: string;
   email: string;
   messageToDisplay: string;
+  numberOfTasksAssignedToUsers: Map<string, number>;
 }
