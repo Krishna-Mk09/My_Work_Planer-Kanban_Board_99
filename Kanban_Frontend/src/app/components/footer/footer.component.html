@@ -1,42 +1,45 @@
 <footer class="main-footer">
-  <div class="main-container">
-    <div class="main-footer__upper">
-      <div class="main-footer__row main-footer__row-1">
-        <h2 class="heading heading-sm main-footer__heading-sm">
-          <span>Social</span>
-        </h2>
-        <div class="main-footer__social-cont">
-          <a target="_blank" rel="noreferrer" href="https://linkedin.com/in/chaurasiaaditya/">
-            <img class="main-footer__icon"
-                 src="https://res.cloudinary.com/dduwkdctl/image/upload/v1668626695/Chaurasiaaditya.in/small%20icons/linkedin-ico_qiprby.png"
-                 alt="Aditya Linkedin Profile" />
-          </a>
-          <a target="_blank" rel="noreferrer" href="https://github.com/ChaurasiaAditya">
-            <img class="main-footer__icon"
-                 src="https://res.cloudinary.com/dduwkdctl/image/upload/v1668626695/Chaurasiaaditya.in/small%20icons/github-ico_n0sl8u.png"
-                 alt="Aditya Github Profile" />
-          </a>
-          <a target="_blank" rel="noreferrer" href="https://www.instagram.com/mr._adi._/">
-            <img class="main-footer__icon"
-                 src="https://res.cloudinary.com/dduwkdctl/image/upload/v1668660356/Chaurasiaaditya.in/small%20icons/image_ncdu0h.png"
-                 alt="Aditya Github Profile" />
-          </a>
-        </div>
-      </div>
-      <div class="main-footer__row main-footer__row-2">
-<!--        <h2 class="heading heading-sm text-lt">Aditya Chaurasia</h2>-->
-<!--        <p class="main-footer__short-desc">-->
-<!--          A Full Stack Web Developer building the Frontend and Backend of Websites-->
-<!--          and Web Applications that leads to the success of the overall-->
-<!--          product-->
-<!--        </p>-->
-      </div>
+  <div class="footer_upper">
+    <div class="footer_logo">
+      <img alt="header logo"
+           src="https://res.cloudinary.com/dduwkdctl/image/upload/v1673022626/Kanban%20Project/planning_avbnab.png"/>
     </div>
-    <div class="main-footer__lower">
-      &copy; Copyright 2022. Made in India with ❤️ by <br>
-      <a rel="noreferrer" target="_blank" href="https://chaurasiaaditya.in">Aditya Chaurasia</a>
-      <a rel="noreferrer" target="_blank" href="https://sarthak.website">Sarthak Agarwal</a>
-      <a rel="noreferrer" target="_blank" href="https://github.com/Krishna-Mk09">Vamshi Krishna</a>
+    <div class="footer_about">
+      <p>
+        My Work Planner brings all your tasks, teammates, and tools together in one place.<br>
+        <br>
+        Collaborate, manage projects, and reach new productivity peaks. From high rises to the home office, the way your
+        team works is unique—accomplish it all with My Work Planner.
+        <br>
+        Keep everything in the same place—even if your team isn’t together.
+      </p>
     </div>
+    <div class="footer_links">
+      <h1>Quick Links</h1>
+      <ul>
+        <li>
+          <a routerLink=""> Home </a>
+        </li>
+        <li>
+          <a *ngIf="isLoggedIn" routerLink="dashboard">Boards </a>
+        </li>
+        <li>
+          <a *ngIf="!isLoggedIn" routerLink="register">Register</a>
+        </li>
+        <li>
+          <a *ngIf="!isLoggedIn" routerLink="login">Login</a>
+        </li>
+        <li>
+          <a *ngIf="isLoggedIn" routerLink="profile">Profile</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer_lower">
+    &copy; Copyright 2022. Made in India with ❤️ by <br>
+    <a href="https://chaurasiaaditya.in" rel="noreferrer" target="_blank">Aditya Chaurasia</a>
+    <a href="https://sarthak.website" rel="noreferrer" target="_blank">Sarthak Agarwal</a>
+    <a href="https://github.com/Krishna-Mk09" rel="noreferrer" target="_blank">Vamshi Krishna</a>
   </div>
 </footer>
