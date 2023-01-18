@@ -68,8 +68,10 @@
 }
 
 .main-footer__lower a {
+  margin-right: 10px;
   text-decoration: underline;
-  font-weight: 700;
+  color: white;
+  font-weight: 500;
   margin-left: 2px
 }
 
