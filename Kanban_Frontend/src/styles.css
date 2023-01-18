@@ -45,26 +45,6 @@ body {
   }
 }
 
-.btn {
-  background: #facf0f;
-  color: #333;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  display: inline-block;
-  font-weight: 700;
-  border-radius: 5px;
-  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, .15);
-  transition: transform .3s
-}
-
-.btn:hover {
-  transform: translateY(-3px)
-}
-
-.btn--bg {
-  padding: 1.5rem 8rem;
-  font-size: 2rem
-}
 
 .sec-pad {
   padding: 12rem 0
@@ -73,20 +53,6 @@ body {
 @media only screen and (max-width:56.25em) {
   .sec-pad {
     padding: 8rem 0
-  }
-}
-
-.text-primary {
-  color: #333;
-  font-size: 2.2rem;
-  text-align: center;
-  width: 100%;
-  line-height: 1.6
-}
-
-@media only screen and (max-width:37.5em) {
-  .text-primary {
-    font-size: 2rem
   }
 }
 
