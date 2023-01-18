@@ -7,13 +7,16 @@
  */
 package com.kanban.userservice.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class User {
 	private String firstName;
@@ -23,9 +26,4 @@ public class User {
 	private String password;
 	private long mobileNumber;
 	private String imageURL;
-	private int numberOfTaskAssigned;
-
-	public User() {
-		this.numberOfTaskAssigned = 0;
-	}
 }
