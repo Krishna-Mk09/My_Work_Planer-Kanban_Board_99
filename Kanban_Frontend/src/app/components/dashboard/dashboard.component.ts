@@ -314,8 +314,8 @@ export class DashboardComponent implements OnInit {
       },
       disableClose: true
     });
-    dialogRef.afterClosed().subscribe({
-      next: (result: Task) => {
+    dialogRef.beforeClosed().subscribe({
+      next: (result: DialogData) => {
         if (result != null) {
           this.currentUserKanban?.boards?.forEach((b: Board) => {
             if (b.boardName === this.boardToDisplay?.boardName) {
@@ -323,12 +323,12 @@ export class DashboardComponent implements OnInit {
                 if (c.columnName === columnName) {
                   c.tasks?.forEach((t: Task) => {
                     if (t.name === task.name) {
-                      t.name = result.name;
-                      t.description = result.description;
-                      t.assigneeEmail = result.assigneeEmail;
-                      t.startDate = result.startDate;
-                      t.dueDate = result.dueDate;
-                      t.priority = result.priority;
+                      t.name = result.taskName;
+                      t.description = result.taskDescription;
+                      t.assigneeEmail = result.email;
+                      t.startDate = result.taskStartDate;
+                      t.dueDate = result.taskDueDate;
+                      t.priority = result.taskPriority;
                     }
                   })
                 }
