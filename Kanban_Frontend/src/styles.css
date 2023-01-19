@@ -15,9 +15,6 @@ body {
   --dashboard-sidebar-background-color: rgba(253, 166, 20, 255);
 }
 
-
-/* You can add global styles to this file, and also import other style files */
-
 *,
 ::after,
 ::before {
@@ -44,17 +41,3 @@ body {
     font-size: 65%
   }
 }
-
-
-.sec-pad {
-  padding: 12rem 0
-}
-
-@media only screen and (max-width:56.25em) {
-  .sec-pad {
-    padding: 8rem 0
-  }
-}
-
-
-
