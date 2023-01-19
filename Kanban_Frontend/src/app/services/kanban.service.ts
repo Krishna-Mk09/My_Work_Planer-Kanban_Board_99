@@ -68,7 +68,6 @@ export class KanbanService {
       `${this.endPointURL}/add-member-to-board/${email}`, kanban);
   }
 
-  // TODO: Send message to Notification
   sendMessageToMember(message: string, email: string) {
     let messageDTO = {
       email: email,
