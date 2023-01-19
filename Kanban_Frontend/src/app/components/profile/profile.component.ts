@@ -56,6 +56,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentUser = this.authentication.currentUser;
     setTimeout(() => {
       this.currentUser = this.authentication.currentUser;
     }, 1000)
