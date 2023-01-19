@@ -50,6 +50,9 @@
             </mat-menu>
           </div>
         </li>
+        <li class="first_name">
+          <a *ngIf="isLoggedIn" class="header__link" routerLink="profile">{{currentUser?.firstName}}</a>
+        </li>
         <li>
           <img *ngIf="isLoggedIn" [src]="currentUser?.imageURL" alt="Profile thumbnail" class="thumbnail_image"
                matTooltip="Your Profile" routerLink="profile">
