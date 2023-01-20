@@ -12,7 +12,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   height: 100%;
   --header-background-color: rgba(0, 0, 0, 0);
-  --dashboard-sidebar-background-color: rgba(253, 166, 20, 255);
 }
 
 *,
