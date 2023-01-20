@@ -7,11 +7,15 @@ import {HttpClient} from "@angular/common/http";
 export class ProfileimageService {
 
   URL: string = "https://api.cloudinary.com/v1_1/dduwkdctl/image/upload"
-  imageURL?: string;
 
   constructor(private httpClient: HttpClient) {
   }
 
+  /**
+   * This function uploads an image to cloudinary
+   * @param image The image to upload
+   * @return Observable with the image uploaded
+   */
   uploadProfilePicture(image: File) {
     let formData = new FormData()
     formData.append("file", image);
