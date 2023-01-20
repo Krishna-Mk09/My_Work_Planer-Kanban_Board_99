@@ -19,11 +19,20 @@ export class AuthenticationService {
     private snackBar: MatSnackBar) {
   }
 
+  /**
+   * This function is used to register a new user
+   * @param user The user object to save in the database
+   * @return The Observable of the user object
+   */
   registerUser(user: User) {
     user.email = user?.email?.toLowerCase();
     return this.httpClient.post(`${this.endPointURL}/add`, user);
   }
 
+  /**
+   * This function is used to log in a user and store the token in the local storage
+   * @param user The user email and password
+   */
   loginUser(user: User) {
     user.email = user?.email?.toLowerCase();
     this.httpClient.post(`${this.endPointURL}/login`, user).subscribe({
@@ -49,6 +58,9 @@ export class AuthenticationService {
     });
   }
 
+  /**
+   * This function is used to log out a user and remove the token from the local storage
+   */
   logoutUser() {
     localStorage.removeItem('token');
     localStorage.removeItem('user_email');
@@ -61,6 +73,10 @@ export class AuthenticationService {
     });
   }
 
+  /**
+   * This function is used to get the user profile from the database
+   * @return The Observable of the user object fetched from the database
+   */
   getUserProfile() {
     return this.httpClient.get<User>(
       `${this.endPointURL}/guard/email/${localStorage.getItem('user_email')}`,
@@ -75,6 +91,11 @@ export class AuthenticationService {
     });
   }
 
+  /**
+   * This function is used to get the User by the email address from the database
+   * @param email The email address of the user
+   * @return The Observable of the user object fetched from the database
+   */
   getUserByEmail(email: string) {
     return this.httpClient.get<User>(
       `${this.endPointURL}/guard/email/${email}`,
@@ -82,6 +103,11 @@ export class AuthenticationService {
     )
   }
 
+  /**
+   * This function is used to update the user profile in the database
+   * @param user The user object to update in the database
+   * @return The Observable of the user object
+   */
   updateUserProfile(user: User) {
     return this.httpClient.put<User>(
       `${this.endPointURL}/guard/update/${localStorage.getItem('user_email')}`,
@@ -90,6 +116,9 @@ export class AuthenticationService {
     );
   }
 
+  /**
+   * This function is used to delete the user profile from the database.
+   */
   deleteUserAccount() {
     return this.httpClient.delete(
       `${this.endPointURL}/guard/delete/${localStorage.getItem('user_email')}`,
@@ -100,6 +129,10 @@ export class AuthenticationService {
     })
   }
 
+  /**
+   * This function is used to get all the emails of the users from the database
+   * @return The Observable of the list of emails
+   */
   getAllEmails() {
     return this.httpClient.get<string[]>(
       `${this.endPointURL}/guard/all-emails`,
