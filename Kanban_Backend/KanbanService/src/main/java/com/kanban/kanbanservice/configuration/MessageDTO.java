@@ -8,6 +8,6 @@ import lombok.*;
 @Setter
 @ToString
 public class MessageDTO {
-	private String email;
-	private String message;
+    private String email;
+    private String message;
 }
