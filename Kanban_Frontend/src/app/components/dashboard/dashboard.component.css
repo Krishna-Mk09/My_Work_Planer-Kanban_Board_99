@@ -15,13 +15,19 @@
 
 .sidebar-content {
   margin-top: 80px;
-  min-height: 1200px;
+  min-height: 850px;
 }
 
 .board_name {
   color: black;
   font-size: 25px;
   padding-left: 20px;
+  user-select: none;
+}
+
+.board_name:active {
+ color: white;
+
 }
 
 
@@ -280,4 +286,60 @@
 }
 
 
+.dashboard_instructions {
+  width: 600px;
+  margin: 100px auto 0 auto;
+}
+
+.dashboard_instructions ul li {
+  list-style-type: square;
+}
+
+.about__content-details-para {
+  font-size: 1.8rem;
+  max-width: 70rem;
+  line-height: 1.7;
+  margin-bottom: 1rem
+}
+
+.about__content-details-para:last-child {
+  margin-bottom: 4rem
+}
+
+.dashboard_instructions h1 {
+  font-size: 4rem;
+  text-align: center;
+}
+
+.dashboard_instructions h2 {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.dashboard_instructions a {
+  cursor: pointer;
+  text-decoration: underline;
+  color: black;
+  font-weight: 500;
+}
+
+@media all and (max-width: 900px) {
+  .dashboard_instructions {
+    width: auto;
+    padding: 15px 10px 0 25px;
+  }
+
+  .sidenav {
+    width: 150px;
+  }
+
+  .board_container{
+    color: black;
+  }
+
+  .column_container {
+    width: auto;
+  }
+}
 

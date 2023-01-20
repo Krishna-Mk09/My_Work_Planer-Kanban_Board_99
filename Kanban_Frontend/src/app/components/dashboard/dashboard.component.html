@@ -19,6 +19,24 @@
   <mat-sidenav-content class="sidebar-content">
     <!-- Add content here -->
 
+    <div class="dashboard_instructions_container">
+      <div *ngIf="boardToDisplay === undefined" class="dashboard_instructions">
+        <h1>Hello {{currentUserFirstName}} ! </h1>
+        <h2>Welcome to your dashboard!</h2>
+        <ul class="about__content-details-para">
+          <li>
+            Click on the "<a (click)="addBoardToKanban()">Add Board</a>" button to create a new board.
+          </li>
+          <li>
+            If you have created a board previously, you can select it from the previous board name.
+          </li>
+          <li>
+            You can also personalize your Profile by clicking on the "<a routerLink="/profile">Profile</a>" in the header
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <!--    Board Header-->
     <div class="board_container">
       <div *ngIf="boardToDisplay != null" class="board_heading">
