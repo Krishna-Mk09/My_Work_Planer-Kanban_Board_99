@@ -20,6 +20,11 @@ public class Consumer {
 		this.NOTIFICATION_SERVICE = NOTIFICATION_SERVICE;
 	}
 
+	/**
+	 * This method is used to consume the message from the queue
+	 *
+	 * @param messageDTO The message to be consumed
+	 */
 	@RabbitListener(queuesToDeclare = @Queue("messageQueue"))
 	public void getData(MessageDTO messageDTO) {
 		Notification notificationByEmail = this.NOTIFICATION_SERVICE.getByEmail(messageDTO.getEmail());

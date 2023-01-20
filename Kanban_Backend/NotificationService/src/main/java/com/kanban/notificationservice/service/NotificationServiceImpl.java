@@ -59,6 +59,11 @@ public class NotificationServiceImpl implements NotificationService {
         }
     }
 
+    /**
+     * Delete the Notification
+     *
+     * @param email The notification is deleted using email
+     */
     @Override
     public void deleteNotification(String email) {
         NOTIFICATION_REPOSITORY.deleteById(email);

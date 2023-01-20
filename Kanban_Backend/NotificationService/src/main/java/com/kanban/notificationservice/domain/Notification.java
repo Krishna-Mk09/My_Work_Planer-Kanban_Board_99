@@ -20,11 +20,11 @@ import java.util.List;
 @AllArgsConstructor
 @Document
 public class Notification {
-    @Id
-    private String email;
-    private List<Message> messages;
+	@Id
+	private String email;
+	private List<Message> messages;
 
-    public Notification() {
-        this.messages = new ArrayList<>();
-    }
+	public Notification() {
+		this.messages = new ArrayList<>();
+	}
 }

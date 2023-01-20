@@ -41,7 +41,7 @@ public class NotificationController {
 	}
 
 	@DeleteMapping("/delete/{email}")
-	public ResponseEntity<?> deleteNotification(@PathVariable String email){
+	public ResponseEntity<?> deleteNotification(@PathVariable String email) {
 		this.NOTIFICATION_SERVICE.deleteNotification(email);
 		return new ResponseEntity<>("User Notification Successfully", HttpStatus.OK);
 	}
