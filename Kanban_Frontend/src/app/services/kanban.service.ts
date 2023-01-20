@@ -19,10 +19,18 @@ export class KanbanService {
     private notificationService: NotificationService) {
   }
 
+  /**
+   * This function save a kanban object in the database
+   * @param kanban The kanban object to save
+   * @return Observable with the kanban object saved
+   */
   saveKanban(kanban: Kanban) {
     return this.httpClient.post<Kanban>(`${this.endPointURL}/save-kanban`, kanban);
   }
 
+  /**
+   * This function fetches the current user's kanban from the database
+   */
   getCurrentUserKanban() {
     return this.httpClient.get<Kanban>(
       `${this.endPointURL}/get-kanban/${localStorage.getItem('user_email')}`)
@@ -43,10 +51,19 @@ export class KanbanService {
       )
   }
 
+  /**
+   * This function fetched the kanban for a user by email
+   * @param email The email of the user
+   * @return Observable with the kanban for the user
+   */
   getKanbanByEmail(email: string) {
     return this.httpClient.get<Kanban>(`${this.endPointURL}/get-kanban/${email}`);
   }
 
+  /**
+   * This function updates the current user's kanban in the database
+   * @param kanban The kanban object to update
+   */
   updateKanban(kanban: Kanban) {
     return this.httpClient.put<Kanban>(
       `${this.endPointURL}/update-kanban`, kanban)
@@ -56,6 +73,9 @@ export class KanbanService {
       });
   }
 
+  /**
+   * This function deletes a kanban object from the database
+   */
   deleteKanban() {
     return this.httpClient.delete(
       `${this.endPointURL}/delete-kanban/${localStorage.getItem('user_email')}`).subscribe({
@@ -63,11 +83,22 @@ export class KanbanService {
     })
   }
 
+  /**
+   * This function adds a member to the current user's kanban board
+   * @param kanban The kanban object to update
+   * @param email The email of the member to add
+   * @return Observable with the kanban object updated
+   */
   addMemberToBoard(kanban: Kanban, email: string) {
     return this.httpClient.put<Kanban>(
       `${this.endPointURL}/add-member-to-board/${email}`, kanban);
   }
 
+  /**
+   * This function sends a message via RabbitMQ to the user with the email provided
+   * @param message The message to send
+   * @param email The email of the user to send the message to
+   */
   sendMessageToMember(message: string, email: string) {
     let messageDTO = {
       email: email,

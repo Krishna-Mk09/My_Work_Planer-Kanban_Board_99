@@ -15,6 +15,10 @@ export class NotificationService {
   constructor(private httpClient: HttpClient) {
   }
 
+  /**
+   * This function sends an email to the user after they register
+   * @param user The user that registered
+   */
   sendMail(user: User) {
     emailjs.send('service_rgng4h9', 'template_o0g8box', {
       email: user.email,
@@ -28,6 +32,10 @@ export class NotificationService {
       )
   }
 
+  /**
+   * This function fetches the current user's notifications from the database
+   * @return Observable with the current user's notifications
+   */
   getNotification() {
     this.httpClient.get<Notification>(`${this.endPointURL}/getByEmail/${localStorage.getItem('user_email')}`)
       .subscribe({
@@ -36,6 +44,10 @@ export class NotificationService {
       })
   }
 
+  /**
+   * This function updates the current user's notifications in the database
+   * @param notification The notification to update
+   */
   updateNotification(notification: Notification) {
     this.httpClient.put<Notification>(`${this.endPointURL}/updateNotification`, notification)
       .subscribe({
@@ -44,6 +56,9 @@ export class NotificationService {
       })
   }
 
+  /**
+   * This function deletes the current user's notifications in the database
+   */
   deleteNotification() {
     this.httpClient.delete(`${this.endPointURL}/delete/${localStorage.getItem('user_email')}`)
       .subscribe({
