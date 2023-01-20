@@ -14,7 +14,11 @@ public class Producer {
 		this.DIRECT_EXCHANGE = DIRECT_EXCHANGE;
 	}
 
-
+	/**
+	 * This method sends the message to the queue for the respective user
+	 *
+	 * @param messageDTO The message to send
+	 */
 	public void sendMessage(MessageDTO messageDTO) {
 		RABBIT_TEMPLATE.convertAndSend(DIRECT_EXCHANGE.getName(), MessageConfig.MESSAGE_KEY, messageDTO);
 	}
