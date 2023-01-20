@@ -75,15 +75,13 @@ public class UserServiceImpl implements UserService {
 	 *
 	 * @param email    and password This is the email and password of the user which is to be logged in.
 	 * @param password This is the password of the user which is to be logged in.
-	 * @return User
 	 */
 	@Override
-	public User loginUser(String email, String password) throws UserNotFoundException {
+	public void loginUser(String email, String password) throws UserNotFoundException {
 		User userByEmailAndPassword = USER_REPOSITORY.findUserByEmailAndPassword(email, password);
 		if (userByEmailAndPassword == null) {
 			throw new UserNotFoundException();
 		}
-		return userByEmailAndPassword;
 	}
 
 	/**
@@ -101,6 +99,11 @@ public class UserServiceImpl implements UserService {
 		return userByEmail;
 	}
 
+	/**
+	 * This method is used to get all the users from the database.
+	 *
+	 * @return List of users
+	 */
 	@Override
 	public List<String> findAllEmails() {
 		List<User> users = USER_REPOSITORY.findAll();

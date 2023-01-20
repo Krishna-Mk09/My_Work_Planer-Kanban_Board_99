@@ -17,6 +17,11 @@ public class UserServiceApplication {
 		SpringApplication.run(UserServiceApplication.class, args);
 	}
 
+	/**
+	 * This method is used to register the filter
+	 *
+	 * @return The FilterRegistrationBean
+	 */
 	@Bean
 	public FilterRegistrationBean<JwtFilter> jwtFilter() {
 		FilterRegistrationBean<JwtFilter> filterRegistrationBean = new FilterRegistrationBean<>();

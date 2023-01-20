@@ -9,6 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(name = "kanban-service", url = "kanban-service:8082")
 public interface KanbanProxy {
+
+	/**
+	 * This method is used to save kanban as a user registers
+	 *
+	 * @param user The user to be saved
+	 * @return The ResponseEntity
+	 */
 	@PostMapping("/kanban/save-kanban")
 	ResponseEntity<?> saveKanban(@RequestBody User user);
 

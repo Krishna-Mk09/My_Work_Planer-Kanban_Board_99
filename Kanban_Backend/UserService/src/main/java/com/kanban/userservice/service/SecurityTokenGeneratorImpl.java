@@ -18,6 +18,13 @@ import java.util.Map;
 
 @Service
 public class SecurityTokenGeneratorImpl implements SecurityTokenGenerator {
+
+	/**
+	 * This method is used to generate token
+	 *
+	 * @param user The user
+	 * @return The Map containing token
+	 */
 	@Override
 	public Map<String, String> generateToken(User user) {
 		String jwtToken;
