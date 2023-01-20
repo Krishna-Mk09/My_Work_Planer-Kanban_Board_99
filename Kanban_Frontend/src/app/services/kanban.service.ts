@@ -30,7 +30,6 @@ export class KanbanService {
 
   /**
    * This function fetches the current user's kanban from the database
-   * @return Observable with the current user's kanban
    */
   getCurrentUserKanban() {
     return this.httpClient.get<Kanban>(
@@ -64,7 +63,6 @@ export class KanbanService {
   /**
    * This function updates the current user's kanban in the database
    * @param kanban The kanban object to update
-   * @return Observable with the kanban object updated
    */
   updateKanban(kanban: Kanban) {
     return this.httpClient.put<Kanban>(
@@ -100,7 +98,6 @@ export class KanbanService {
    * This function sends a message via RabbitMQ to the user with the email provided
    * @param message The message to send
    * @param email The email of the user to send the message to
-   * @return Observable with the message sent
    */
   sendMessageToMember(message: string, email: string) {
     let messageDTO = {
