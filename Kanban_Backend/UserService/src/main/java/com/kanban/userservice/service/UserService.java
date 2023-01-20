@@ -35,11 +35,21 @@ public interface UserService {
 	 * This method is used to log in the user and return the user.
 	 *
 	 * @param email and password This is the email and password of the user which is to be logged in.
-	 * @return User
 	 */
-	User loginUser(String email, String password) throws UserNotFoundException;
+	void loginUser(String email, String password) throws UserNotFoundException;
 
+	/**
+	 * This method is used to get all the users from the database.
+	 *
+	 * @param email This is the email of the user which is to be fetched from the database.
+	 * @return List of users
+	 */
 	User findUserByEmail(String email) throws UserNotFoundException;
 
+	/**
+	 * This method is used to get all the users from the database.
+	 *
+	 * @return List of users
+	 */
 	List<String> findAllEmails();
 }

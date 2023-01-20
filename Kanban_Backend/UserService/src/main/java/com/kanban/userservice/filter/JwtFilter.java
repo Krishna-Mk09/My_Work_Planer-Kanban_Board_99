@@ -20,6 +20,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class JwtFilter extends GenericFilterBean {
+
+	/**
+	 * This method is used to filter the request and response
+	 *
+	 * @param servletRequest  The request to process
+	 * @param servletResponse The response associated with the request
+	 * @param filterChain     Provides access to the next filter in the chain for this
+	 *                        filter to pass the request and response to for further
+	 *                        processing
+	 * @throws IOException 	if an I/O error occurs during this filter's
+	 * @throws ServletException if the processing fails for any other reason
+	 */
 	@Override
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
