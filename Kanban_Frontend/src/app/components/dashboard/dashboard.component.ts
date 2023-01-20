@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
   currentUserKanban?: Kanban;
   boardToDisplay?: Board;
   boardMembers: User[] = [];
+  currentUserFirstName = localStorage.getItem('user_firstname');
   numberOfTasksAssignedToUser: Map<string, number> = new Map<string, number>();
 
 
