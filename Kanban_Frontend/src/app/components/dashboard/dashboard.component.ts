@@ -134,6 +134,7 @@ export class DashboardComponent implements OnInit {
           });
           this.kanbanService.updateKanban(this.currentUserKanban!);
           this.fetchDetailsOfTaskAssignee();
+          this.kanbanService.sendMessageToMember(`You have been assigned a new task ${result.taskName} in ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}` , result.taskAssignee);
         }
       }
     })
@@ -337,6 +338,7 @@ export class DashboardComponent implements OnInit {
             }
           })
           this.kanbanService.updateKanban(this.currentUserKanban!);
+          this.kanbanService.sendMessageToMember(`You have been assigned a new task ${result.taskName} in ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}` , result.taskAssignee);
         }
       }
     });

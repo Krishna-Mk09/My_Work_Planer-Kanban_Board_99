@@ -63,7 +63,7 @@ export class RegisterComponent {
         }
       }
     });
-    // this.notificationService.sendMail(user);
+    this.notificationService.sendMail(user);
   }
 
 }
