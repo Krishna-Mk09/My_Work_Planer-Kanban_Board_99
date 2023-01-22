@@ -50,12 +50,11 @@ input:disabled {
 }
 
 .update_form {
-  /*margin-top: 120px;*/
-  /*border: 2px solid red;*/
   margin: 120px auto;
   padding: 20px;
   background-color: white;
   box-shadow: 2px 2px 15px grey;
+  border-radius: 15px;
 }
 
 @media all and (max-width: 700px) {
