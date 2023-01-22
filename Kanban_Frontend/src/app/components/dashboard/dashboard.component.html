@@ -19,7 +19,8 @@
   <mat-sidenav-content class="sidebar-content">
     <!-- Add content here -->
 
-    <div class="dashboard_instructions_container">
+<!--    <div class="dashboard_instructions_container">-->
+<!--      For No Board-->
       <div *ngIf="boardToDisplay === undefined" class="dashboard_instructions">
         <h1>Hello {{currentUserFirstName}} ! </h1>
         <h2>Welcome to your dashboard!</h2>
@@ -35,7 +36,7 @@
           </li>
         </ul>
       </div>
-    </div>
+<!--    </div>-->
 
     <!--    Board Header-->
     <div class="board_container">
@@ -68,6 +69,7 @@
             src="https://res.cloudinary.com/dduwkdctl/image/upload/v1673872688/Kanban%20Project/Add_Member_a9af5n.png">
         </div>
 
+
         <!--        Add Column    -->
         <div (click)="addColumnToBoard()" *ngIf="boardToDisplay != null" class="board_add_column"
              matTooltip="Add Column">
@@ -80,6 +82,24 @@
     </div>
 
     <hr *ngIf="boardToDisplay != null" class="divider">
+
+    <!--      For No column-->
+    <div *ngIf="boardToDisplay?.columns?.length! === 0" class="dashboard_instructions">
+      <h1>Hello {{currentUserFirstName}} ! </h1>
+      <h2>Start making columns in your board {{boardToDisplay?.boardName}}</h2>
+      <ul class="about__content-details-para">
+        <li>
+          Click on the "<a (click)="addColumnToBoard()">Add Column</a>" button to create a new Column.
+        </li>
+        <li>
+          Click on the "<a (click)="addMembersToBoard()">Add Contributor</a>" button to add a Member to This Board.
+        </li>
+        <li>
+          Start adding tasks to your columns and plan your work.
+        </li>
+      </ul>
+    </div>
+
 
     <div cdkDropListGroup>
       <!--            Columns     -->
