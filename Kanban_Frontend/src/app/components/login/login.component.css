@@ -10,6 +10,7 @@
   box-shadow: 2px 2px 10px 5px rgba(0, 0, 0, 0.34);
   text-align: center;
   background-color: azure;
+  border-radius: 20px;
 }
 
 @media all and (max-width: 700px) {

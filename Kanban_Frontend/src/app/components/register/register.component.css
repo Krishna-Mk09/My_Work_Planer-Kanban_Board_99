@@ -23,6 +23,7 @@
   box-shadow: 2px 2px 10px black;
   padding-top: 20px;
   padding-bottom: 40px;
+  border-radius: 20px;
 }
 
 .row {
