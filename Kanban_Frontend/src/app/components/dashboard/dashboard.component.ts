@@ -117,7 +117,7 @@ export class DashboardComponent implements OnInit {
         if (result !== null) {
           this.currentUserKanban?.boards?.forEach((b: Board) => {
             if (b.boardName === this.boardToDisplay?.boardName) {
-              b.columns?.forEach((c: any) => {
+              b.columns?.forEach((c: Column) => {
                 if (c.columnName === column.columnName) {
                   c.tasks?.push({
                     name: result.taskName,

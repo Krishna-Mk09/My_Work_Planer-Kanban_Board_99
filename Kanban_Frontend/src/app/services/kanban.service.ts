@@ -40,7 +40,9 @@ export class KanbanService {
               b.columns?.forEach((c: Column) => {
                 c.tasks?.forEach((t: Task) => {
                   t.startDate = new Date(t.startDate!);
+                  t.startDate = new Date(t.startDate?.getFullYear()!, t.startDate?.getMonth()!, t.startDate?.getDate()! + 1);
                   t.dueDate = new Date(t.dueDate!);
+                  t.dueDate = new Date(t.dueDate?.getFullYear()!, t.dueDate?.getMonth()!, t.dueDate?.getDate()! + 1);
                 })
               })
             })
