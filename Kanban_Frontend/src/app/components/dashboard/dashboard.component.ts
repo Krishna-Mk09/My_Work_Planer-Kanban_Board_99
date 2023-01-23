@@ -134,7 +134,7 @@ export class DashboardComponent implements OnInit {
           });
           this.kanbanService.updateKanban(this.currentUserKanban!);
           this.fetchDetailsOfTaskAssignee();
-          this.kanbanService.sendMessageToMember(`You have been assigned a new task ${result.taskName} in ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}` , result.taskAssignee);
+          this.kanbanService.sendMessageToMember(`You have been assigned a new task ${result.taskName} in ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}`, result.taskAssignee);
         }
       }
     })
@@ -155,13 +155,13 @@ export class DashboardComponent implements OnInit {
                 b.members?.push(result);
                 this.snackBar.open("Member added successfully", "Close", {duration: 3000});
                 this.kanbanService.sendMessageToMember(`You have been added to the board ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}`, result);
+                this.kanbanService.addMemberToBoard(this.currentUserKanban!, result).subscribe({
+                  next: (result) => console.log(result)
+                })
+                this.fetchDetailsOfBoardMembers();
               }
             }
           });
-          this.kanbanService.addMemberToBoard(this.currentUserKanban!, result).subscribe({
-            next: (result) => console.log(result)
-          })
-          this.fetchDetailsOfBoardMembers();
         }
       }
     })
@@ -338,7 +338,7 @@ export class DashboardComponent implements OnInit {
             }
           })
           this.kanbanService.updateKanban(this.currentUserKanban!);
-          this.kanbanService.sendMessageToMember(`You have been assigned a new task ${result.taskName} in ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}` , result.taskAssignee);
+          this.kanbanService.sendMessageToMember(`You have been assigned a new task ${result.taskName} in ${this.boardToDisplay?.boardName} by ${localStorage.getItem('user_firstname')}`, result.taskAssignee);
         }
       }
     });

@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     if (`${localStorage.getItem('token')}` !== "null") {
-      this.firstName = `${localStorage.getItem('user_firstname')}`;
+      setTimeout(() => {this.firstName = `${localStorage.getItem('user_firstname')}`;}, 100);
       this.isLoggedIn = true;
     }
   }
