@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>F:/5. Projects/My_Work_Planer-Kanban_Board/Kanban_Backend/KanbanService</OriginalElement>
+  <nodes>
+    <node x="461.52992652691285" y="266.15181983002833">com.kanban.kanbanservice.repository.KanbanRepository</node>
+    <node x="1179.0689586402257" y="340.95402107648744">com.kanban.kanbanservice.configuration.MessageDTO</node>
+    <node x="152.21212555240788" y="286.5997918526911">com.kanban.kanbanservice.domain.Board</node>
+    <node x="384.0176749008501" y="160.6702739943343">com.kanban.kanbanservice.service.MessageService</node>
+    <node x="384.0176749008501" y="366.9020537110482">com.kanban.kanbanservice.service.KanbanServiceImpl</node>
+    <node x="756.4033563739378" y="334.82751682719567">com.kanban.kanbanservice.controller.KanbanController</node>
+    <node x="760.875526402266" y="711.0453874220964">com.kanban.kanbanservice.KanbanServiceApplication</node>
+    <node x="1035.733377903682" y="584.1150191501417">com.kanban.kanbanservice.configuration.MessageConfig</node>
+    <node x="1086.9383939263462" y="164.64639682719536">com.kanban.kanbanservice.configuration.Producer</node>
+    <node x="384.0176749008501" y="606.6150191501417">com.kanban.kanbanservice.service.KanbanService</node>
+    <node x="152.71212555240788" y="455.5505340045325">com.kanban.kanbanservice.domain.Column</node>
+    <node x="152.21212555240788" y="133.83521611331452">com.kanban.kanbanservice.domain.Kanban</node>
+    <node x="726.0675846458928" y="152.47612283286105">com.kanban.kanbanservice.service.MessageServiceImpl</node>
+    <node x="152.21212555240788" y="606.2044958640226">com.kanban.kanbanservice.domain.Task</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.kanban.kanbanservice.domain.Board" target="com.kanban.kanbanservice.domain.Column" relationship="TO_MANY">
+      <point x="0.0" y="47.36126141643064" />
+      <point x="0.0" y="-38.21287127025494" />
+    </edge>
+    <edge source="com.kanban.kanbanservice.domain.Kanban" target="com.kanban.kanbanservice.domain.Board" relationship="TO_MANY">
+      <point x="0.0" y="38.455261643059515" />
+      <point x="0.0" y="-47.36126141643058" />
+    </edge>
+    <edge source="com.kanban.kanbanservice.service.KanbanServiceImpl" target="com.kanban.kanbanservice.service.KanbanService" relationship="REALIZATION">
+      <point x="0.0" y="104.5" />
+      <point x="0.0" y="-82.0" />
+    </edge>
+    <edge source="com.kanban.kanbanservice.service.MessageServiceImpl" target="com.kanban.kanbanservice.configuration.Producer" relationship="TO_ONE">
+      <point x="134.5" y="12.170273994334309" />
+      <point x="-119.0" y="0.0" />
+    </edge>
+    <edge source="com.kanban.kanbanservice.service.KanbanServiceImpl" target="com.kanban.kanbanservice.repository.KanbanRepository" relationship="TO_ONE">
+      <point x="26.51225162606272" y="-104.5" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="com.kanban.kanbanservice.domain.Column" target="com.kanban.kanbanservice.domain.Task" relationship="TO_MANY">
+      <point x="0.0" y="38.21287127025499" />
+      <point x="0.0" y="-82.41052328611909" />
+    </edge>
+    <edge source="com.kanban.kanbanservice.controller.KanbanController" target="com.kanban.kanbanservice.service.MessageService" relationship="TO_ONE">
+      <point x="0.0" y="-115.5" />
+      <point x="950.9033563739378" y="319.1099777903682" />
+      <point x="1355.6936283286113" y="319.1099777903682" />
+      <point x="1355.6936283286113" y="126.58691444759245" />
+      <point x="541.1255558454388" y="126.58691444759245" />
+      <point x="22.607880944588715" y="-27.659608068351417" />
+    </edge>
+    <edge source="com.kanban.kanbanservice.service.MessageServiceImpl" target="com.kanban.kanbanservice.repository.KanbanRepository" relationship="TO_ONE">
+      <point x="3.8036015864022374" y="49.5" />
+      <point x="864.371186232295" y="296.4808462504247" />
+      <point x="112.22807587535306" y="3.32902642039636" />
+    </edge>
+    <edge source="com.kanban.kanbanservice.controller.KanbanController" target="com.kanban.kanbanservice.service.KanbanService" relationship="TO_ONE">
+      <point x="-16.622574368273263" y="101.75619390368223" />
+      <point x="961.7975678186956" y="552.0837107308779" />
+      <point x="961.7975678186956" y="680.5270118980163" />
+      <point x="167.04075166005578" y="-8.088007252125408" />
+    </edge>
+    <edge source="com.kanban.kanbanservice.service.MessageServiceImpl" target="com.kanban.kanbanservice.service.MessageService" relationship="REALIZATION">
+      <point x="-134.5" y="-14.305848838526742" />
+      <point x="134.5" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.8977254231770848" showDependencies="true" x="731.0815772645889" y="451.355172804532" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

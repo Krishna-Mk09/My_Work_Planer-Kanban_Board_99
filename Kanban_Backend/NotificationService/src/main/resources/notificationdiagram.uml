@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>F:/5. Projects/My_Work_Planer-Kanban_Board/Kanban_Backend/NotificationService</OriginalElement>
+  <nodes>
+    <node x="339.0" y="944.0">com.kanban.notificationservice.NotificationServiceApplication</node>
+    <node x="897.0" y="586.0">com.kanban.notificationservice.configuration.MessageDTO</node>
+    <node x="-127.0" y="789.0">com.kanban.notificationservice.configuration.Consumer</node>
+    <node x="-127.0" y="944.0">com.kanban.notificationservice.configuration.MessageConfiguration</node>
+    <node x="171.99999999999994" y="756.0">com.kanban.notificationservice.controller.NotificationController</node>
+    <node x="306.0" y="10.0">com.kanban.notificationservice.domain.Message</node>
+    <node x="141.9999999999999" y="586.0">com.kanban.notificationservice.service.NotificationService</node>
+    <node x="-127.0" y="288.0">com.kanban.notificationservice.domain.Notification</node>
+    <node x="573.4999999999999" y="619.0">com.kanban.notificationservice.repository.NotificationRepository</node>
+    <node x="516.0" y="756.0">com.kanban.notificationservice.service.NotificationServiceImpl</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.kanban.notificationservice.configuration.Consumer" target="com.kanban.notificationservice.service.NotificationService" relationship="TO_ONE">
+      <point x="-40.0" y="-38.5" />
+      <point x="-27.5" y="664.5" />
+      <point x="-8.0" y="664.5" />
+      <point x="-8.0" y="646.0" />
+      <point x="-142.9999999999999" y="-0.0" />
+    </edge>
+    <edge source="com.kanban.notificationservice.service.NotificationServiceImpl" target="com.kanban.notificationservice.repository.NotificationRepository" relationship="TO_ONE">
+      <point x="4.999999999999886" y="-71.5" />
+      <point x="-0.0" y="27.0" />
+    </edge>
+    <edge source="com.kanban.notificationservice.controller.NotificationController" target="com.kanban.notificationservice.service.NotificationService" relationship="TO_ONE">
+      <point x="-161.99999999999994" y="-61.0" />
+      <point x="-8.0" y="766.5" />
+      <point x="-8.0" y="646.0" />
+      <point x="-142.9999999999999" y="-0.0" />
+    </edge>
+    <edge source="com.kanban.notificationservice.service.NotificationServiceImpl" target="com.kanban.notificationservice.service.NotificationService" relationship="REALIZATION">
+      <point x="-80.5" y="-71.5" />
+      <point x="596.5" y="736.0" />
+      <point x="356.4999999999999" y="736.0" />
+      <point x="71.5" y="60.0" />
+    </edge>
+    <edge source="com.kanban.notificationservice.domain.Notification" target="com.kanban.notificationservice.domain.Message" relationship="TO_MANY">
+      <point x="-0.0" y="-126.5" />
+      <point x="-12.5" y="263.0" />
+      <point x="-0.0" y="126.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.64" showDependencies="true" x="670.6669921874999" y="236.46875" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
