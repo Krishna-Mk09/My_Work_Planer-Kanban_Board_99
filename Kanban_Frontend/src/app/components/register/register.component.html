@@ -90,11 +90,11 @@
                     <mat-error *ngIf="userForm.controls['password'].hasError('minlength')">
                       Password should be minimum of 6 char
                     </mat-error>
-                    <mat-error *ngIf="userForm.controls['confirmPassword'].hasError('maxlength')">
-                      Password should have max of 12 characters
-                    </mat-error>
                     <mat-error *ngIf="userForm.controls['password'].hasError('pattern')">
-                      Password should be combination of numbers alphabets and symbols
+                      Password should be combination of at least 1 upper case, Numeric, and Special Character
+                    </mat-error>
+                    <mat-error *ngIf="userForm.controls['password'].hasError('maxlength')">
+                      Password should have maximum of 12 characters
                     </mat-error>
                   </div>
                 </div>
