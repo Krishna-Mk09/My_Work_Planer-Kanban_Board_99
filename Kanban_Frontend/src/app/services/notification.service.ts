@@ -20,10 +20,10 @@ export class NotificationService {
    * @param user The user that registered
    */
   sendMail(user: User) {
-    emailjs.send('service_spywz99', 'template_swzyasm', {
+    emailjs.send('service_kp51uqm', 'template_u8xw62k', {
       email: user.email,
       firstName: user.firstName
-    }, 'U5Dd7D-6H0Gi074Pr')
+    }, 'Zs8_9CT01m4_nMH63')
       .then((result: EmailJSResponseStatus) => {
           console.log(result.text);
         }, (error) => {
