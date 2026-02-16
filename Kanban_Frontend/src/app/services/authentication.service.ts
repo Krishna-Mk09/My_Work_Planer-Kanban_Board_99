@@ -9,7 +9,9 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class AuthenticationService {
 
-  endPointURL: string = "http://localhost:9005/user";
+  endPointURL: string = "http://${window.location.hostname}:9005/user";
+  // endPointURL: string = `http://${window.location.hostname}:9005/notification`;
+
   currentUser?: User;
   isLoggedIn: boolean = false;
 
