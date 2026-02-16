@@ -11,7 +11,7 @@ import {NotificationService} from "./notification.service";
 })
 export class KanbanService {
 
-  endPointURL: string = "http://localhost:9005/kanban";
+  endPointURL: string = "http://${window.location.hostname}:9005/kanban";
   currentUserKanban?: Kanban;
 
   constructor(
