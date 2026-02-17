@@ -9,7 +9,9 @@ import {Notification} from "../model/notification/Notification";
 })
 export class NotificationService {
 
-  endPointURL: string = "http://${window.location.hostname}:9005/notification";
+  //endPointURL: string = "http://${window.location.hostname}:9005/notification";
+  endPointURL: string = `http://${window.location.hostname}:9005/notification`;
+
   currentUserNotifications?: Notification;
 
   constructor(private httpClient: HttpClient) {
